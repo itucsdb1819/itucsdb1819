@@ -14,7 +14,7 @@ INIT_STATEMENTS = [
 	CreatedOn datetime NOT NULL, 
 	CompletedOn datetime NULL, 
 	IsSurveyCodeExpired bit NOT NULL, 
- CONSTRAINT PK_CustomerSurvey PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_CustomerSurvey PRIMARY KEY 
 (
 	SurveyID ASC
 ))""",
@@ -27,7 +27,7 @@ INIT_STATEMENTS = [
 	ModifiedOn datetime NULL, 
 	IsActive bit NOT NULL, 
 	TitleID int NOT NULL,
- CONSTRAINT PK_Employee PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Employee PRIMARY KEY 
 (
 	EmployeeID ASC
 ))""",
@@ -40,7 +40,7 @@ INIT_STATEMENTS = [
 	IsPremium bit NOT NULL, 
 	CreatedBy int NOT NULL,
 	ModifiedBy int NULL,
- CONSTRAINT PK_Expense PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Expense PRIMARY KEY 
 (
 	ExpenseID ASC
 ))""",
@@ -52,7 +52,7 @@ INIT_STATEMENTS = [
 	IsChildrenOnly bit NOT NULL, 
 	CreatedOn datetime NOT NULL, 
 	ModifiedOn datetime NULL, 
- CONSTRAINT PK_FoodMenu PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_FoodMenu PRIMARY KEY 
 (
 	FoodMenuID ASC
 ))""",
@@ -60,14 +60,14 @@ INIT_STATEMENTS = [
 	IngredientID int NOT NULL,
 	IngredienTypeID int NOT NULL,
 	IngredientName nvarchar(50) NOT NULL, 
- CONSTRAINT PK_Ingredient PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Ingredient PRIMARY KEY 
 (
 	IngredientID ASC
 ))""",
 """CREATE TABLE IF NOT EXISTS IngredientType(
 	IngredienTypeID int NOT NULL,
 	IngredientTypeName nvarchar(50) NOT NULL, 
- CONSTRAINT PK_IngredientType PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_IngredientType PRIMARY KEY 
 (
 	IngredienTypeID ASC
 ))""",
@@ -77,7 +77,7 @@ INIT_STATEMENTS = [
 	LocaleId varchar(4) NOT NULL, 
 	ResourceSet nvarchar(50) NOT NULL, 
 	Value nvarchar(50) NOT NULL, 
- CONSTRAINT PK_Localization PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Localization PRIMARY KEY 
 (
 	PK ASC
 ))""",
@@ -89,7 +89,7 @@ INIT_STATEMENTS = [
 	MenuItemPath nvarchar(50) NOT NULL, 
 	IconPath nvarchar(50) NOT NULL, 
 	IsActive bit NOT NULL, 
- CONSTRAINT PK_Menu PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Menu PRIMARY KEY 
 (
 	MenuItemID ASC
 ))""",
@@ -97,7 +97,7 @@ INIT_STATEMENTS = [
 	PermissionID int NOT NULL,
 	PermissionCode nvarchar(50) NOT NULL,
 	PermissionName nvarchar(50) NOT NULL, 
- CONSTRAINT PK_Permission PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Permission PRIMARY KEY 
 (
 	PermissionID ASC
 ))""",
@@ -112,7 +112,7 @@ INIT_STATEMENTS = [
 	Fat decimal(18, 2) NOT NULL, 
 	Glucose decimal(18, 2) NOT NULL, 
 	IsVegetarian bit NOT NULL, 
- CONSTRAINT PK_Product PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Product PRIMARY KEY 
 (
 	ProductID ASC
 ))""",
@@ -120,7 +120,7 @@ INIT_STATEMENTS = [
 	ProductIngredientID int IDENTITY(1,1) NOT NULL,
 	ProductID int NOT NULL,
 	IngredientID int NOT NULL,
- CONSTRAINT PK_ProductIngredient PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_ProductIngredient PRIMARY KEY 
 (
 	ProductIngredientID ASC
 ))""",
@@ -128,7 +128,7 @@ INIT_STATEMENTS = [
 	ProductMenuID int IDENTITY(1,1) NOT NULL,
 	FoodMenuID int NOT NULL,
 	ProductID int NOT NULL,
- CONSTRAINT PK_ProductMenu PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_ProductMenu PRIMARY KEY 
 (
 	ProductMenuID ASC
 ))""",
@@ -137,14 +137,14 @@ INIT_STATEMENTS = [
 	ProductID int NOT NULL,
 	SaleID int NOT NULL,
 	Note nvarchar(max) NULL, 
- CONSTRAINT PK_ProductSale PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_ProductSale PRIMARY KEY 
 (
 	ProductSaleID ASC
 ))""",
 """CREATE TABLE IF NOT EXISTS ProductType(
 	ProductTypeID int NOT NULL,
 	ProductTypeName nvarchar(50) NOT NULL, 
- CONSTRAINT PK_PoductType PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_PoductType PRIMARY KEY 
 (
 	ProductTypeID ASC
 ))""",
@@ -152,14 +152,14 @@ INIT_STATEMENTS = [
 	RegisterID int NOT NULL,
 	RegisterTypeID int NOT NULL,
 	IsActive bit NOT NULL, 
- CONSTRAINT PK_Register PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Register PRIMARY KEY 
 (
 	RegisterID ASC
 ))""",
 """CREATE TABLE IF NOT EXISTS RegisterType(
 	RegisterTypeID int NOT NULL,
 	RegisterTypeName nvarchar(50) NOT NULL, 
- CONSTRAINT PK_RegisterType PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_RegisterType PRIMARY KEY 
 (
 	RegisterTypeID ASC
 ))""",
@@ -170,7 +170,7 @@ INIT_STATEMENTS = [
 	ModifiedOn datetime NULL, 
 	CreatedBy int NOT NULL,
 	ModifiedBy int NULL,
- CONSTRAINT PK_Role PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Role PRIMARY KEY 
 (
 	RoleID ASC
 ))""",
@@ -178,7 +178,7 @@ INIT_STATEMENTS = [
 	RolePermissionID int IDENTITY(1,1) NOT NULL,
 	RoleID int NOT NULL,
 	PermissionID int NOT NULL,
- CONSTRAINT PK_RolePermission PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_RolePermission PRIMARY KEY 
 (
 	RolePermissionID ASC
 ),
@@ -197,7 +197,7 @@ INIT_STATEMENTS = [
 	ModifiedOn datetime NULL, 
 	IsDelivered bit NULL, 
 	IsCancelled bit NULL, 
- CONSTRAINT PK_Sale PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Sale PRIMARY KEY 
 (
 	SaleID ASC
 ))""",
@@ -209,7 +209,7 @@ INIT_STATEMENTS = [
 	CreatedOn datetime NOT NULL, 
 	ModifiedOn datetime NULL, 
 	ModifiedBy int NULL,
- CONSTRAINT PK_System PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_System PRIMARY KEY 
 (
 	ConfigId ASC
 ))""",
@@ -218,7 +218,7 @@ INIT_STATEMENTS = [
 	TitleName nvarchar(50) NOT NULL, 
 	MonthlyPay decimal(18, 2) NOT NULL, 
 	ModifiedOn datetime NULL, 
- CONSTRAINT PK_Title PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Title PRIMARY KEY 
 (
 	TitleID ASC
 ))""",
@@ -227,7 +227,7 @@ INIT_STATEMENTS = [
 	ToyName nvarchar(50) NOT NULL, 
 	Promotion nvarchar(max) NOT NULL, 
 	CreatedOn datetime NOT NULL, 
- CONSTRAINT PK_Toy PRIMARY KEY CLUSTERED 
+ CONSTRAINT PK_Toy PRIMARY KEY 
 (
 	ToyID ASC
 ))""",
