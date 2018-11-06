@@ -112,7 +112,7 @@ INIT_STATEMENTS = [
 	IsActive bool NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS RegisterType(
-	RegisterTypeID integer PRIMAY KEY,
+	RegisterTypeID integer PRIMARY KEY,
 	RegisterTypeName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Role(
@@ -140,7 +140,7 @@ INIT_STATEMENTS = [
 	IsCancelled bool NULL 
 )""",
 """CREATE TABLE IF NOT EXISTS System(
-	ConfigId varchar(50) PRIMAY KEY,
+	ConfigId varchar(50) PRIMARY KEY,
 	ConfigValue varchar(50) NOT NULL, 
 	ConfigValueType varchar(50) NOT NULL, 
 	IsEditable bool NOT NULL, 
@@ -159,8 +159,81 @@ INIT_STATEMENTS = [
 	ToyName varchar(50) NOT NULL, 
 	Promotion text NOT NULL, 
 	CreatedOn timestamp NOT NULL 
-)"""
+)""",
+"""ALTER TABLE CustomerSurvey ADD CONSTRAINT FK_CustomerSurvey_Sale FOREIGN KEY (SurveyID) REFERENCES Sale (SurveyID);
+	ALTER TABLE CustomerSurvey VALIDATE CONSTRAINT FK_CustomerSurvey_Sale;
+""",
+"""ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Role FOREIGN KEY (RoleID) REFERENCES Role (RoleID);
+	ALTER TABLE Employee VALIDATE CONSTRAINT FK_Employee_Role;
+""",
+"""ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Title FOREIGN KEY (TitleID) REFERENCES Title (TitleID);
+	ALTER TABLE Employee VALIDATE CONSTRAINT FK_Employee_Title;
+""",
+"""ALTER TABLE Expense ADD CONSTRAINT FK_Expense_Employee FOREIGN KEY (CreatedBy) REFERENCES Employee (EmployeeID);
+	ALTER TABLE Expense VALIDATE CONSTRAINT FK_Expense_Employee;
+""",
+"""ALTER TABLE Expense ADD CONSTRAINT FK_Expense_Employee1 FOREIGN KEY (ModifiedBy) REFERENCES Employee (EmployeeID);
+	ALTER TABLE Expense VALIDATE CONSTRAINT FK_Expense_Employee1;
+""",
+"""ALTER TABLE FoodMenu ADD CONSTRAINT FK_FoodMenu_Toy FOREIGN KEY (ToyID) REFERENCES Toy (ToyID);
+	ALTER TABLE FoodMenu VALIDATE CONSTRAINT FK_FoodMenu_Toy;
+""",
+"""ALTER TABLE Ingredient ADD CONSTRAINT FK_Ingredient_IngredientType FOREIGN KEY (IngredienTypeID) REFERENCES IngredientType (IngredienTypeID);
+	ALTER TABLE Ingredient VALIDATE CONSTRAINT FK_Ingredient_IngredientType;
+""",
+"""ALTER TABLE Menu ADD CONSTRAINT FK_Menu_Menu FOREIGN KEY (MasterMenuItemID) REFERENCES Menu (MenuItemID);
+	ALTER TABLE Menu VALIDATE CONSTRAINT FK_Menu_Menu;
+""",
+"""ALTER TABLE Product ADD CONSTRAINT FK_Product_PoductType FOREIGN KEY (ProductTypeID) REFERENCES ProductType (ProductTypeID);
+	ALTER TABLE Product VALIDATE CONSTRAINT FK_Product_PoductType;
+""",
+"""ALTER TABLE ProductIngredient ADD CONSTRAINT FK_ProductIngredient_Ingredient FOREIGN KEY (IngredientID) REFERENCES Ingredient (IngredientID);
+	ALTER TABLE ProductIngredient VALIDATE CONSTRAINT FK_ProductIngredient_Ingredient;
+""",
+"""ALTER TABLE ProductIngredient ADD CONSTRAINT FK_ProductIngredient_Product FOREIGN KEY (ProductID) REFERENCES Product (ProductID);
+	ALTER TABLE ProductIngredient VALIDATE CONSTRAINT FK_ProductIngredient_Product;
+""",
+"""ALTER TABLE ProductMenu ADD CONSTRAINT FK_ProductMenu_FoodMenu FOREIGN KEY (FoodMenuID) REFERENCES FoodMenu (FoodMenuID);
+	ALTER TABLE ProductMenu VALIDATE CONSTRAINT FK_ProductMenu_FoodMenu;
+""",
+"""ALTER TABLE ProductMenu ADD CONSTRAINT FK_ProductMenu_Product FOREIGN KEY (ProductID) REFERENCES Product (ProductID);
+	ALTER TABLE ProductMenu VALIDATE CONSTRAINT FK_ProductMenu_Product;
+""",
+"""ALTER TABLE ProductSale ADD CONSTRAINT FK_ProductSale_Product FOREIGN KEY (ProductID) REFERENCES Product (ProductID);
+	ALTER TABLE ProductSale VALIDATE CONSTRAINT FK_ProductSale_Product;
+""",
+"""ALTER TABLE ProductSale ADD CONSTRAINT FK_ProductSale_Sale FOREIGN KEY (SaleID) REFERENCES Sale (SaleID);
+	ALTER TABLE ProductSale VALIDATE CONSTRAINT FK_ProductSale_Sale;
+""",
+"""ALTER TABLE Register ADD CONSTRAINT FK_Register_RegisterType FOREIGN KEY (RegisterTypeID) REFERENCES RegisterType (RegisterTypeID);
+	ALTER TABLE Register VALIDATE CONSTRAINT FK_Register_RegisterType;
+""",
+"""ALTER TABLE Role ADD CONSTRAINT FK_Role_Employee FOREIGN KEY (CreatedBy) REFERENCES Employee (EmployeeID);
+	ALTER TABLE Role VALIDATE CONSTRAINT FK_Role_Employee;
+""",
+"""ALTER TABLE Role ADD CONSTRAINT FK_Role_Employee1 FOREIGN KEY (ModifiedBy) REFERENCES Employee (EmployeeID);
+	ALTER TABLE Role VALIDATE CONSTRAINT FK_Role_Employee1;
+""",
+"""ALTER TABLE RolePermission ADD CONSTRAINT FK_RolePermission_Permission FOREIGN KEY (PermissionID) REFERENCES Permission (PermissionID);
+	ALTER TABLE RolePermission VALIDATE CONSTRAINT FK_RolePermission_Permission;
+""",
+"""ALTER TABLE RolePermission ADD CONSTRAINT FK_RolePermission_Role FOREIGN KEY (RoleID) REFERENCES Role (RoleID);
+	ALTER TABLE RolePermission VALIDATE CONSTRAINT FK_RolePermission_Role;
+""",
+"""ALTER TABLE Sale ADD CONSTRAINT FK_Sale_Employee FOREIGN KEY (EmployeeID) REFERENCES Employee (EmployeeID);
+	ALTER TABLE Sale VALIDATE CONSTRAINT FK_Sale_Employee;
+""",
+"""ALTER TABLE Sale ADD CONSTRAINT FK_Sale_Register FOREIGN KEY (RegisterID) REFERENCES Register (RegisterID);
+	ALTER TABLE Sale VALIDATE CONSTRAINT FK_Sale_Register;
+""",
+"""ALTER TABLE Sale ADD CONSTRAINT FK_Sale_CustomerSurvey FOREIGN KEY (SaleID) REFERENCES CustomerSurvey (SaleID);
+	ALTER TABLE Sale VALIDATE CONSTRAINT FK_Sale_CustomerSurvey;
+""",
+"""ALTER TABLE System ADD CONSTRAINT FK_System_Employee FOREIGN KEY (ModifiedBy) REFERENCES Employee (EmployeeID);
+	ALTER TABLE System VALIDATE CONSTRAINT FK_System_Employee;
+"""
 ]
+
 
 def initialize(url):
     with dbapi2.connect(url) as connection:
