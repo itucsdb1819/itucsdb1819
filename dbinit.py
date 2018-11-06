@@ -160,7 +160,7 @@ INIT_STATEMENTS = [
 	Promotion text NOT NULL, 
 	CreatedOn timestamp NOT NULL 
 )""",
-"""ALTER TABLE Sale ADD CONSTRAINT FK_CustomerSurvey_Sale FOREIGN KEY (SurveyID) REFERENCES CustomerSurvey (SurveyID);
+"""ALTER TABLE CustomerSurvey ADD CONSTRAINT FK_CustomerSurvey_Sale FOREIGN KEY (SurveyID) REFERENCES Sale (SurveyID);
 """,
 """ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Role FOREIGN KEY (RoleID) REFERENCES Role (RoleID);
 """,
