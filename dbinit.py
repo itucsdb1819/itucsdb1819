@@ -160,9 +160,12 @@ INIT_STATEMENTS = [
 	Promotion text NOT NULL, 
 	CreatedOn timestamp NOT NULL 
 )""",
-"""ALTER TABLE CustomerSurvey ADD CONSTRAINT FK_CustomerSurvey_Sale FOREIGN KEY (SurveyID) REFERENCES Sale (SurveyID);
+"""ALTER TABLE Sale ADD CONSTRAINT FK_Sale UNIQUE (SurveyID);
+	ALTER TABLE Sale ADD CONSTRAINT FK_CustomerSurvey_Sale FOREIGN KEY (SurveyID) REFERENCES CustomerSurvey (SurveyID);
+	ALTER TABLE Sale VALIDATE CONSTRAINT FK_CustomerSurvey_Sale;
 """,
 """ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Role FOREIGN KEY (RoleID) REFERENCES Role (RoleID);
+	ALTER TABLE Employee VALIDATE CONSTRAINT FK_Employee_Role;
 """,
 """ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Title FOREIGN KEY (TitleID) REFERENCES Title (TitleID);
 	ALTER TABLE Employee VALIDATE CONSTRAINT FK_Employee_Title;
