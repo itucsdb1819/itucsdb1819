@@ -6,7 +6,7 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
 """CREATE TABLE IF NOT EXISTS CustomerSurvey(
-	SurveyID integer PRIMARY KEY,
+	SurveyID serial PRIMARY KEY,
 	SaleID integer NOT NULL,
 	SurveyGUID text NOT NULL, 
 	Score decimal NOT NULL, 
@@ -16,7 +16,7 @@ INIT_STATEMENTS = [
 	IsSurveyCodeExpired bool NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Employee(
-	EmployeeID integer SERIAL PRIMARY KEY,
+	EmployeeID serial PRIMARY KEY,
 	RoleID integer NOT NULL,
 	Name varchar(50) NOT NULL, 
 	Surname varchar(50) NOT NULL, 
@@ -26,7 +26,7 @@ INIT_STATEMENTS = [
 	TitleID integer NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Expense(
-	ExpenseID integer SERIAL PRIMARY KEY,
+	ExpenseID serial PRIMARY KEY,
 	Amount decimal NOT NULL, 
 	Description varchar(50) NOT NULL, 
 	CreatedOn timestamp NOT NULL, 
@@ -36,7 +36,7 @@ INIT_STATEMENTS = [
 	ModifiedBy integer NULL
 )""",
 """CREATE TABLE IF NOT EXISTS FoodMenu(
-	FoodMenuID integer SERIAL PRIMARY KEY,
+	FoodMenuID serial PRIMARY KEY,
 	ToyID integer NULL,
 	Discount decimal NOT NULL, 
 	IsActive bool NOT NULL, 
@@ -54,7 +54,7 @@ INIT_STATEMENTS = [
 	IngredientTypeName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Localization(
-	PK integer SERIAL PRIMARY KEY,
+	PK serial PRIMARY KEY,
 	ResourceId varchar(50) NOT NULL, 
 	LocaleId varchar(4) NOT NULL, 
 	ResourceSet varchar(50) NOT NULL, 
@@ -75,7 +75,7 @@ INIT_STATEMENTS = [
 	PermissionName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Product(
-	ProductID integer SERIAL PRIMARY KEY,
+	ProductID serial PRIMARY KEY,
 	ProductTypeID integer NOT NULL,
 	ProductName varchar(50) NOT NULL, 
 	Price decimal NOT NULL, 
@@ -87,17 +87,17 @@ INIT_STATEMENTS = [
 	IsVegetarian bool NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS ProductIngredient(
-	ProductIngredientID integer SERIAL PRIMARY KEY,
+	ProductIngredientID serial PRIMARY KEY,
 	ProductID integer NOT NULL,
 	IngredientID integer NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS ProductMenu(
-	ProductMenuID integer SERIAL PRIMARY KEY,
+	ProductMenuID serial PRIMARY KEY,
 	FoodMenuID integer NOT NULL,
 	ProductID integer NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS ProductSale(
-	ProductSaleID integer SERIAL PRIMARY KEY,
+	ProductSaleID serial PRIMARY KEY,
 	ProductID integer NOT NULL,
 	SaleID integer NOT NULL,
 	Note text NULL 
@@ -116,7 +116,7 @@ INIT_STATEMENTS = [
 	RegisterTypeName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Role(
-	RoleID integer SERIAL PRIMARY KEY,
+	RoleID serial PRIMARY KEY,
 	RoleName varchar(50) NOT NULL, 
 	CreatedOn timestamp NOT NULL, 
 	ModifiedOn timestamp NULL, 
@@ -124,12 +124,12 @@ INIT_STATEMENTS = [
 	ModifiedBy integer NULL
 )""",
 """CREATE TABLE IF NOT EXISTS RolePermission(
-	RolePermissionID integer SERIAL PRIMARY KEY,
+	RolePermissionID serial PRIMARY KEY,
 	RoleID integer NOT NULL,
 	PermissionID integer NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Sale(
-	SaleID integer SERIAL PRIMARY KEY,
+	SaleID serial PRIMARY KEY,
 	EmployeeID integer NULL,
 	RegisterID integer NOT NULL,
 	SurveyID integer NOT NULL,
@@ -149,13 +149,13 @@ INIT_STATEMENTS = [
 	ModifiedBy integer NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Title(
-	TitleID integer SERIAL PRIMARY KEY,
+	TitleID serial PRIMARY KEY,
 	TitleName varchar(50) NOT NULL, 
 	MonthlyPay decimal NOT NULL, 
 	ModifiedOn timestamp NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Toy(
-	ToyID integer SERIAL PRIMARY KEY,
+	ToyID serial PRIMARY KEY,
 	ToyName varchar(50) NOT NULL, 
 	Promotion text NOT NULL, 
 	CreatedOn timestamp NOT NULL 
