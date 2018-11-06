@@ -5,7 +5,7 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-    """CREATE TABLE [dbo].[CustomerSurvey](
+    """CREATE TABLE IF NOT EXISTS [dbo].[CustomerSurvey](
 	[SurveyID] [int] NOT NULL,
 	[SaleID] [int] NOT NULL,
 	[SurveyGUID] [nvarchar](max) NOT NULL, --NON-key
@@ -18,7 +18,7 @@ INIT_STATEMENTS = [
 (
 	[SurveyID] ASC
 ))""",
-    """CREATE TABLE [dbo].[Employee](
+    """CREATE TABLE IF NOT EXISTS [dbo].[Employee](
 	[EmployeeID] [int] IDENTITY(1,1) NOT NULL,
 	[RoleID] [int] NOT NULL,
 	[Name] [nvarchar](50) NOT NULL, --NON-key
@@ -31,7 +31,7 @@ INIT_STATEMENTS = [
 (
 	[EmployeeID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Expense](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Expense](
 	[ExpenseID] [int] IDENTITY(1,1) NOT NULL,
 	[Amount] [decimal](18, 2) NOT NULL, --NON-key
 	[Description] [nvarchar](50) NOT NULL, --NON-key
@@ -44,7 +44,7 @@ INIT_STATEMENTS = [
 (
 	[ExpenseID] ASC
 ))""",
-"""CREATE TABLE [dbo].[FoodMenu](
+"""CREATE TABLE IF NOT EXISTS [dbo].[FoodMenu](
 	[FoodMenuID] [int] IDENTITY(1,1) NOT NULL,
 	[ToyID] [int] NULL,
 	[Discount] [decimal](18, 2) NOT NULL, --NON-key
@@ -56,7 +56,7 @@ INIT_STATEMENTS = [
 (
 	[FoodMenuID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Ingredient](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Ingredient](
 	[IngredientID] [int] NOT NULL,
 	[IngredienTypeID] [int] NOT NULL,
 	[IngredientName] [nvarchar](50) NOT NULL, --NON-key
@@ -64,14 +64,14 @@ INIT_STATEMENTS = [
 (
 	[IngredientID] ASC
 ))""",
-"""CREATE TABLE [dbo].[IngredientType](
+"""CREATE TABLE IF NOT EXISTS [dbo].[IngredientType](
 	[IngredienTypeID] [int] NOT NULL,
 	[IngredientTypeName] [nvarchar](50) NOT NULL, --NON-key
  CONSTRAINT [PK_IngredientType] PRIMARY KEY CLUSTERED 
 (
 	[IngredienTypeID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Localization](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Localization](
 	[PK] [int] IDENTITY(1,1) NOT NULL,
 	[ResourceId] [nvarchar](50) NOT NULL, --NON-key
 	[LocaleId] [varchar](4) NOT NULL, --NON-key
@@ -81,7 +81,7 @@ INIT_STATEMENTS = [
 (
 	[PK] ASC
 ))""",
-"""CREATE TABLE [dbo].[Menu](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Menu](
 	[MenuItemID] [int] NOT NULL,
 	[MasterMenuItemID] [int] NULL,
 	[PermissionID] [int] NOT NULL,
@@ -93,7 +93,7 @@ INIT_STATEMENTS = [
 (
 	[MenuItemID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Permission](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Permission](
 	[PermissionID] [int] NOT NULL,
 	[PermissionCode] [nvarchar](50) NOT NULL,
 	[PermissionName] [nvarchar](50) NOT NULL, --NON-key
@@ -101,7 +101,7 @@ INIT_STATEMENTS = [
 (
 	[PermissionID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Product](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Product](
 	[ProductID] [int] NOT NULL,
 	[ProductTypeID] [int] NOT NULL,
 	[ProductName] [nvarchar](50) NOT NULL, --NON-key
@@ -116,7 +116,7 @@ INIT_STATEMENTS = [
 (
 	[ProductID] ASC
 ))""",
-"""CREATE TABLE [dbo].[ProductIngredient](
+"""CREATE TABLE IF NOT EXISTS [dbo].[ProductIngredient](
 	[ProductIngredientID] [int] IDENTITY(1,1) NOT NULL,
 	[ProductID] [int] NOT NULL,
 	[IngredientID] [int] NOT NULL,
@@ -124,7 +124,7 @@ INIT_STATEMENTS = [
 (
 	[ProductIngredientID] ASC
 ))""",
-"""CREATE TABLE [dbo].[ProductMenu](
+"""CREATE TABLE IF NOT EXISTS [dbo].[ProductMenu](
 	[ProductMenuID] [int] IDENTITY(1,1) NOT NULL,
 	[FoodMenuID] [int] NOT NULL,
 	[ProductID] [int] NOT NULL,
@@ -132,7 +132,7 @@ INIT_STATEMENTS = [
 (
 	[ProductMenuID] ASC
 ))""",
-"""CREATE TABLE [dbo].[ProductSale](
+"""CREATE TABLE IF NOT EXISTS [dbo].[ProductSale](
 	[ProductSaleID] [int] IDENTITY(1,1) NOT NULL,
 	[ProductID] [int] NOT NULL,
 	[SaleID] [int] NOT NULL,
@@ -141,14 +141,14 @@ INIT_STATEMENTS = [
 (
 	[ProductSaleID] ASC
 ))""",
-"""CREATE TABLE [dbo].[ProductType](
+"""CREATE TABLE IF NOT EXISTS [dbo].[ProductType](
 	[ProductTypeID] [int] NOT NULL,
 	[ProductTypeName] [nvarchar](50) NOT NULL, --NON-key
  CONSTRAINT [PK_PoductType] PRIMARY KEY CLUSTERED 
 (
 	[ProductTypeID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Register](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Register](
 	[RegisterID] [int] NOT NULL,
 	[RegisterTypeID] [int] NOT NULL,
 	[IsActive] [bit] NOT NULL, --NON-key
@@ -156,14 +156,14 @@ INIT_STATEMENTS = [
 (
 	[RegisterID] ASC
 ))""",
-"""CREATE TABLE [dbo].[RegisterType](
+"""CREATE TABLE IF NOT EXISTS [dbo].[RegisterType](
 	[RegisterTypeID] [int] NOT NULL,
 	[RegisterTypeName] [nvarchar](50) NOT NULL, --NON-key
  CONSTRAINT [PK_RegisterType] PRIMARY KEY CLUSTERED 
 (
 	[RegisterTypeID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Role](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Role](
 	[RoleID] [int] IDENTITY(1,1) NOT NULL,
 	[RoleName] [nvarchar](50) NOT NULL, --NON-key
 	[CreatedOn] [datetime] NOT NULL, --NON-key
@@ -174,7 +174,7 @@ INIT_STATEMENTS = [
 (
 	[RoleID] ASC
 ))""",
-"""CREATE TABLE [dbo].[RolePermission](
+"""CREATE TABLE IF NOT EXISTS [dbo].[RolePermission](
 	[RolePermissionID] [int] IDENTITY(1,1) NOT NULL,
 	[RoleID] [int] NOT NULL,
 	[PermissionID] [int] NOT NULL,
@@ -187,7 +187,7 @@ INIT_STATEMENTS = [
 	[PermissionID] ASC,
 	[RoleID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Sale](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Sale](
 	[SaleID] [int] IDENTITY(1,1) NOT NULL,
 	[EmployeeID] [int] NULL,
 	[RegisterID] [int] NOT NULL,
@@ -201,7 +201,7 @@ INIT_STATEMENTS = [
 (
 	[SaleID] ASC
 ))""",
-"""CREATE TABLE [dbo].[System](
+"""CREATE TABLE IF NOT EXISTS [dbo].[System](
 	[ConfigId] [nvarchar](50) NOT NULL,
 	[ConfigValue] [nvarchar](50) NOT NULL, --NON-key
 	[ConfigValueType] [nvarchar](50) NOT NULL, --NON-key
@@ -213,7 +213,7 @@ INIT_STATEMENTS = [
 (
 	[ConfigId] ASC
 ))""",
-"""CREATE TABLE [dbo].[Title](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Title](
 	[TitleID] [int] IDENTITY(1,1) NOT NULL,
 	[TitleName] [nvarchar](50) NOT NULL, --NON-key
 	[MonthlyPay] [decimal](18, 2) NOT NULL, --NON-key
@@ -222,7 +222,7 @@ INIT_STATEMENTS = [
 (
 	[TitleID] ASC
 ))""",
-"""CREATE TABLE [dbo].[Toy](
+"""CREATE TABLE IF NOT EXISTS [dbo].[Toy](
 	[ToyID] [int] IDENTITY(1,1) NOT NULL,
 	[ToyName] [nvarchar](50) NOT NULL, --NON-key
 	[Promotion] [nvarchar](max) NOT NULL, --NON-key
@@ -352,13 +352,14 @@ GO
 ALTER TABLE [dbo].[System] CHECK CONSTRAINT [FK_System_Employee]
 GO"""
     ]
+
 def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
             cursor.execute(statement)
+		connection.commit()
         cursor.close()
-
 
 if __name__ == "__main__":
     url = os.getenv("DATABASE_URL")
