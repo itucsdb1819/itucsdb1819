@@ -193,7 +193,7 @@ def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
-		    print("executing %s" % statement)
+            print(statement)
             cursor.execute(statement)
         connection.commit()
         cursor.close()
@@ -201,6 +201,6 @@ def initialize(url):
 if __name__ == "__main__":
     url = os.getenv("DATABASE_URL")
     if url is None:
-        print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
+        print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stdout)
         sys.exit(1)
     initialize(url)
