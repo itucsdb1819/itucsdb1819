@@ -6,28 +6,30 @@
         <link rel="stylesheet" href="../static/css/bootstrap-reboot.css">
         <link rel="stylesheet" href="../static/css/bootstrap-grid.css">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <title>Title</title>
+        <title>Login</title>
     </head>
     <body>
-        <div class="container vertical-center">
-            <div class="row justify-content-md-center">
-                <div class="col-lg-6 ">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="username" id="#username" placeholder="Username">
+        <div class="vertical-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center" >
+                        <div class="panel panel-default"  >
+                            <div class="panel-header">
+                                MCADMIN
                             </div>
-                            <div class="input-group">
-                                <input type="password" class="form-control" name="password" id="#password" placeholder="Password">
-                            </div>
-                            <div class="input-group">
-                                <button type="submit" class="form-control" onclick="return false;">Login!</button>
-                            </div>
-                        </div>            
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="username" id="#username" placeholder="Username" required>
+                                    <input type="password" class="form-control" name="password" id="#password" placeholder="Password" required>
+                                    <button type="submit" class="button btn-primary" onclick="return false;">Login!</button>
+                                </div>
+                            </div>            
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         
                 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
