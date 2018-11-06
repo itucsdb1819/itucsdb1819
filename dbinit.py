@@ -121,7 +121,7 @@ INIT_STATEMENTS = [
 	RoleID serial PRIMARY KEY,
 	RoleName varchar(50) NOT NULL, 
 	CreatedOn timestamp NOT NULL, 
-	ModifiedOn timestamp NULL, 
+	ModifiedOn timestamp NULL
 )""",
 """CREATE TABLE IF NOT EXISTS RolePermission(
 	RolePermissionID serial PRIMARY KEY,
