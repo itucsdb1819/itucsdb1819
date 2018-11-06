@@ -89,7 +89,7 @@ INIT_STATEMENTS = [
 	ProductMenuID serial REFERENCES FoodMenu,
 	FoodMenuID integer NOT NULL,
 	ProductID integer NOT NULL REFERENCES Product,
-	PRIMARY KEY (serial)
+	PRIMARY KEY (ProductMenuID)
 )""",
 """CREATE TABLE IF NOT EXISTS ProductIngredient(
 	ProductIngredientID serial PRIMARY KEY,
