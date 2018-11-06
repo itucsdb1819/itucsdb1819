@@ -52,7 +52,7 @@ INIT_STATEMENTS = [
 	IngredientID integer REFERENCES IngredientType,
 	IngredienTypeID integer NOT NULL,
 	IngredientName varchar(50) NOT NULL,
-	PRIMARY KEY (ingredientID)
+	PRIMARY KEY (IngredientID)
 )""",
 """CREATE TABLE IF NOT EXISTS Toy(
 	ToyID serial PRIMARY KEY,
@@ -104,7 +104,7 @@ INIT_STATEMENTS = [
 	RegisterID integer REFERENCES RegisterType,
 	RegisterTypeID integer NOT NULL,
 	IsActive bool NOT NULL,
-	PRIMARY KEY (integer)
+	PRIMARY KEY (RegisterID)
 )""",
 """CREATE TABLE IF NOT EXISTS Title(
 	TitleID serial PRIMARY KEY,
