@@ -136,7 +136,9 @@ INIT_STATEMENTS = [
 	CreatedOn timestamp NOT NULL, 
 	ModifiedOn timestamp NULL, 
 	IsActive bool NOT NULL, 
-	TitleID integer NOT NULL REFERENCES Title
+	TitleID integer NOT NULL REFERENCES Title,
+	Username varchar(50) NOT NULL,
+	Password text NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS System(
 	ConfigId varchar(50) PRIMARY KEY,
