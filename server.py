@@ -1,9 +1,10 @@
+import os
 from flask import Flask,render_template
 from dbinit import initialize
 
 app = Flask(__name__)
 
-initialize("dbname='postgres' user='postgres' host='localhost' password='hastayimpw'")
+initialize(os.environ['DATABASE_URL'])
 
 
 @app.route("/")
