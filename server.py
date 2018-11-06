@@ -10,35 +10,35 @@ initialize(os.getenv("DATABASE_URL"))
 @app.route("/")
 @app.route("/home")
 def home_page():
-    render_template('home.html')
+    return render_template('home.html')
 
 @app.route("/login")
 def login_page():
-    render_template('login.html')
+    return render_template('login.html')
 
 @app.route("/system")
 def system_page():
-    render_template('system.html')
+    return render_template('system.html')
 
 @app.route("/employee")
 def employee_page():
-    render_template('employee.html')
+    return render_template('employee.html')
 
 @app.route("/expense")
 def expense_page():
-    render_template('expense.html')
+    return render_template('expense.html')
 
 @app.route("/product")
 def product_page():
-    render_template('product.html')
+    return render_template('product.html')
 
 @app.route("/roles_and_permissions")
 def roles_and_permissions_page():
-    render_template('roles_and_permissions.html')
+    return render_template('roles_and_permissions.html')
 
 @app.route("/sales_report")
 def sales_report_page():
-    render_template('sales_report.html')
+    return render_template('sales_report.html')
 
 if __name__ == "__main__":
     app.run()
