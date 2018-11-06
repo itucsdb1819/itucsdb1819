@@ -5,86 +5,86 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-    """CREATE TABLE IF NOT EXISTS CustomerSurvey(
+"""CREATE TABLE IF NOT EXISTS CustomerSurvey(
 	SurveyID int PRIMARY KEY,
 	SaleID int NOT NULL,
-	SurveyGUID nvarchar(max) NOT NULL, 
-	Score decimal(18, 2) NOT NULL, 
-	CustomerAddition nvarchar(max) NULL, 
-	CreatedOn datetime NOT NULL, 
-	CompletedOn datetime NULL, 
-	IsSurveyCodeExpired bit NOT NULL
-	)""",
-    """CREATE TABLE IF NOT EXISTS Employee(
+	SurveyGUID text NOT NULL, 
+	Score decimal NOT NULL, 
+	CustomerAddition text NULL, 
+	CreatedOn timestamp NOT NULL, 
+	CompletedOn timestamp NULL, 
+	IsSurveyCodeExpired bool NOT NULL
+)""",
+"""CREATE TABLE IF NOT EXISTS Employee(
 	EmployeeID int SERIAL PRIMARY KEY,
 	RoleID int NOT NULL,
-	Name nvarchar(50) NOT NULL, 
-	Surname nvarchar(50) NOT NULL, 
-	CreatedOn datetime NOT NULL, 
-	ModifiedOn datetime NULL, 
-	IsActive bit NOT NULL, 
+	Name varchar(50) NOT NULL, 
+	Surname varchar(50) NOT NULL, 
+	CreatedOn timestamp NOT NULL, 
+	ModifiedOn timestamp NULL, 
+	IsActive bool NOT NULL, 
 	TitleID int NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Expense(
 	ExpenseID int SERIAL PRIMARY KEY,
-	Amount decimal(18, 2) NOT NULL, 
-	Description nvarchar(50) NOT NULL, 
-	CreatedOn datetime NOT NULL, 
-	ModifiedOn datetime NULL, 
-	IsPremium bit NOT NULL, 
+	Amount decimal NOT NULL, 
+	Description varchar(50) NOT NULL, 
+	CreatedOn timestamp NOT NULL, 
+	ModifiedOn timestamp NULL, 
+	IsPremium bool NOT NULL, 
 	CreatedBy int NOT NULL,
 	ModifiedBy int NULL
 )""",
 """CREATE TABLE IF NOT EXISTS FoodMenu(
 	FoodMenuID int SERIAL PRIMARY KEY,
 	ToyID int NULL,
-	Discount decimal(18, 2) NOT NULL, 
-	IsActive bit NOT NULL, 
-	IsChildrenOnly bit NOT NULL, 
-	CreatedOn datetime NOT NULL, 
-	ModifiedOn datetime NULL
+	Discount decimal NOT NULL, 
+	IsActive bool NOT NULL, 
+	IsChildrenOnly bool NOT NULL, 
+	CreatedOn timestamp NOT NULL, 
+	ModifiedOn timestamp NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Ingredient(
 	IngredientID int PRIMARY KEY,
 	IngredienTypeID int NOT NULL,
-	IngredientName nvarchar(50) NOT NULL
+	IngredientName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS IngredientType(
 	IngredienTypeID int PRIMARY KEY,
-	IngredientTypeName nvarchar(50) NOT NULL
+	IngredientTypeName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Localization(
 	PK int SERIAL PRIMARY KEY,
-	ResourceId nvarchar(50) NOT NULL, 
+	ResourceId varchar(50) NOT NULL, 
 	LocaleId varchar(4) NOT NULL, 
-	ResourceSet nvarchar(50) NOT NULL, 
-	Value nvarchar(50) NOT NULL
+	ResourceSet varchar(50) NOT NULL, 
+	Value varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Menu(
 	MenuItemID int PRIMARY KEY,
 	MasterMenuItemID int NULL,
 	PermissionID int NOT NULL,
-	MenuItemName nvarchar(50) NOT NULL, 
-	MenuItemPath nvarchar(50) NOT NULL, 
-	IconPath nvarchar(50) NOT NULL, 
-	IsActive bit NOT NULL
+	MenuItemName varchar(50) NOT NULL, 
+	MenuItemPath varchar(50) NOT NULL, 
+	IconPath varchar(50) NOT NULL, 
+	IsActive bool NOT NULL
 	)""",
 """CREATE TABLE IF NOT EXISTS Permission(
 	PermissionID int PRIMARY KEY,
-	PermissionCode nvarchar(50) NOT NULL,
-	PermissionName nvarchar(50) NOT NULL
+	PermissionCode varchar(50) NOT NULL,
+	PermissionName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Product(
 	ProductID int SERIAL PRIMARY KEY,
 	ProductTypeID int NOT NULL,
-	ProductName nvarchar(50) NOT NULL, 
-	Price decimal(18, 2) NOT NULL, 
-	Calorie decimal(18, 2) NOT NULL, 
-	Protein decimal(18, 2) NOT NULL, 
-	Carbohydrate decimal(18, 2) NOT NULL, 
-	Fat decimal(18, 2) NOT NULL, 
-	Glucose decimal(18, 2) NOT NULL, 
-	IsVegetarian bit NOT NULL
+	ProductName varchar(50) NOT NULL, 
+	Price decimal NOT NULL, 
+	Calorie decimal NOT NULL, 
+	Protein decimal NOT NULL, 
+	Carbohydrate decimal NOT NULL, 
+	Fat decimal NOT NULL, 
+	Glucose decimal NOT NULL, 
+	IsVegetarian bool NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS ProductIngredient(
 	ProductIngredientID int SERIAL PRIMARY KEY,
@@ -100,26 +100,26 @@ INIT_STATEMENTS = [
 	ProductSaleID int SERIAL PRIMARY KEY,
 	ProductID int NOT NULL,
 	SaleID int NOT NULL,
-	Note nvarchar(max) NULL 
+	Note text NULL 
 )""",
 """CREATE TABLE IF NOT EXISTS ProductType(
 	ProductTypeID int PRIMARY KEY,
-	ProductTypeName nvarchar(50) NOT NULL
+	ProductTypeName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Register(
 	RegisterID int PRIMARY KEY,
 	RegisterTypeID int NOT NULL,
-	IsActive bit NOT NULL
+	IsActive bool NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS RegisterType(
 	RegisterTypeID int PRIMAY KEY,
-	RegisterTypeName nvarchar(50) NOT NULL
+	RegisterTypeName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Role(
 	RoleID int SERIAL PRIMARY KEY,
-	RoleName nvarchar(50) NOT NULL, 
-	CreatedOn datetime NOT NULL, 
-	ModifiedOn datetime NULL, 
+	RoleName varchar(50) NOT NULL, 
+	CreatedOn timestamp NOT NULL, 
+	ModifiedOn timestamp NULL, 
 	CreatedBy int NOT NULL,
 	ModifiedBy int NULL
 )""",
@@ -137,32 +137,32 @@ CONSTRAINT IX_RolePermission UNIQUE NONCLUSTERED
 	EmployeeID int NULL,
 	RegisterID int NOT NULL,
 	SurveyID int NOT NULL,
-	PaymentMethod nvarchar(50) NOT NULL, 
-	CreatedOn datetime NOT NULL, 
-	ModifiedOn datetime NULL, 
-	IsDelivered bit NULL, 
-	IsCancelled bit NULL 
+	PaymentMethod varchar(50) NOT NULL, 
+	CreatedOn timestamp NOT NULL, 
+	ModifiedOn timestamp NULL, 
+	IsDelivered bool NULL, 
+	IsCancelled bool NULL 
 )""",
 """CREATE TABLE IF NOT EXISTS System(
-	ConfigId nvarchar(50) PRIMAY KEY,
-	ConfigValue nvarchar(50) NOT NULL, 
-	ConfigValueType nvarchar(50) NOT NULL, 
-	IsEditable bit NOT NULL, 
-	CreatedOn datetime NOT NULL, 
-	ModifiedOn datetime NULL, 
+	ConfigId varchar(50) PRIMAY KEY,
+	ConfigValue varchar(50) NOT NULL, 
+	ConfigValueType varchar(50) NOT NULL, 
+	IsEditable bool NOT NULL, 
+	CreatedOn timestamp NOT NULL, 
+	ModifiedOn timestamp NULL, 
 	ModifiedBy int NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Title(
 	TitleID int SERIAL PRIMARY KEY,
-	TitleName nvarchar(50) NOT NULL, 
-	MonthlyPay decimal(18, 2) NOT NULL, 
-	ModifiedOn datetime NULL
+	TitleName varchar(50) NOT NULL, 
+	MonthlyPay decimal NOT NULL, 
+	ModifiedOn timestamp NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Toy(
 	ToyID int SERIAL PRIMARY KEY,
-	ToyName nvarchar(50) NOT NULL, 
-	Promotion nvarchar(max) NOT NULL, 
-	CreatedOn datetime NOT NULL 
+	ToyName varchar(50) NOT NULL, 
+	Promotion text NOT NULL, 
+	CreatedOn timestamp NOT NULL 
 )"""
 ]
 
