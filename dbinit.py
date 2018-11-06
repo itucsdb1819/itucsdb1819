@@ -193,6 +193,7 @@ def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
+		    print("executing %s", statement)
             cursor.execute(statement)
         connection.commit()
         cursor.close()
