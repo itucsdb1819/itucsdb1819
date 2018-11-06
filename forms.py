@@ -14,7 +14,7 @@ class Employee:
     def save(employee):
         with dbapi.connect(url) as conn
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO Employee (RoleID, Name, Surname, CreatedOn, ModifiedOn, IsActive, TitleID) VALUES (%d, %s, %s, %s, %s, %s, %s)', employee.roleId, employee.name, employee.surname, employee.createdOn, None, True, datetime.now)
+            cursor.execute('INSERT INTO Employee (RoleID, Name, Surname, CreatedOn, ModifiedOn, IsActive, TitleID) VALUES (%d, %s, %s, %s, %s, %s, %s)' % (employee.roleId, employee.name, employee.surname, employee.createdOn, None, True, datetime.now))
             connection.commit()
             cursor.close()
 
@@ -35,6 +35,6 @@ class System:
     def update(configId, configValue, employeeId):
         with dbapi.connect(url) as conn
             cursor = connection.cursor()
-            cursor.execute('UPDATE Config SET ConfigValue = %s, ModifiedBy = %s, ModifiedOn = %s WHERE ConfigId = %s AND IsEditable = true', configValue, employeeId, datetime.now, configId)
+            cursor.execute('UPDATE Config SET ConfigValue = %s, ModifiedBy = %s, ModifiedOn = %s WHERE ConfigId = %s AND IsEditable = true' % (configValue, employeeId, datetime.now, configId))
             connection.commit()
             cursor.close()
