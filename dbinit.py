@@ -358,7 +358,7 @@ def initialize(url):
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
             cursor.execute(statement)
-	    connection.commit()
+        connection.commit()
         cursor.close()
 
 if __name__ == "__main__":
