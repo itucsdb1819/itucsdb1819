@@ -5,7 +5,6 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-	"DROP TABLE IF EXISTS Dummy",
 	"DROP TABLE IF EXISTS Localization",
 	"DROP TABLE IF EXISTS Menu",
 	"DROP TABLE IF EXISTS IngredientType CASCADE",
@@ -39,7 +38,7 @@ INIT_STATEMENTS = [
 """CREATE TABLE IF NOT EXISTS Menu(
 	MenuItemID integer PRIMARY KEY,
 	MasterMenuItemID integer NULL REFERENCES Menu (MenuItemID),
-	PermissionID integer NOT NULL,
+	PermissionID integer NULL,
 	MenuItemName varchar(50) NOT NULL, 
 	MenuItemPath varchar(50) NOT NULL, 
 	IconPath varchar(50) NOT NULL, 
@@ -188,6 +187,53 @@ INIT_STATEMENTS = [
 )"""
 ]
 
+TITLE_INSERT_STATEMENTS = []
+
+ROLE_INSERT_STATEMENTS = []
+
+PERMISSION_INSERT_STATEMENTS = []
+
+ROLE_PERMISSION_ONSERT_STATEMENTS = []
+
+EMPLOYEE_INSERT_STATEMENTS = []
+
+MENU_INSERT_STATEMENTS = [
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (1, NULL, NULL, 'Menu.Home', '/', 'fa fa-home', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (2, NULL, NULL, 'Menu.Administration', '#', '', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (3, NULL, NULL, 'Menu.Accounting', '#', '', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (4, NULL, NULL, 'Menu.SystemConfiguration', '/system', '', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (5, 2, NULL, 'Menu.Employee', '/employee', '', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (6, 2, NULL, 'Menu.RoleAndPermissions', '/roles_and_permissions', '', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (7, 3, NULL, 'Menu.Expense', '/expense', '', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (8, 3, NULL, 'Menu.Product', '/product', '', true)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+	VALUES (9, 3, NULL, 'Menu.SalesReport', '/sales_report', '', true)
+"""
+]
+
+SYSTEM_INSERT_STATEMENTS = [
+	"""INSERT INTO System (ConfigId, ConfigValue, ConfigValueType, IsEditable, CreatedOn, ModifiedOn, ModifiedBy)
+	VALUES ('SystemLanguage', 'tr', 'string', true, NOW(), NULL, NULL)""",
+	"""INSERT INTO System (ConfigId, ConfigValue, ConfigValueType, IsEditable, CreatedOn, ModifiedOn, ModifiedBy)
+	VALUES ('Currency', 'TL', 'string', true, NOW(), NULL, NULL)""",
+]
+
 
 def initialize(url):
     with dbapi2.connect(url) as connection:
@@ -195,6 +241,15 @@ def initialize(url):
         for statement in INIT_STATEMENTS:
             print(statement)
             cursor.execute(statement)
+
+		for statement in MENU_INSERT_STATEMENTS:
+            print(statement)
+            cursor.execute(statement)
+
+		for statement in SYSTEM_INSERT_STATEMENTS:
+            print(statement)
+            cursor.execute(statement)	
+
         connection.commit()
         cursor.close()
 

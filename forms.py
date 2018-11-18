@@ -1,7 +1,8 @@
 import psycopg2 as dbapi
 import datetime
+import os
 
-url = "dbname='postgres' user='postgres' host='localhost' password='hastayimpw'"
+url = os.getenv("DATABASE_URL")
 
 class Employee:
     def __init__(id, name, surname, roleId, titleId):
