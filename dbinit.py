@@ -187,7 +187,10 @@ INIT_STATEMENTS = [
 )"""
 ]
 
-TITLE_INSERT_STATEMENTS = []
+TITLE_INSERT_STATEMENTS = [
+	"""INSERT INTO Title (TitleName, MonthlyPay)
+	VALUES ('Cashier', 1457)"""
+]
 
 ROLE_INSERT_STATEMENTS = []
 
@@ -242,13 +245,17 @@ def initialize(url):
             print(statement)
             cursor.execute(statement)
 
-		for statement in MENU_INSERT_STATEMENTS:
+        for statement in MENU_INSERT_STATEMENTS:
             print(statement)
             cursor.execute(statement)
 
-		for statement in SYSTEM_INSERT_STATEMENTS:
+        for statement in SYSTEM_INSERT_STATEMENTS:
             print(statement)
             cursor.execute(statement)	
+
+        for statement in TITLE_INSERT_STATEMENTS:
+            print(statement)
+            cursor.execute(statement)
 
         connection.commit()
         cursor.close()
