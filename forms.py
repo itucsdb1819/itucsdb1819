@@ -62,3 +62,5 @@ class Menu:
         cursor.close()
         conn.close()        
         return retVal
+
+    selectStatement = "SELECT * FROM Menu WHERE IsActive = 1"

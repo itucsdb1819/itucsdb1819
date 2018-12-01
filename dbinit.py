@@ -257,8 +257,7 @@ def initialize(url):
             print(statement)
             cursor.execute(statement)
         
-        dataset = forms.Menu.select()
-        print(dataset.menuItemName)
+        dataset = cursor.execute(forms.Menu.selectStatement)
         
         connection.commit()
         cursor.close()
