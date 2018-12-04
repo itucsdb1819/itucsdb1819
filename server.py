@@ -10,7 +10,9 @@ initialize(os.getenv("DATABASE_URL"))
 @app.route("/")
 @app.route("/home")
 def home_page():
-    forms.Menu.selectMenuItems()
+    menuItems = forms.Menu.selectMenuItems()
+    for item in menuItems:
+        print('{}, {}, {}, {}, {}, {}, {}'.format(item.menuItemId, item.masterMenuItemId, item.permissionId, item.menuItemName, item.menuItemPath, item.iconPath, item.isActive))
     return render_template('home.html')
 
 @app.route("/login")
@@ -23,6 +25,7 @@ def system_page():
 
 @app.route("/employee")
 def employee_page():
+    employees = forms.Employee.select("IsActive = true", "", "")
     return render_template('employee.html')
 
 @app.route("/expense")

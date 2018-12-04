@@ -36,6 +36,16 @@ class Employee:
         cursor.close()
         conn.close()
 
+    def select(whereClause, orderByClause, groupByClause):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT EmployeeID, RoleID, Name, Surname, 
+        CreatedOn, ModifiedOn, IsActive, TitleID, Username FROM Employee """ + whereClause + orderByClause + groupByClause
+        employees = cursor.fetchAll()
+        cursor.close()
+        return employees
+
+
 class System:
     def __init__(configId, configValue, configValueType, isEditable):
         self.configId = configId
@@ -48,9 +58,6 @@ class System:
         cursor = conn.cursor()
         queryString = """SELECT ConfigID, ConfigValue, ConfigValueType, IsEditable FROM System"""
         cursor.execute(queryString)
-        for row in cursor:
-            configId, configValue, configValueType, isEditable = row
-            print('{}, {}, {}, {}'.format(configId, configValue, configValueType, isEditable))
         systemItems = cursor.fetchall()
         cursor.close()
         return systemItems
@@ -70,9 +77,6 @@ class Menu:
         cursor = conn.cursor()
         queryString = """SELECT MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive FROM Menu WHERE IsActive = true"""
         cursor.execute(queryString)
-        for row in cursor:
-            menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive = row
-            print('{}, {}, {}, {}, {}, {}, {}'.format(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive))
         menuItems = cursor.fetchall()
         cursor.close()
         return menuItems
