@@ -79,7 +79,7 @@ INIT_STATEMENTS = [
 	Price decimal NOT NULL, 
 	Calorie decimal NOT NULL, 
 	Protein decimal NOT NULL, 
-	Carbohydrate decimal NOT NULL, 
+	Carbonhydrate decimal NOT NULL, 
 	Fat decimal NOT NULL, 
 	Glucose decimal NOT NULL, 
 	IsVegetarian bool NOT NULL

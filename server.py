@@ -24,7 +24,7 @@ def system_page():
 
 @app.route("/employee")
 def employee_page():
-    employees = forms.Employee.select("WHERE IsActive = true", "", "")
+    employees = forms.Employee.select("WHERE IsActive = true")
     for item in employees:
         print('{}, {}, {}, {}'.format(item[0], item[1], item[2], item[3]))
     return render_template('employee.html')
@@ -40,7 +40,7 @@ def product_page():
 
 @app.route("/roles_and_permissions")
 def roles_and_permissions_page():
-    return render_template('roles_and_permissions.html')
+    return render_template('roles_and_permissions.html', menuItems = menuItems)
 
 @app.route("/sales_report")
 def sales_report_page():
