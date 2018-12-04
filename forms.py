@@ -77,7 +77,7 @@ class System:
         conn.close()
         
 class Menu:
-    def __init__(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive):
+    def __init__(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive, hasChildren):
         self.menuItemId = menuItemId
         self.masterMenuItemId = masterMenuItemId
         self.permissionId = permissionId
@@ -85,12 +85,14 @@ class Menu:
         self.menuItemPath = menuItemPath
         self.iconPath = iconPath
         self.isActive = isActive
+        self.hasChildren = hasChildren
 
     def selectMenuItems():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT M.MenuItemID, M.MasterMenuItemID, M.PermissionID, L.Value, 
-        M.MenuItemPath, M.IconPath, M.IsActive FROM Menu M
+        M.MenuItemPath, M.IconPath, M.IsActive, M.HasChildren
+        FROM Menu M
         INNER JOIN Localization L ON L.ResourceID = M.MenuItemName
         WHERE M.IsActive = true AND L.ResourceSet = 'Menu' AND L.LocaleID = 'tr'"""
         cursor.execute(queryString)

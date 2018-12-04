@@ -40,7 +40,8 @@ INIT_STATEMENTS = [
 	MenuItemName varchar(50) NOT NULL, 
 	MenuItemPath varchar(50) NOT NULL, 
 	IconPath varchar(50) NOT NULL, 
-	IsActive bool NOT NULL
+	IsActive bool NOT NULL,
+	HasChildren bool NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS IngredientType(
 	IngredienTypeID integer PRIMARY KEY,
@@ -221,31 +222,31 @@ EMPLOYEE_INSERT_STATEMENTS = []
 
 MENU_INSERT_STATEMENTS = [
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (1, NULL, NULL, 'Menu.Home', '/', 'fa fa-home', true)
+	VALUES (1, NULL, NULL, 'Menu.Home', '/', 'fa fa-home', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (2, NULL, NULL, 'Menu.Administration', '#', '', true)
+	VALUES (2, NULL, NULL, 'Menu.Administration', '#', '', true, true)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (3, NULL, NULL, 'Menu.Accounting', '#', '', true)
+	VALUES (3, NULL, NULL, 'Menu.Accounting', '#', '', true, true)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (4, NULL, NULL, 'Menu.SystemConfiguration', '/system', '', true)
+	VALUES (4, NULL, NULL, 'Menu.SystemConfiguration', '/system', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (5, 2, NULL, 'Menu.Employee', '/employee', '', true)
+	VALUES (5, 2, NULL, 'Menu.Employee', '/employee', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (6, 2, NULL, 'Menu.RoleAndPermissions', '/roles_and_permissions', '', true)
+	VALUES (6, 2, NULL, 'Menu.RoleAndPermissions', '/roles_and_permissions', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (7, 3, NULL, 'Menu.Expense', '/expense', '', true)
+	VALUES (7, 3, NULL, 'Menu.Expense', '/expense', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (8, 3, NULL, 'Menu.Product', '/product', '', true)
+	VALUES (8, 3, NULL, 'Menu.Product', '/product', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
-	VALUES (9, 3, NULL, 'Menu.SalesReport', '/sales_report', '', true)
+	VALUES (9, 3, NULL, 'Menu.SalesReport', '/sales_report', '', true, false)
 """
 ]
 
