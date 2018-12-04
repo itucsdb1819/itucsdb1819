@@ -16,7 +16,7 @@
                     <h2>MENU</h2>
                     <table border = 1>
                         {% for item in menuItems %}
-                            var menuID = item[3]
+                            <var menuID> {{ item[3] }} </var>
                             {% if item[1] in menuItems = null %}
                                 <tr>
                                     <th> {{ item[3] }} </th>
