@@ -4,22 +4,6 @@ import os
 
 url = os.getenv("DATABASE_URL")
 
-def deleteEmployee(employeeId):
-    conn = dbapi.connect(url)
-    cursor = conn.cursor()
-    cursor.execute('UPDATE Employee SET IsActive = false WHERE EmployeeID = ' + employeeId)
-    conn.commit()
-    cursor.close()
-    conn.close()
-
-def updateSystemEntry(configId, configValue, employeeId):
-    conn = dbapi.connect(url)
-    cursor = conn.cursor()
-    cursor.execute('UPDATE Config SET ConfigValue = %s, ModifiedBy = %s, ModifiedOn = %s WHERE ConfigId = %s AND IsEditable = true' % (configValue, employeeId, datetime.now, configId))
-    conn.commit()
-    cursor.close()
-    conn.close()
-
 class Employee:
     def __init__(id, name, surname, roleId, titleId):
         self.employeeId = id
@@ -36,15 +20,22 @@ class Employee:
         cursor.close()
         conn.close()
 
-    def select(whereClause, orderByClause, groupByClause):
+    def select(clause):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT EmployeeID, RoleID, Name, Surname, 
-        CreatedOn, ModifiedOn, IsActive, TitleID, Username FROM Employee """ + whereClause + orderByClause + groupByClause
-        employees = cursor.fetchAll()
+        CreatedOn, ModifiedOn, IsActive, TitleID, Username FROM Employee """ + clause
+        employees = cursor.fetchall()
         cursor.close()
         return employees
 
+    def deleteEmployee(employeeId):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        cursor.execute('UPDATE Employee SET IsActive = false WHERE EmployeeID = ' + employeeId)
+        conn.commit()
+        cursor.close()
+        conn.close()
 
 class System:
     def __init__(configId, configValue, configValueType, isEditable):
@@ -61,7 +52,24 @@ class System:
         systemItems = cursor.fetchall()
         cursor.close()
         return systemItems
-    
+
+    def selectSystemValue(configID)
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT ConfigValue FROM System WHERE ConfigID = """ + configID
+        cursor.execute(queryString)
+        configItem = cursor.fetchall()
+        cursor.close()
+        return configItem
+
+    def updateSystemEntry(configId, configValue, employeeId):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        cursor.execute('UPDATE Config SET ConfigValue = %s, ModifiedBy = %s, ModifiedOn = %s WHERE ConfigId = %s AND IsEditable = true' % (configValue, employeeId, datetime.now, configId))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
 class Menu:
     def __init__(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive):
         self.menuItemId = menuItemId
@@ -87,6 +95,39 @@ class Permission:
         self.permissionCode = permissionCode
         self.permissionName = permissionName    
 
+    def selectPermissions(roleID)
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT DISTINCT P.PermissionID, P.PermissionCode, P.PermissionName, 
+            (RP.RoleID IS NULL) AS HasPermission FROM Permission P
+            LEFT JOIN RolePermission RP ON RP.PermissionID = P.PermissionID
+            WHERE RoleID = """ + roleID
+        cursor.execute(queryString)
+        permissions = cursor.fetchall()
+        cursor.close()
+        return permissions
+
+    def hasPermission(roleID, permissionID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT RoleID, PermissionID FROM RolePermission
+            WHERE RoleID = """ + roleID + """
+                AND PermissionID = """ + permissionID
+
+        cursor.execute(queryString)
+        count = 0
+        results = cursor.fetchall()
+        for result in results:
+            count += 1
+        
+        cursor.close()
+
+        if count == 0:
+            return False
+        else: return True
+
 class Product:
     def __init__(productID, productTypeID, productName, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian):
         self.productID = productID
@@ -100,6 +141,16 @@ class Product:
         self.glucose = glucose
         self.isVegetarian = isVegetarian
 
+    def select(clause):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString """SELECT ProductID, ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian
+            FROM Product """ + clause
+        cursor.execute(queryString)
+        products = cursor.fetchall()
+        cursor.close()
+        return products
+
 class Localization:
     def __init__(pk, resourceID, localeID, resourceSet, value):
         self.pk = pk
@@ -107,3 +158,30 @@ class Localization:
         self.localeID = localeID
         self.resourceSet = resourceSet
         self.value = value
+
+    def selectLocalizationItem(resourceID, resourceSet, localeID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT Value FROM Localization 
+            WHERE ResourceID = """ + resourceID + """ 
+            AND ResourceSet = """ + resourceSet + """ 
+            AND LocaleID = """ + localeID
+        cursor.execute(queryString)
+        value = cursor.fetchall()
+        return value
+
+class RolePermission:
+    def __init__(rolePermissionID, roleID, permissionID):
+        self.rolePermissionID = rolePermissionID
+        self.roleID = roleID
+        self.permissionID = permissionID
+
+    def select():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT RoleID, PermissionID FROM RolePermission"""
+        cursor.execute(queryString)
+        rolePermissions = cursor.fetchall()
+        cursor.close()
+        return rolePermissions
