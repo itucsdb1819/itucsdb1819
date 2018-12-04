@@ -15,36 +15,40 @@ def home_page():
 
 @app.route("/login")
 def login_page():
-    return render_template('login.html')
+    menuItems = forms.Menu.selectMenuItems()
+    return render_template('login.html', menuItems = menuItems)
 
 @app.route("/system")
 def system_page():
+    menuItems = forms.Menu.selectMenuItems()
     configValues = forms.System.select()
-    return render_template('system.html')
+    return render_template('system.html', menuItems = menuItems)
 
 @app.route("/employee")
 def employee_page():
+    menuItems = forms.Menu.selectMenuItems()
     employees = forms.Employee.select("WHERE IsActive = true")
-    for item in employees:
-        print('{}, {}, {}, {}'.format(item[0], item[1], item[2], item[3]))
-    return render_template('employee.html')
+    return render_template('employee.html', menuItems = menuItems)
 
 @app.route("/expense")
 def expense_page():
-    return render_template('expense.html')
+    menuItems = forms.Menu.selectMenuItems()
+    return render_template('expense.html', menuItems = menuItems)
 
 @app.route("/product")
 def product_page():
     products = forms.Product.select("")
-    return render_template('product.html')
+    return render_template('product.html', menuItems = menuItems)
 
 @app.route("/roles_and_permissions")
 def roles_and_permissions_page():
+    menuItems = forms.Menu.selectMenuItems()
     return render_template('roles_and_permissions.html', menuItems = menuItems)
 
 @app.route("/sales_report")
 def sales_report_page():
-    return render_template('sales_report.html')
+    menuItems = forms.Menu.selectMenuItems()
+    return render_template('sales_report.html', menuItems = menuItems)
 
 if __name__ == "__main__":
     app.run()
