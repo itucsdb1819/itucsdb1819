@@ -65,7 +65,13 @@ class System:
     def updateSystemEntry(configId, configValue, employeeId):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        cursor.execute('UPDATE Config SET ConfigValue = %s, ModifiedBy = %s, ModifiedOn = %s WHERE ConfigId = %s AND IsEditable = true' % (configValue, employeeId, datetime.now, configId))
+        queryString = """
+            UPDATE System
+                SET ConfigValue = {},
+                    ModifiedOn = NOW(),
+                    ModifiedBy = {}
+                WHERE ConfigID = {} AND IsEditable = true
+        """.format(configValue, employeeId, configId)
         conn.commit()
         cursor.close()
         conn.close()
@@ -115,16 +121,12 @@ class Permission:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            SELECT RoleID, PermissionID FROM RolePermission
+            SELECT COUNT(RoleID, PermissionID) FROM RolePermission
             WHERE RoleID = {}
                 AND PermissionID = {}""".format(roleID, permissionID)
 
         cursor.execute(queryString)
-        count = 0
-        results = cursor.fetchall()
-        for result in results:
-            count += 1
-        
+        count = fetchall()        
         cursor.close()
 
         if count == 0:
@@ -199,6 +201,27 @@ class Sale:
         self.modifiedOn = modifiedOn
         self.isDelivered = isDelivered
         self.isCancelled = isCancelled
+
+    def insert(employeeID, registerID, paymentMethod):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            INSERT INTO Sale (EmployeeID, RegisterID, PaymentMethod, CreatedOn, ModifiedOn, IsDelivered. IsCancelled)
+            VALUES ({}, {}, {}, NOW(), NULL, false, false)
+        """.format(employeeID, registerID, paymentMethod)
+        cursor.execute(queryString)
+        connection.commit()
+        cursor.close()
+
+    def updateSale(saleID, isDelivered, isCancelled):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            UPDATE Sale
+                SET IsDelivered = {},
+                    IsCancelled = {}
+                WHERE SaleID = {}
+        """.format(isDelivered, isCancelled, saleID)
 
     def getReportOnRegister(registerID):
         conn = dbapi.connect(url)
