@@ -1,6 +1,5 @@
 import os
 import sys
-import forms
 import psycopg2 as dbapi2
 
 
@@ -255,9 +254,7 @@ def initialize(url):
 
         for statement in TITLE_INSERT_STATEMENTS:
             print(statement)
-            cursor.execute(statement)
-        
-        dataset = cursor.execute(forms.Menu.selectStatement)
+            cursor.execute(statement)        
         
         connection.commit()
         cursor.close()

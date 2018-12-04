@@ -1,11 +1,14 @@
 import os
 from flask import Flask,render_template
 from dbinit import initialize
+import forms
 
 app = Flask(__name__)
 
 #initialize("postgres://nisvjghefalram:d71a1603e278196a848c588d0b30f6197e6e7af60690cb36960f279e286bc709@ec2-54-217-249-103.eu-west-1.compute.amazonaws.com:5432/d4jjtkehcs34es")
 initialize(os.getenv("DATABASE_URL"))
+print("Server initialized.")
+forms.Menu.select()
 
 @app.route("/")
 @app.route("/home")

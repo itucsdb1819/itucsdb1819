@@ -56,11 +56,10 @@ class Menu:
     def select():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """SELECT * FROM Menu WHERE IsActive = 1"""
-        retVal = cursor.execute(queryString)
-        conn.commit()
-        cursor.close()
-        conn.close()        
-        return retVal
-
-    selectStatement = "SELECT * FROM Menu WHERE IsActive = 1"
+        queryString = """SELECT MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive FROM Menu WHERE IsActive = 1"""
+        cursor.execute(queryString)
+        for row in cursor:
+            menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive = row
+            print('{}, {}, {}, {}, {}, {}, {}'.format(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive))
+        menuItems = cursor.fetchall()
+        return menuItems
