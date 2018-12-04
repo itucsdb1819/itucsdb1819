@@ -13,7 +13,7 @@ def home_page():
     menuItems = forms.Menu.selectMenuItems()
     for item in menuItems:
         print('{}, {}, {}, {}, {}, {}, {}'.format(item[0], item[1], item[2], item[3], item[4], item[5], item[6]))
-    return render_template('home.html', name = item)
+    return render_template('home.html', name = menuItems)
 
 @app.route("/login")
 def login_page():
