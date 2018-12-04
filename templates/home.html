@@ -16,14 +16,14 @@
                     <h2>MENU</h2>
                     <table border = 1>
                         {% for item in menuItems %}
-                            {% if item[1] in menuItems == "" %}
+                            {% if item[1] is none %}
                                 <tr>
                                     <th> {{ item[3] }} </th>
                                     <td> {{ item[4] }} </td>
                                     <td> {{ item[5] }} </td>
                                 </tr>
                                 {% for inneritem in menuItems %}
-                                    {% if inneritem[1] in menuItems == item[0] %}
+                                    {% if inneritem[1] == item[0] %}
                                     <tr>
                                         <th> {{ inneritem[3] }} </th>
                                         <td> {{ inneritem[4] }} </td>
