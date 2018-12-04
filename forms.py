@@ -4,25 +4,6 @@ import os
 
 url = os.getenv("DATABASE_URL")
 
-def selectMenuItems():
-    conn = dbapi.connect(url)
-    cursor = conn.cursor()
-    queryString = """SELECT MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive FROM Menu WHERE IsActive = 1"""
-    cursor.execute(queryString)
-    for row in cursor:
-        menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive = row
-        print('{}, {}, {}, {}, {}, {}, {}'.format(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive))
-    menuItems = cursor.fetchall()
-    return menuItems
-
-def saveEmployee(employee):
-    conn = dbapi.connect(url)
-    cursor = conn.cursor()
-    cursor.execute('INSERT INTO Employee (RoleID, Name, Surname, CreatedOn, ModifiedOn, IsActive, TitleID) VALUES (%d, %s, %s, %s, %s, %s, %s)' % (employee.roleId, employee.name, employee.surname, employee.createdOn, None, True, datetime.now))
-    conn.commit()
-    cursor.close()
-    conn.close()
-
 def deleteEmployee(employeeId):
     conn = dbapi.connect(url)
     cursor = conn.cursor()
@@ -47,6 +28,14 @@ class Employee:
         self.roleId = roleId
         self.titleId = titleId    
 
+    def saveEmployee(employee):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO Employee (RoleID, Name, Surname, CreatedOn, ModifiedOn, IsActive, TitleID) VALUES (%d, %s, %s, %s, %s, %s, %s)' % (employee.roleId, employee.name, employee.surname, employee.createdOn, None, True, datetime.now))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
 class System:
     def __init__(id, configValue, configValueType, isEditable):
         self.configId = id
@@ -64,4 +53,41 @@ class Menu:
         self.iconPath = iconPath
         self.isActive = isActive
 
-    
+    def selectMenuItems():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive FROM Menu WHERE IsActive = true"""
+        cursor.execute(queryString)
+        for row in cursor:
+            menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive = row
+            print('{}, {}, {}, {}, {}, {}, {}'.format(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive))
+        menuItems = cursor.fetchall()
+        cursor.close()
+        return menuItems
+
+class Permission:
+    def __init__(permissionID, permissionCode, permissionName):
+        self.permissionID = permissionID
+        self.permissionCode = permissionCode
+        self.permissionName = permissionName    
+
+class Product:
+    def __init__(productID, productTypeID, productName, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian):
+        self.productID = productID
+        self.productTypeID = productTypeID
+        self.productName = productName
+        self.price = price
+        self.calorie = calorie
+        self.protein = protein
+        self.carbonhydrate = carbonhydrate
+        self.fat = fat
+        self.glucose = glucose
+        self.isVegetarian = isVegetarian
+
+class Localization:
+    def __init__(pk, resourceID, localeID, resourceSet, value):
+        self.pk = pk
+        self.resourceID = resourceID
+        self.localeID = localeID
+        self.resourceSet = resourceSet
+        self.value = value
