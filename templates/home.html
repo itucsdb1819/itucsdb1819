@@ -13,29 +13,6 @@
             <div class="row justify-content-middle">
                 <div class="col align-self-middle">
                     <i class="fa fa-home"></i>
-                    <h2>MENU</h2>
-                    <table border = 1>
-                        {% for item in menuItems %}
-                            {% if item[1] is none %}
-                                <tr>
-                                    <th> {{ item[3] }} </th>
-                                    <td> {{ item[4] }} </td>
-                                    <td> {{ item[5] }} </td>
-                                </tr>
-                                {% for inneritem in menuItems %}
-                                    {% if inneritem[1] == item[0] %}
-                                    <tr>
-                                        <th> {{ inneritem[3] }} </th>
-                                        <td> {{ inneritem[4] }} </td>
-                                        <td> {{ inneritem[5] }} </td>
-                                    </tr>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        {% endfor %}
-                     </table>
-
-
                      <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <a class="navbar-brand" href="#">Navbar</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +34,7 @@
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             {% for slaveItem in menuItems %}
                                                 {% if slaveItem[1] == masterItem[0] %}
-                                                    <a class="dropdown-item" href="{{ masterItem[4] }}">{{ masterItem[3] }}</a>
+                                                    <a class="dropdown-item" href="{{ slaveItem[4] }}">{{ slaveItem[3] }}</a>
                                                 {% endif %}
                                             {% endfor %}                                            
                                             </div>
