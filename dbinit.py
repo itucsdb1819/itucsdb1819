@@ -221,31 +221,31 @@ ROLE_PERMISSION_ONSERT_STATEMENTS = []
 EMPLOYEE_INSERT_STATEMENTS = []
 
 MENU_INSERT_STATEMENTS = [
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (1, NULL, NULL, 'Menu.Home', '/', 'fa fa-home', true, false)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (2, NULL, NULL, 'Menu.Administration', '#', '', true, true)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (3, NULL, NULL, 'Menu.Accounting', '#', '', true, true)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (4, NULL, NULL, 'Menu.SystemConfiguration', '/system', '', true, false)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (5, 2, NULL, 'Menu.Employee', '/employee', '', true, false)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (6, 2, NULL, 'Menu.RoleAndPermissions', '/roles_and_permissions', '', true, false)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (7, 3, NULL, 'Menu.Expense', '/expense', '', true, false)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (8, 3, NULL, 'Menu.Product', '/product', '', true, false)
 """,
-"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive)
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (9, 3, NULL, 'Menu.SalesReport', '/sales_report', '', true, false)
 """
 ]
