@@ -53,7 +53,7 @@ class System:
         cursor.close()
         return systemItems
 
-    def selectSystemValue(configID)
+    def selectSystemValue(configID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT ConfigValue FROM System WHERE ConfigID = """ + configID
@@ -95,7 +95,7 @@ class Permission:
         self.permissionCode = permissionCode
         self.permissionName = permissionName    
 
-    def selectPermissions(roleID)
+    def selectPermissions(roleID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
@@ -144,8 +144,8 @@ class Product:
     def select(clause):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString """SELECT ProductID, ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian
-            FROM Product """ + clause
+        queryString = """SELECT ProductID, ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian 
+        FROM Product """ + clause
         cursor.execute(queryString)
         products = cursor.fetchall()
         cursor.close()
