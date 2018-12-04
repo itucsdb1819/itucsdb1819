@@ -28,13 +28,12 @@
                 <div class="col align-self-middle">
                     <h2>MENU</h2>
                     <table border = 1>
-                        {% for key, value in name, value in path, value in icon %}
+                        {% for item in menuItems %}
                         
                            <tr>
-                              <th> {{ key }} </th>
-                              <td> {{ value }} </td>
-                              <td> {{ value }} </td>
-                              <td> {{ value }} </td>
+                              <th> {{ item[3] }} </th>
+                              <td> {{ item[4] }} </td>
+                              <td> {{ item[5] }} </td>
                            </tr>
                            
                         {% endfor %}
