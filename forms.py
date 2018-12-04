@@ -37,11 +37,23 @@ class Employee:
         conn.close()
 
 class System:
-    def __init__(id, configValue, configValueType, isEditable):
-        self.configId = id
+    def __init__(configId, configValue, configValueType, isEditable):
+        self.configId = configId
         self.configValue = configValue
         self.configValueType = configValueType
         self.isEditable = isEditable  
+
+    def select():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT ConfigID, ConfigValue, ConfigValueType, IsEditable FROM System"""
+        cursor.execute(queryString)
+        for row in cursor:
+            configId, configValue, configValueType, isEditable = row
+            print('{}, {}, {}, {}'.format(configId, configValue, configValueType, isEditable))
+        systemItems = cursor.fetchall()
+        cursor.close()
+        return systemItems
     
 class Menu:
     def __init__(menuItemId, masterMenuItemId, permissionId, menuItemName, menuItemPath, iconPath, isActive):

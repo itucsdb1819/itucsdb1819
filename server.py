@@ -10,7 +10,7 @@ initialize(os.getenv("DATABASE_URL"))
 @app.route("/")
 @app.route("/home")
 def home_page():
-    forms.selectMenuItems()
+    forms.Menu.selectMenuItems()
     return render_template('home.html')
 
 @app.route("/login")
