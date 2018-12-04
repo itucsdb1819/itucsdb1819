@@ -37,6 +37,7 @@ def expense_page():
 
 @app.route("/product")
 def product_page():
+    menuItems = forms.Menu.selectMenuItems()
     products = forms.Product.select("")
     return render_template('product.html', menuItems = menuItems)
 
