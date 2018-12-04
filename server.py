@@ -12,7 +12,7 @@ initialize(os.getenv("DATABASE_URL"))
 def home_page():
     menuItems = forms.Menu.selectMenuItems()
     for item in menuItems:
-        print('{}, {}, {}, {}, {}, {}, {}'.format(item.menuItemId, item.masterMenuItemId, item.permissionId, item.menuItemName, item.menuItemPath, item.iconPath, item.isActive))
+        print('{}, {}, {}, {}, {}, {}, {}'.format(item[0], item[1], item[2], item[3], item[4], item[5], item[6]))
     return render_template('home.html')
 
 @app.route("/login")
@@ -21,11 +21,14 @@ def login_page():
 
 @app.route("/system")
 def system_page():
+    configValues = forms.System.select()
     return render_template('system.html')
 
 @app.route("/employee")
 def employee_page():
     employees = forms.Employee.select("IsActive = true", "", "")
+    for item in employees:
+        print('{}, {}, {}, {}'.format(item[0], item[1], item[2], item[3]))
     return render_template('employee.html')
 
 @app.route("/expense")
