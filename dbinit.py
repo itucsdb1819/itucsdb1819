@@ -193,6 +193,27 @@ TITLE_INSERT_STATEMENTS = [
 
 ROLE_INSERT_STATEMENTS = []
 
+LOCALIZATION_INSERT_STATEMENTS = [
+	"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.Home', 'Menu', 'tr', 'Anasayfa')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.Administration', 'Menu', 'tr', 'Yönetim')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.Accounting', 'Menu', 'tr', 'Muhasebe')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.SystemConfiguration', 'Menu', 'tr', 'Sistem Ayarları')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.Employee', 'Menu', 'tr', 'Çalışanlar')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.RoleAndPermissions', 'Menu', 'tr', 'Roller ve İzinler')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.Expense', 'Menu', 'tr', 'Masraflar')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.Product', 'Menu', 'tr', 'Ürünler')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.SalesReport', 'Menu', 'tr', 'Satış Raporu')"""
+]
+
 PERMISSION_INSERT_STATEMENTS = []
 
 ROLE_PERMISSION_ONSERT_STATEMENTS = []
@@ -252,6 +273,9 @@ def initialize(url):
         for statement in TITLE_INSERT_STATEMENTS:
             cursor.execute(statement)        
         
+        for statement in LOCALIZATION_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
         connection.commit()
         cursor.close()
 

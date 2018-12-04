@@ -83,8 +83,10 @@ class Menu:
     def selectMenuItems():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """SELECT MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, 
-        MenuItemPath, IconPath, IsActive FROM Menu WHERE IsActive = true"""
+        queryString = """SELECT M.MenuItemID, M.MasterMenuItemID, M.PermissionID, L.Value, 
+        M.MenuItemPath, M.IconPath, M.IsActive FROM Menu M
+        INNER JOIN Localization L ON L.ResourceID = M.MenuItemName
+        WHERE M.IsActive = true AND L.ResourceSet = 'Menu' AND L.LocaleID = 'tr'"""
         cursor.execute(queryString)
         menuItems = cursor.fetchall()
         cursor.close()
