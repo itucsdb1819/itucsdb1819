@@ -9,24 +9,11 @@
         <title>Home</title>
     </head>
     <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                <a class="navbar-brand" href="#">MC ADMIN</a>
-                </div>
-                <ul>
-                    <li><a href="#home">Generate</a></li>
-                    <li><a href="#news">This</a></li>
-                    <li><a href="#contact">From</a></li>
-                    <li><a href="#about">Menu</a></li>
-                </ul>  
-            </div>
-        </nav>
-        
         <div class="panel panel-default">
             <div class="row justify-content-middle">
                 <div class="col align-self-middle">
-                    <h2>MENU</h2>
+                    
+                    <h2><i class="fas fa-home"></i>MENU</h2>
                     <table border = 1>
                         {% for item in menuItems %}
                         
@@ -38,7 +25,6 @@
                            
                         {% endfor %}
                      </table>
-                    <h1>1. {{name}}</h1>
                 </div>
             </div>
         </div>
