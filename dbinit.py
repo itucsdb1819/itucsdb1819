@@ -241,19 +241,15 @@ def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
-            print(statement)
             cursor.execute(statement)
 
         for statement in MENU_INSERT_STATEMENTS:
-            print(statement)
             cursor.execute(statement)
 
         for statement in SYSTEM_INSERT_STATEMENTS:
-            print(statement)
             cursor.execute(statement)	
 
         for statement in TITLE_INSERT_STATEMENTS:
-            print(statement)
             cursor.execute(statement)        
         
         connection.commit()

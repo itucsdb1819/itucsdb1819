@@ -56,7 +56,7 @@ class System:
     def selectSystemValue(configID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """SELECT ConfigValue FROM System WHERE ConfigID = """ + configID
+        queryString = """SELECT ConfigValue FROM System WHERE ConfigID = {}""".format(configID)
         cursor.execute(queryString)
         configItem = cursor.fetchall()
         cursor.close()
@@ -83,7 +83,8 @@ class Menu:
     def selectMenuItems():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """SELECT MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive FROM Menu WHERE IsActive = true"""
+        queryString = """SELECT MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, 
+        MenuItemPath, IconPath, IsActive FROM Menu WHERE IsActive = true"""
         cursor.execute(queryString)
         menuItems = cursor.fetchall()
         cursor.close()
@@ -102,7 +103,7 @@ class Permission:
             SELECT DISTINCT P.PermissionID, P.PermissionCode, P.PermissionName, 
             (RP.RoleID IS NULL) AS HasPermission FROM Permission P
             LEFT JOIN RolePermission RP ON RP.PermissionID = P.PermissionID
-            WHERE RoleID = """ + roleID
+            WHERE RoleID = {}""".format(roleID)
         cursor.execute(queryString)
         permissions = cursor.fetchall()
         cursor.close()
@@ -113,8 +114,8 @@ class Permission:
         cursor = conn.cursor()
         queryString = """
             SELECT RoleID, PermissionID FROM RolePermission
-            WHERE RoleID = """ + roleID + """
-                AND PermissionID = """ + permissionID
+            WHERE RoleID = {}
+                AND PermissionID = {}""".format(roleID, permissionID)
 
         cursor.execute(queryString)
         count = 0
@@ -145,7 +146,7 @@ class Product:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT ProductID, ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian 
-        FROM Product """ + clause
+        FROM Product {}""".format(clause)
         cursor.execute(queryString)
         products = cursor.fetchall()
         cursor.close()
@@ -163,9 +164,9 @@ class Localization:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT Value FROM Localization 
-            WHERE ResourceID = """ + resourceID + """ 
-            AND ResourceSet = """ + resourceSet + """ 
-            AND LocaleID = """ + localeID
+            WHERE ResourceID = {} 
+            AND ResourceSet = {}
+            AND LocaleID = {}""".format(resourceID, resourceSet, localeID)
         cursor.execute(queryString)
         value = cursor.fetchall()
         return value
@@ -185,3 +186,62 @@ class RolePermission:
         rolePermissions = cursor.fetchall()
         cursor.close()
         return rolePermissions
+
+class Sale:
+    def __init__(saleID, employeeID, registerID, paymentMethod, createdOn, modifiedOn, isDelivered, isCancelled):
+        self.saleID = saleID
+        self.employeeID = employeeID
+        self.registerID = registerID
+        self.paymentMethod = paymentMethod
+        self.createdOn = createdOn
+        self.modifiedOn = modifiedOn
+        self.isDelivered = isDelivered
+        self.isCancelled = isCancelled
+
+    def getReportOnRegister(registerID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT E.Name + ' ' + E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
+            S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
+            FROM Sale S
+            INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
+            INNER JOIN Register R ON R.RegisterID = S.RegisterID
+            WHERE R.RegisterID = {}
+        """.format(registerID)
+        cursor.execute(queryString)
+        report = cursor.fetchall()
+        cursor.close()
+        return report
+
+    def getReportOnEmployee(employeeID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT E.Name + ' ' + E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
+            S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
+            FROM Sale S
+            INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
+            INNER JOIN Register R ON R.RegisterID = S.RegisterID
+            WHERE E.EmployeeID = {}
+        """.format(employeeID)
+        cursor.execute(queryString)
+        report = cursor.fetchall()
+        cursor.close()
+        return report
+
+    def getReport(registerID, employeeID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT E.Name + ' ' + E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
+            S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
+            FROM Sale S
+            INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
+            INNER JOIN Register R ON R.RegisterID = S.RegisterID
+            WHERE E.EmployeeID = {} AND R.RegisterID = {}
+        """.format(employeeID, registerID)
+        cursor.execute(queryString)
+        report = cursor.fetchall()
+        cursor.close()
+        return report
