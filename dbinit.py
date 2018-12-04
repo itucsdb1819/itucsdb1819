@@ -2,7 +2,6 @@ import os
 import sys
 import psycopg2 as dbapi2
 
-
 INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Localization",
 	"DROP TABLE IF EXISTS Menu",
