@@ -15,14 +15,16 @@ def load_resource(resourceId, resourceSet):
     return resourceValue[0]
 
 def isLoggedIn():
+    print(forms.userId)
     if forms.userId == None:
-        return redirect(url_for('login'))
+        return False
 
 @app.route("/")
 @app.route("/home", endpoint = "home")
 def home_page():
-    isLoggedIn()
-    return render_template('home.html', menuItems = menuItems)
+    if isLoggedIn():
+        return render_template('home.html', menuItems = menuItems)
+    return redirect(url_for('login'))
 
 @app.route("/login", methods=['GET', 'POST'], endpoint = "login")
 def login_page():
