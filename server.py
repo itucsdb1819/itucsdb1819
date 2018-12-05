@@ -1,5 +1,5 @@
 import os
-from flask import Flask,render_template
+from flask import Flask,render_template,redirect,url_for, request
 from dbinit import initialize
 import forms
 
@@ -19,9 +19,15 @@ def load_resource(resourceId, resourceSet):
 def home_page():
     return render_template('home.html', menuItems = menuItems)
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login_page():
-    return render_template('login.html', menuItems = menuItems)
+    error = None
+    if request.method == 'POST':
+        if forms.Employee.login(request.form['username'], request.form['password']) == True:
+            return redirect(url_for('home'))
+        else:
+            error = 'Invalid Credentials. Please try again.'
+    return render_template('login.html', error = error, load_resource = load_resource)
 
 @app.route("/system")
 def system_page():

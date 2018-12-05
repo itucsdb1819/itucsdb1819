@@ -19,9 +19,14 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="username" id="#username" placeholder="Username" required>
-                                    <input type="password" class="form-control" name="password" id="#password" placeholder="Password" required>
-                                    <button type="submit" class="button btn-default" onclick="return false;">Login!</button>
+                                    <form action="" method="post">
+                                        <input type="text" class="form-control" name="username" id="#username" value="{{ request.form.username }}" placeholder="Username" required>
+                                        <input type="password" class="form-control" name="password" id="#password" value="{{ request.form.password }}" placeholder="Password" required>
+                                        <button type="submit" class="button btn-default">{{ load_resource('Login.Login', 'PageText') }}</button>
+                                    </form>   
+                                    {% if error %}
+                                        <p class="error"><strong>Error:</strong> {{ error }}
+                                    {% endif %}                                 
                                 </div>
                             </div>            
                         </div>

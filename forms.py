@@ -4,6 +4,9 @@ import os
 
 url = os.getenv("DATABASE_URL")
 
+class Session:
+    userId = None
+
 class Employee:
     def __init__(id, name, surname, roleId, titleId):
         self.employeeId = id
@@ -36,6 +39,22 @@ class Employee:
         conn.commit()
         cursor.close()
         conn.close()
+
+    def login(username, password):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT EmployeeID, Username, Password FROM Employee
+            WHERE Username = '{}'
+                AND Password = '{}'
+        """.format(username, password)
+        cursor.execute(queryString)
+        user = cursor.fetchone()
+        cursor.close()
+        if user != None:
+            Session.userId = user[0]
+        else: return False
+        return True
 
 class System:
     def __init__(configId, configValue, configValueType, isEditable):

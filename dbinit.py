@@ -191,7 +191,6 @@ TITLE_INSERT_STATEMENTS = [
 	VALUES ('Cashier', 1457)"""
 ]
 
-ROLE_INSERT_STATEMENTS = []
 
 LOCALIZATION_INSERT_STATEMENTS = [
 	"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
@@ -215,14 +214,28 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Employee.Create', 'PageText', 'tr', 'Çalışan Ekle')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Login.Login', 'PageText', 'tr', 'Giriş Yap')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Employee', 'PageTitles', 'tr', 'Çalışanlar')"""
+]
+
+ROLE_INSERT_STATEMENTS = [
+"""
+	INSERT INTO Role(RoleName, CreatedOn)
+	VALUES ('Admin', NOW())
+"""	
 ]
 
 PERMISSION_INSERT_STATEMENTS = []
 
-ROLE_PERMISSION_ONSERT_STATEMENTS = []
+ROLE_PERMISSION_INSERT_STATEMENTS = []
 
-EMPLOYEE_INSERT_STATEMENTS = []
+EMPLOYEE_INSERT_STATEMENTS = [
+"""
+	INSERT INTO Employee (RoleID, Name, Surname, CreatedOn, IsActive, TitleID, Username, Password)
+	VALUES (1, 'Merve', 'Donmez', NOW(), true, 1, 'mgdonmez', 'superpass')
+"""
+]
 
 MENU_INSERT_STATEMENTS = [
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
@@ -321,6 +334,15 @@ def initialize(url):
             cursor.execute(statement)
 
         for statement in PRODUCT_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in ROLE_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in TITLE_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in EMPLOYEE_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         connection.commit()
