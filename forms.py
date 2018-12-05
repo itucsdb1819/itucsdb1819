@@ -56,7 +56,7 @@ class System:
     def selectSystemValue(configID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """SELECT ConfigValue FROM System WHERE ConfigID = {}""".format(configID)
+        queryString = """SELECT ConfigValue FROM System WHERE ConfigID = '{}'""".format(configID)
         cursor.execute(queryString)
         configItem = cursor.fetchall()
         cursor.close()
@@ -67,10 +67,10 @@ class System:
         cursor = conn.cursor()
         queryString = """
             UPDATE System
-                SET ConfigValue = {},
+                SET ConfigValue = '{}',
                     ModifiedOn = NOW(),
-                    ModifiedBy = {}
-                WHERE ConfigID = {} AND IsEditable = true
+                    ModifiedBy = '{}'
+                WHERE ConfigID = '{}' AND IsEditable = true
         """.format(configValue, employeeId, configId)
         conn.commit()
         cursor.close()
@@ -124,8 +124,8 @@ class Permission:
         cursor = conn.cursor()
         queryString = """
             SELECT COUNT(RoleID, PermissionID) FROM RolePermission
-            WHERE RoleID = {}
-                AND PermissionID = {}""".format(roleID, permissionID)
+            WHERE RoleID = '{}'
+                AND PermissionID = '{}'""".format(roleID, permissionID)
 
         cursor.execute(queryString)
         count = fetchall()        
@@ -152,7 +152,7 @@ class Product:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT ProductID, ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian 
-        FROM Product {}""".format(clause)
+        FROM Product"""
         cursor.execute(queryString)
         products = cursor.fetchall()
         cursor.close()
@@ -170,9 +170,9 @@ class Localization:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT Value FROM Localization 
-            WHERE ResourceID = {} 
-            AND ResourceSet = {}
-            AND LocaleID = {}""".format(resourceID, resourceSet, localeID)
+            WHERE ResourceID = '{}' 
+            AND ResourceSet = '{}'
+            AND LocaleID = '{}'""".format(resourceID, resourceSet, localeID)
         cursor.execute(queryString)
         value = cursor.fetchall()
         return value
