@@ -12,7 +12,10 @@ menuItems = forms.Menu.selectMenuItems()
 def load_resource(resourceId, resourceSet):
     localeId = forms.System.selectSystemValue('SystemLanguage')
     print(localeId)
+    print(localeId[0])
     resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, 'tr')
+    print(resourceValue)
+    print(resourceValue[0])
     return resourceValue
 
 @app.route("/")
@@ -34,7 +37,7 @@ def system_page():
 def employee_page():
     return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
 
-@app.route("/employee/create")
+@app.route("/employee_create")
 def employee_create_page():
     return render_template('employee_create.html', menuItems = menuItems)
 
