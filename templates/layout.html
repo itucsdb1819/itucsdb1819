@@ -11,17 +11,17 @@
         <div class="panel panel-default">
             <div class="row justify-content-middle">
                 <div class="col align-self-middle">
-                    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #C22821;">
+                    <nav class="navbar fixed-top navbar-expand-lg navbar-light navbar-right" style="background-color: #C22821;">
                         <a href="#" class="navbar-left"><img src="../static/images/mcadmin_logo.png" width="100px"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <div class="collapse navbar-collapse navbar-right" id="navbarNavDropdown">
                           <ul class="navbar-nav navbar-right">
                               {% for masterItem in menuItems %}
                                 {% if (masterItem[1] is none) %}
                                     {% if (masterItem[7] != true) %}
-                                        <li class="nav-item active">
+                                        <li class="nav-item active navbar">
                                             <a class="nav-link text-light" href="{{ masterItem[4] }}">{{ masterItem[3] }} <span class="{{ masterItem[5] }}"></span></a>
                                         </li>
                                     {% else %}
