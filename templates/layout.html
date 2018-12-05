@@ -22,13 +22,12 @@
                                 {% if (masterItem[1] is none) %}
                                     {% if (masterItem[7] != true) %}
                                         <li class="nav-item active">
-                                            <a class="nav-link text-light" href="{{ masterItem[4] }}"><span class="{{ masterItem[5] }}"></span>{{ masterItem[3] }}</a>
+                                            <a class="nav-link text-light" href="{{ masterItem[4] }}"><span class="{{ masterItem[5] }}"></span> {{ masterItem[3] }}</a>
                                         </li>
                                     {% else %}
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle  text-light" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="{{ masterItem[5] }}"></span>    
-                                                {{ masterItem[3] }}
+                                                <span class="{{ masterItem[5] }}"></span> {{ masterItem[3] }}
                                             </a>                                            
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: rgb(0, 0, 0);">
                                             {% for slaveItem in menuItems %}
