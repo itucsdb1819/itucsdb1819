@@ -4,8 +4,7 @@ import os
 
 url = os.getenv("DATABASE_URL")
 
-class Session:
-    userId = None
+userId = None
 
 class Employee:
     def __init__(id, name, surname, roleId, titleId):
@@ -52,7 +51,7 @@ class Employee:
         user = cursor.fetchone()
         cursor.close()
         if user != None:
-            Session.userId = user[0]
+            userId = user[0]
         else: return False
         return True
 

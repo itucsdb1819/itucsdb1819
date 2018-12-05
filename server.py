@@ -14,13 +14,17 @@ def load_resource(resourceId, resourceSet):
     resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, localeId[0])
     return resourceValue[0]
 
+def isLoggedIn()
+    if userId == None:
+        return redirect(url_for('login'))
+
 @app.route("/")
 @app.route("/home", endpoint = "home")
 def home_page():
-    print(forms.Session.userId)
+    isLoggedIn()
     return render_template('home.html', menuItems = menuItems)
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route("/login", methods=['GET', 'POST'], endpoint = "login")
 def login_page():
     error = None
     if request.method == 'POST':
