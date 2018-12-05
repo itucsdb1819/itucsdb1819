@@ -227,13 +227,13 @@ MENU_INSERT_STATEMENTS = [
 	VALUES (1, NULL, NULL, 'Menu.Home', '/', 'fa fa-home', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (2, NULL, NULL, 'Menu.Administration', '#', '', true, true)
+	VALUES (2, NULL, NULL, 'Menu.Administration', '#', 'fa fa-user-circle', true, true)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (3, NULL, NULL, 'Menu.Accounting', '#', '', true, true)
+	VALUES (3, NULL, NULL, 'Menu.Accounting', '#', 'fa fa-calculator', true, true)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (4, NULL, NULL, 'Menu.SystemConfiguration', '/system', '', true, false)
+	VALUES (4, NULL, NULL, 'Menu.SystemConfiguration', '/system', 'fa fa-cogs', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (5, 2, NULL, 'Menu.Employee', '/employee', '', true, false)
