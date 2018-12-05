@@ -15,7 +15,7 @@ def load_resource(resourceId, resourceSet):
     return resourceValue[0]
 
 def isLoggedIn():
-    if userId == None:
+    if forms.userId == None:
         return redirect(url_for('login'))
 
 @app.route("/")
