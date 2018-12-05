@@ -58,7 +58,7 @@ class System:
         cursor = conn.cursor()
         queryString = """SELECT ConfigValue FROM System WHERE ConfigID = '{}'""".format(configID)
         cursor.execute(queryString)
-        configItem = cursor.fetchall()
+        configItem = cursor.fetchone()
         cursor.close()
         return configItem
 
@@ -175,7 +175,7 @@ class Localization:
             AND LocaleID = '{}'""".format(resourceID, resourceSet, localeID)
         print(queryString)
         cursor.execute(queryString)
-        value = cursor.fetchall()
+        value = cursor.fetchone()
         return value
 
 class RolePermission:
