@@ -29,7 +29,6 @@ def system_page():
     return render_template('system.html', menuItems = menuItems)
 
 @app.route("/employee")
-@app.route("/employee/index")
 def employee_page():
     return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
 
@@ -51,11 +50,10 @@ def roles_and_permissions_page():
     return render_template('roles_and_permissions.html', menuItems = menuItems)
 
 @app.route("/sales")
-@app.route("/sales/report")
 def sales_report_page():
     return render_template('sales_report.html', menuItems = menuItems)
 
-@app.route("/sales/create")
+@app.route("/sales_create")
 def sales_create():
     return render_template('sales_create.html', menuItems = menuItems)
 
