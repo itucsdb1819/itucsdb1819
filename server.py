@@ -15,8 +15,9 @@ def load_resource(resourceId, resourceSet):
     return resourceValue[0]
 
 @app.route("/")
-@app.route("/home")
+@app.route("/home", endpoint = "home")
 def home_page():
+    print(forms.Session.userId)
     return render_template('home.html', menuItems = menuItems)
 
 @app.route("/login", methods=['GET', 'POST'])
