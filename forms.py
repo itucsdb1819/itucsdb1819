@@ -173,6 +173,7 @@ class Localization:
             WHERE ResourceID = '{}' 
             AND ResourceSet = '{}'
             AND LocaleID = '{}'""".format(resourceID, resourceSet, localeID)
+        print(queryString)
         cursor.execute(queryString)
         value = cursor.fetchall()
         return value

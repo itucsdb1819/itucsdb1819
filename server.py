@@ -11,7 +11,8 @@ menuItems = forms.Menu.selectMenuItems()
 
 def load_resource(resourceId, resourceSet):
     localeId = forms.System.selectSystemValue('SystemLanguage')
-    resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, localeId)
+    print(localeId)
+    resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, 'tr')
     return resourceValue
 
 @app.route("/")
