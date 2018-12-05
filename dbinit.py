@@ -211,7 +211,9 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Menu.Product', 'Menu', 'tr', 'Ürünler')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Menu.SalesReport', 'Menu', 'tr', 'Satış Raporu')"""
+		VALUES ('Menu.SalesReport', 'Menu', 'tr', 'Satış Raporu')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Employee.Create', 'PageText', 'tr', 'Çalışan Ekle')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = []
@@ -246,7 +248,7 @@ MENU_INSERT_STATEMENTS = [
 	VALUES (8, 3, NULL, 'Menu.Product', '/product', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (9, 3, NULL, 'Menu.SalesReport', '/sales_report', '', true, false)
+	VALUES (9, 3, NULL, 'Menu.SalesReport', '/sales', '', true, false)
 """
 ]
 
@@ -257,6 +259,43 @@ SYSTEM_INSERT_STATEMENTS = [
 	VALUES ('Currency', 'TL', 'string', true, NOW(), NULL, NULL)""",
 ]
 
+PRODUCT_TYPE_INSERT_STATEMENTS = [
+	"""
+		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
+						 VALUES (1, 'ProductType.Single')
+	""",
+	"""
+		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
+						 VALUES (2, 'ProductType.Drink')
+	""",
+	"""
+		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
+						 VALUES (3, 'ProductType.Dessert')
+	""",
+	"""
+		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
+						 VALUES (4, 'ProductType.LightAndActive')
+	""",
+	"""
+		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
+						 VALUES (5, 'ProductType.Breakfast')
+	"""
+]
+
+PRODUCT_INSERT_STATEMENTS = [
+	"""
+		INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Protein, Carbonhydrate, Fat, Glucose, IsVegetarian)
+					 VALUES (1, 'Product.Hamburger', 0, 250, 14, 31, 8, 6, false)
+	""",
+	"""
+		INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Protein, Carbonhydrate, Fat, Glucose, IsVegetarian)
+					 VALUES (1, 'Product.FrenchFriesMedium', 0, 280, 4, 37, 13, 0, false)
+	""",
+	"""
+		INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Protein, Carbonhydrate, Fat, Glucose, IsVegetarian)
+					 VALUES (2, 'Product.CocaCola250', 0, 113, 0, 28, 0, 28, false)
+	"""
+]
 
 def initialize(url):
     with dbapi2.connect(url) as connection:
@@ -274,6 +313,12 @@ def initialize(url):
             cursor.execute(statement)        
         
         for statement in LOCALIZATION_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in PRODUCT_TYPE_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in PRODUCT_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         connection.commit()
