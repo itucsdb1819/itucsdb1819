@@ -31,8 +31,7 @@ def system_page():
 @app.route("/employee")
 @app.route("/employee/index")
 def employee_page():
-    employees = forms.Employee.select("WHERE IsActive = true")
-    return render_template('employee/index.html', menuItems = menuItems)
+    return render_template('employee/index.html', menuItems = menuItems, load_resource = load_resource)
 
 @app.route("/employee/create")
 def employee_create_page():
@@ -40,7 +39,7 @@ def employee_create_page():
 
 @app.route("/expense")
 def expense_page():
-    return render_template('expense.html', menuItems = menuItems, load_resource = load_resource)
+    return render_template('expense.html', menuItems = menuItems)
 
 @app.route("/product")
 def product_page():
