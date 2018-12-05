@@ -11,8 +11,9 @@ menuItems = forms.Menu.selectMenuItems()
 
 def load_resource(resourceId, resourceSet):
     localeId = forms.System.selectSystemValue('SystemLanguage')
-    resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, localeId[0])
-    return resourceValue[0]
+    print(localeId)
+    resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, 'tr')
+    return resourceValue
 
 @app.route("/")
 @app.route("/home")
@@ -31,11 +32,11 @@ def system_page():
 @app.route("/employee")
 @app.route("/employee/index")
 def employee_page():
-    return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
+    return render_template('employee/index.html', menuItems = menuItems, load_resource = load_resource)
 
 @app.route("/employee/create")
 def employee_create_page():
-    return render_template('employee_create.html', menuItems = menuItems)
+    return render_template('employee/create.html', menuItems = menuItems)
 
 @app.route("/expense")
 def expense_page():
@@ -53,11 +54,11 @@ def roles_and_permissions_page():
 @app.route("/sales")
 @app.route("/sales/report")
 def sales_report_page():
-    return render_template('sales_report.html', menuItems = menuItems)
+    return render_template('sales/report.html', menuItems = menuItems)
 
 @app.route("/sales/create")
 def sales_create():
-    return render_template('sales_create.html', menuItems = menuItems)
+    return render_template('sales/create.html', menuItems = menuItems)
 
 if __name__ == "__main__":
     app.run()
