@@ -14,7 +14,7 @@ def load_resource(resourceId, resourceSet):
     resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, localeId[0])
     return resourceValue[0]
 
-def isLoggedIn()
+def isLoggedIn():
     if userId == None:
         return redirect(url_for('login'))
 
