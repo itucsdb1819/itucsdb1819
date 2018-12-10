@@ -211,6 +211,33 @@ class RolePermission:
         rolePermissions = cursor.fetchall()
         cursor.close()
         return rolePermissions
+    
+    def selectRolePermissions(roleID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT RP.RoleID, P.PermissionID, ISNULL(P.Permission) AS Selected FROM RolePermission RP
+            LEFT JOIN Permission P ON RP.PermissionID = P.PermissionID
+            WHERE RoleID = {}""".format(roleID)
+        cursor.execute(queryString)
+        rolePermissions = cursor.fetchall()
+        cursor.close()
+        return rolePermissions
+
+class Role:
+    def __init__(roleID, roleName):
+        self.roleID = roleID
+        self.roleName = roleName
+
+    def select():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT RoleID, RoleName FROM Role"""
+        cursor.execute(queryString)
+        roles = cursor.fetchall()
+        cursor.close()
+        return roles
 
 class Sale:
     def __init__(saleID, employeeID, registerID, paymentMethod, createdOn, modifiedOn, isDelivered, isCancelled):

@@ -216,14 +216,20 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Login.Login', 'PageText', 'tr', 'Giriş Yap')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Employee', 'PageTitles', 'tr', 'Çalışanlar')"""
+		VALUES ('Employee', 'PageTitles', 'tr', 'Çalışanlar')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('RolesAndPermissions', 'PageTitles', 'tr', 'Roller ve İzinler')"""
 ]
 
 ROLE_INSERT_STATEMENTS = [
 """
 	INSERT INTO Role(RoleName, CreatedOn)
 	VALUES ('Admin', NOW())
-"""	
+""",
+"""
+	INSERT INTO Role(RoleName, CreatedOn)
+	VALUES ('Accounting', NOW())
+""",
 ]
 
 PERMISSION_INSERT_STATEMENTS = []

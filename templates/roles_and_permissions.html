@@ -1,4 +1,22 @@
 {% extends "layout.html" %}
 {% block title %}
-    <title>Roller ve İzinler</title>
+    <title>{{ load_resource('RolesAndPermissions', 'PageTitles') }}</title>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Role
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <select name="comp_select" class="selectpicker form-control">
+                {% for role in roles %}
+                <option class="dropdown-item" value="{{ role[0] }}">{{ role[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary"></button>
+    </div>
+
+    <div class="panel">
+        
+    </div>
 {% endblock %}

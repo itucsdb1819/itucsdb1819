@@ -58,9 +58,22 @@ def product_page():
     products = forms.Product.select("")
     return render_template('product.html', menuItems = menuItems)
 
-@app.route("/roles_and_permissions")
+@app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
 def roles_and_permissions_page():
-    return render_template('roles_and_permissions.html', menuItems = menuItems)
+    roles = forms.Role.select()
+    selectedRole = 0
+    if request.method = 'POST':
+        selectedRole = request.form['selectedRole']
+    
+    rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRole)
+
+    return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole)
+
+@app.route("/roles_and_permissions_update", methods=['POST'])
+def roles_and_permissions_insert():
+    permissions = request.form.getlist('permission')
+
+    redirect(url_for('roles_and_permissions'))
 
 @app.route("/sales")
 def sales_report_page():
