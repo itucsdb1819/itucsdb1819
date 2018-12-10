@@ -86,7 +86,8 @@ def roles_and_permissions_page():
     return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, rolesAndPermissions = rolesAndPermissions, roles = roles)
 
     return redirect(url_for('login'))
-@app.route("/roles_and_permissions_update", methods=['POST'], endpoint="roles_and_permissions_update")
+
+@app.route("/roles_and_permissions_insert", methods=['POST'], endpoint="roles_and_permissions_insert")
 def roles_and_permissions_insert():
     if 'userId' in session:
         permissions = request.form.getlist('permission')
