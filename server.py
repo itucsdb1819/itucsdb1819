@@ -21,7 +21,7 @@ def load_resource(resourceId, resourceSet):
 @app.route("/")
 @app.route("/home", endpoint = "home")
 def home_page():
-    if ('userId' in session) and forms.Permission.hasPermisison(session['roleId'], 'HomePage.Access'):
+    if ('userId' in session) and forms.Permission.hasPermission(session['roleId'], 'HomePage.Access'):
         return render_template('home.html', menuItems = menuItems)
     return redirect(url_for('login'))
 
