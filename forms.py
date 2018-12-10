@@ -216,8 +216,12 @@ class RolePermission:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            SELECT RP.RoleID, P.PermissionID, ISNULL(P.Permission) AS Selected FROM RolePermission RP
-            LEFT JOIN Permission P ON RP.PermissionID = P.PermissionID
+            SELECT 
+                RolePermission.RoleID, 
+                Permission.PermissionID, 
+                ISNULL(Permission.Permission) AS Selected 
+            FROM RolePermission
+            LEFT JOIN Permission ON RolePermission.PermissionID = Permission.PermissionID
             WHERE RoleID = {}""".format(roleID)
         cursor.execute(queryString)
         rolePermissions = cursor.fetchall()
