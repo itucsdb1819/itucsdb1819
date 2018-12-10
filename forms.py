@@ -211,6 +211,17 @@ class RolePermission:
         cursor.close()
         return rolePermissions
     
+    def insertPermissions(roleID, permissionList):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """DELETE FROM RolePermission WHERE RoleID = {}""".format(roleID)
+        cursor.execute(queryString)
+        for permission in permissionList:
+            queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
+            cursor.execute(queryString)
+        conn.commit()
+        cursor.close()
+
     def selectRolePermissions(roleID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
