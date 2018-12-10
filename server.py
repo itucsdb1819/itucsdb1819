@@ -87,8 +87,8 @@ def roles_and_permissions_page():
                 redirect(url_for('roles_and_permissions'))
             elif request.form['submit_button'] == 'selectRole':
                 selectedRoleId = request.form.get('selectedRole')
-        selectedRole = forms.Role.selectWithID(selectedRoleId)
         else:
+            selectedRole = forms.Role.selectWithID(selectedRoleId)
             rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRoleId)
             return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, rolesAndPermissions = rolesAndPermissions, roles = roles)
     else:

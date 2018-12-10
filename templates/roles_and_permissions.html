@@ -29,6 +29,7 @@
             <form class="form-control" method="POST">
                 <div class="form-group">
                     {{ selectedRole[1] }}
+                    {% if selectedRole[1] != None %}
                     {% for permission in rolesAndPermissions %}
                         {%if permission[2] %}
                             <div class="row">
@@ -45,6 +46,7 @@
                         {% endif %}
                     {% endfor %}
                     <button type="submit" class="btn btn-primary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
+                    {% endif %}
                 </div>    
             </form>        
         </div>
