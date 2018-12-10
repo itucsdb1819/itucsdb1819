@@ -31,6 +31,8 @@ def login_page():
     error = None
     if request.method == 'POST':
         if forms.Employee.login(request.form['username'], request.form['password']) == True:
+            if 'userId' in session:
+                return redirect(url_for('home'))
             session['userId'] = request.form['EmployeeID']
             return redirect(url_for('home'))
         else:
