@@ -46,7 +46,7 @@ def logout():
 
 @app.route("/system")
 def system_page():
-    if 'userId' in session and forms.Permission.hasPermisison(session['roleId'], 'SystemPage.Access'):
+    if 'userId' in session and forms.Permission.hasPermission(session['roleId'], 'SystemPage.Access'):
         configValues = forms.System.select()
         return render_template('system.html', menuItems = menuItems)
     return redirect(url_for('login'))
