@@ -263,6 +263,10 @@ PERMISSION_INSERT_STATEMENTS = [
 	"""
 		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (6, 'SalesPage.Access')
+	""",
+	"""
+		INSERT INTO Permission (PermissionID, PermissionName)
+		VALUES (7, 'SystemPage.Access')
 	"""
 ]
 
@@ -290,10 +294,6 @@ ROLE_PERMISSION_INSERT_STATEMENTS = [
 	"""
 		INSERT INTO RolePermission(RoleID, PermissionID)
 		VALUES (1, 6)
-	""",
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 7)
 	"""
 ]
 

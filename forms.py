@@ -154,13 +154,13 @@ class Permission:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            SELECT COUNT(RolePermissionID) FROM RolePermission
+            SELECT RolePermissionID FROM RolePermission
             INNER JOIN Permission ON Permission.PermissionID = RolePermission.PermissionID
             WHERE RoleID = {}
                 AND Permission.PermissionName = '{}'""".format(roleID, permissionName)
 
         cursor.execute(queryString)
-        count = cursor.fetchone()        
+        count = cursor.rowcount     
         cursor.close()
 
         if count == 0:
