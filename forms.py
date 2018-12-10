@@ -31,6 +31,18 @@ class Employee:
         cursor.close()
         return employees
 
+    def selectEmployee(username, password):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT EmployeeID, Username, Password, RoleID FROM Employee
+            WHERE Username = '{}'
+                AND Password = '{}'
+        """.format(username, password)
+        employees = cursor.fetchone()
+        cursor.close()
+        return employees
+
     def deleteEmployee(employeeId):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
@@ -137,13 +149,14 @@ class Permission:
         cursor.close()
         return permissions
 
-    def hasPermission(roleID, permissionID):
+    def hasPermission(roleID, permissionName):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            SELECT COUNT(RoleID, PermissionID) FROM RolePermission
-            WHERE RoleID = '{}'
-                AND PermissionID = '{}'""".format(roleID, permissionID)
+            SELECT COUNT(RolePermissionID) FROM RolePermission
+            INNER JOIN Permission ON Permission.PermissionID = RolePermission.PermissionID
+            WHERE RoleID = {}
+                AND Permission.PermissionName = '{}'""".format(roleID, permissionName)
 
         cursor.execute(queryString)
         count = fetchall()        

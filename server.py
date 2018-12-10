@@ -21,7 +21,7 @@ def load_resource(resourceId, resourceSet):
 @app.route("/")
 @app.route("/home", endpoint = "home")
 def home_page():
-    if 'userId' in session:
+    if ('userId' in session) and forms.Permission.hasPermisison(session['roleId'], 'HomePage.Access'):
         return render_template('home.html', menuItems = menuItems)
     return redirect(url_for('login'))
 
@@ -30,7 +30,9 @@ def login_page():
     error = None
     if request.method == 'POST':
         if forms.Employee.login(request.form['username'], request.form['password']) == True:
-            session['userId'] = request.form['username']
+            employee = forms.Employee.selectEmployee(request.form['username'], request.form['password'])
+            session['userId'] = employee[0]
+            session['roleId'] = employee[3]
             return redirect(url_for('home'))
         else:
             error = 'Invalid Credentials. Please try again.'
@@ -44,7 +46,7 @@ def logout():
 
 @app.route("/system")
 def system_page():
-    if 'userId' in session:
+    if 'userId' in session and forms.Permission.hasPermisison(session['roleId'], 'SystemPage.Access'):
         configValues = forms.System.select()
         return render_template('system.html', menuItems = menuItems)
     return redirect(url_for('login'))
