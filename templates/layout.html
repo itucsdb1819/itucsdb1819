@@ -7,11 +7,11 @@
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> 
         {% block title %}{% endblock %} 
     </head> 
-    <body background-color="black"> 
-        <div class="panel panel-default"> 
+    <body> 
+        <div class="panel panel-default" style="background-color: rgb(27, 27, 27);" > 
             <div class="row justify-content-middle"> 
                 <div class="col align-self-middle">
-                     <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+                     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #C22821;" > 
                         <a class="navbar-brand" href="#"><img src="../static/images/mcadmin_logo.png" width="100px"></a> 
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> 
                           <span class="navbar-toggler-icon"></span> 
@@ -41,7 +41,7 @@
                                 {% endif %} 
                               {% endfor %}    
                               <li class="nav-item active"> 
-                                <a class="nav-link" href="logout">Log out</a> 
+                                    <i class="fa fa-sign-out-alt"></i><a class="nav-link" href="logout">Log out</a> 
                               </li>                            
                           </ul> 
                         </div> 
