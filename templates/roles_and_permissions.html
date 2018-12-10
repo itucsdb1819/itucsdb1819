@@ -29,14 +29,14 @@
                         {% endfor %}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+                <button type="submit" class="btn btn-primary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="panel-body">
-            <form class="form-control" method="POST" action="/roles_and_permissions_insert">
+            <form class="form-control" method="POST">
                 <div class="form-group">
                     {{ selectedRole[1] }}
                     {% for permission in rolesAndPermissions %}
@@ -54,7 +54,7 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary" action>{{ load_resource('Button.Save', 'Buttons') }}</button>
+                    <button type="submit" class="btn btn-primary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
                 </div>    
             </form>        
         </div>

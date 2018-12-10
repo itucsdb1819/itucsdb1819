@@ -80,21 +80,19 @@ def roles_and_permissions_page():
         roles = forms.Role.select()
         selectedRoleId = 0
         if request.method == 'POST':
-            selectedRoleId = request.form.get('selectedRole')
+            if request.form('submit_button') == 'insertPermissions':
+                permissions = request.form.getlist('permission')
+                for permission in permissions:
+                    print(permission)
+                redirect(url_for('roles_and_permissions'))
+            elif request.form('submit_button') == 'selectRole':
+                selectedRoleId = request.form.get('selectedRole')
         selectedRole = forms.Role.selectWithID(selectedRoleId)
         rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRoleId)
-    return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, rolesAndPermissions = rolesAndPermissions, roles = roles)
+        return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, rolesAndPermissions = rolesAndPermissions, roles = roles)
+    else:
+        return redirect(url_for('login'))
 
-    return redirect(url_for('login'))
-
-@app.route("/roles_and_permissions_insert", methods=['POST'], endpoint="roles_and_permissions_insert")
-def roles_and_permissions_insert():
-    if 'userId' in session:
-        permissions = request.form.getlist('permission')
-        for permission in permissions:
-            print(permission)
-        redirect(url_for('roles_and_permissions'))
-    return redirect(url_for('login'))
 
 @app.route("/sales")
 def sales_report_page():
