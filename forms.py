@@ -219,7 +219,7 @@ class RolePermission:
                 Permission.PermissionID,
                 Permission.PermissionName,
                 CASE 
-                    WHEN RP.RolePermissionID IS NULL THEN
+                    WHEN RolePermission.RolePermissionID IS NULL THEN
                         false
                     ELSE
                         true
