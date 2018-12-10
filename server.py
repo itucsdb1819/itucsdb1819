@@ -11,6 +11,8 @@ menuItems = forms.Menu.selectMenuItems()
 
 def load_resource(resourceId, resourceSet):
     localeId = forms.System.selectSystemValue('SystemLanguage')
+    if resourceId == None:
+        resourceId = ''
     resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, localeId[0])
     return resourceValue[0]
 
