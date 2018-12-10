@@ -62,7 +62,7 @@ def product_page():
 def roles_and_permissions_page():
     roles = forms.Role.select()
     selectedRole = 0
-    if request.method = 'POST':
+    if request.method == 'POST':
         selectedRole = request.form['selectedRole']
     
     rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRole)
