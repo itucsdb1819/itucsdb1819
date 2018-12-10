@@ -67,7 +67,7 @@ def roles_and_permissions_page():
     
     rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRole)
 
-    return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole)
+    return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, roles = roles)
 
 @app.route("/roles_and_permissions_update", methods=['POST'])
 def roles_and_permissions_insert():
