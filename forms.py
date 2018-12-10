@@ -219,7 +219,7 @@ class RolePermission:
             SELECT 
                 RolePermission.RoleID, 
                 Permission.PermissionID, 
-                ISNULL(Permission.PermissionID) AS Selected 
+                (Permission.PermissionID IS NULL) AS Selected 
             FROM RolePermission
             LEFT JOIN Permission ON RolePermission.PermissionID = Permission.PermissionID
             WHERE RoleID = {}""".format(roleID)
