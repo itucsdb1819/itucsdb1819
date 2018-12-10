@@ -44,51 +44,67 @@ def logout():
 
 @app.route("/system")
 def system_page():
-    configValues = forms.System.select()
-    return render_template('system.html', menuItems = menuItems)
+    if 'userId' in session:
+        configValues = forms.System.select()
+        return render_template('system.html', menuItems = menuItems)
+    return redirect(url_for('login'))
 
 @app.route("/employee")
 def employee_page():
-    return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
+    if 'userId' in session:
+        return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
+    return redirect(url_for('login'))
 
 @app.route("/employee_create")
 def employee_create_page():
-    return render_template('employee_create.html', menuItems = menuItems)
+    if 'userId' in session:
+        return render_template('employee_create.html', menuItems = menuItems)
+    return redirect(url_for('login'))
 
 @app.route("/expense")
 def expense_page():
-    return render_template('expense.html', menuItems = menuItems)
+    if 'userId' in session:
+        return render_template('expense.html', menuItems = menuItems)
+    return redirect(url_for('login'))
 
 @app.route("/product")
 def product_page():
-    products = forms.Product.select("")
-    return render_template('product.html', menuItems = menuItems)
+    if 'userId' in session:
+        products = forms.Product.select("")
+        return render_template('product.html', menuItems = menuItems)
+    return redirect(url_for('login'))
 
 @app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
 def roles_and_permissions_page():
-    roles = forms.Role.select()
-    selectedRoleId = 0
-    if request.method == 'POST':
-        selectedRoleId = request.form.get('selectedRole')
-    
-    selectedRole = forms.Role.selectWithID(selectedRoleId)
-    rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRoleId)
-
+    if 'userId' in session:
+        roles = forms.Role.select()
+        selectedRoleId = 0
+        if request.method == 'POST':
+            selectedRoleId = request.form.get('selectedRole')
+        selectedRole = forms.Role.selectWithID(selectedRoleId)
+        rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRoleId)
     return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, roles = roles)
 
+    return redirect(url_for('login'))
 @app.route("/roles_and_permissions_update", methods=['POST'])
 def roles_and_permissions_insert():
-    permissions = request.form.getlist('permission')
+    if 'userId' in session:
+        permissions = request.form.getlist('permission')
 
-    redirect(url_for('roles_and_permissions'))
+        redirect(url_for('roles_and_permissions'))
+    return redirect(url_for('login'))
 
 @app.route("/sales")
 def sales_report_page():
-    return render_template('sales_report.html', menuItems = menuItems)
+    if 'userId' in session:
+        return render_template('sales_report.html', menuItems = menuItems)
+    return redirect(url_for('login'))
 
 @app.route("/sales_create")
 def sales_create():
-    return render_template('sales_create.html', menuItems = menuItems)
+    if 'userId' in session:
+        return render_template('sales_create.html', menuItems = menuItems)
+    return redirect(url_for('login'))
 
 if __name__ == "__main__":
     app.run()
