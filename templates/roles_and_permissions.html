@@ -22,7 +22,7 @@
 
     <div class="row">
         <div class="panel-body">
-            {{ load_resource(selectedRole[1], 'PageText') }}
+            selectedRole[1]
             {% for permission in rolesAndPermissions %}
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">{{ permission[1] }} | {{ permission[4] }}</label>
