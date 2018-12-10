@@ -22,6 +22,7 @@ def load_resource(resourceId, resourceSet):
 @app.route("/home", endpoint = "home")
 def home_page():
     if 'userId' in session:
+        userId = session['userId']
         return render_template('home.html', menuItems = menuItems)
     return redirect(url_for('login'))
 
@@ -30,7 +31,7 @@ def login_page():
     error = None
     if request.method == 'POST':
         if forms.Employee.login(request.form['username'], request.form['password']) == True:
-            session['userId'] = request.form['username']
+            session['userId'] = request.form['EmployeeID']
             return redirect(url_for('home'))
         else:
             error = 'Invalid Credentials. Please try again.'
