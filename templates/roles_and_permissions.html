@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
-{% block title %}
-    <title>{{ load_resource('RolesAndPermissions', 'PageTitles') }}</title>
 
+{% block title %}
+    <title>{{ load_resource('RolesAndPermissions', 'PageTitles') }}</title>    
+{% endblock %}
+
+{% block content %}
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Select Role
