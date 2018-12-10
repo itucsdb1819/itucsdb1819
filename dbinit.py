@@ -239,31 +239,31 @@ ROLE_INSERT_STATEMENTS = [
 
 PERMISSION_INSERT_STATEMENTS = [
 	"""
-		INSERT INTO Permisssion (PermissionID, PermissionName)
+		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (1, 'HomePage.Access')
 	""",
 	"""
-		INSERT INTO Permisssion (PermissionID, PermissionName)
+		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (2, 'EmployeePage.Access')
 	""",
 	"""
-		INSERT INTO Permisssion (PermissionID, PermissionName)
+		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (3, 'RolesAndPermissionsPage.Access')
 	""",
 	"""
-		INSERT INTO Permisssion (PermissionID, PermissionName)
+		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (4, 'ExpensePage.Access')
 	""",
 	"""
-		INSERT INTO Permisssion (PermissionID, PermissionName)
+		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (5, 'ProductPage.Access')
 	""",
 	"""
-		INSERT INTO Permisssion (PermissionID, PermissionName)
+		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (6, 'SalesPage.Access')
 	""",
 	"""
-		INSERT INTO Permisssion (PermissionID, PermissionName)
+		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (7, 'SystemPage.Access')
 	"""
 ]
