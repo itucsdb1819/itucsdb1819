@@ -18,9 +18,10 @@ def load_resource(resourceId, resourceSet):
 
 def isLoggedIn():
     if 'userId' in session:
-      userId = session['userId']
-      return 'Logged in as ' + userId + '<br>' + \
-      "<b><a href = '/logout'>click here to log out</a></b>"
+        userId = session['userId']
+        print('Logged in as ' + userId + '<br>' + \
+        "<b><a href = '/logout'>click here to log out</a></b>")
+        return redirect(url_for('home'))
     if forms.userId == None:
         return False
 
