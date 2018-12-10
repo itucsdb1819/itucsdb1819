@@ -1,5 +1,5 @@
 import os
-from flask import Flask,render_template,redirect,url_for, request
+from flask import Flask,render_template,redirect,url_for, request, session, escape
 from dbinit import initialize
 import forms
 
@@ -17,7 +17,10 @@ def load_resource(resourceId, resourceSet):
     return resourceValue[0]
 
 def isLoggedIn():
-    print(forms.userId)
+    if 'userId' in session:
+      userId = session['userId']
+      return 'Logged in as ' + userId + '<br>' + \
+      "<b><a href = '/logout'>click here to log out</a></b>"
     if forms.userId == None:
         return False
 
@@ -33,6 +36,7 @@ def login_page():
     error = None
     if request.method == 'POST':
         if forms.Employee.login(request.form['username'], request.form['password']) == True:
+            session['username'] = request.form['username']
             return redirect(url_for('home'))
         else:
             error = 'Invalid Credentials. Please try again.'
