@@ -5,6 +5,8 @@ import forms
 
 app = Flask(__name__)
 
+app.secret_key = 'secretkeyissecret'
+
 initialize(os.getenv("DATABASE_URL"))
 
 menuItems = forms.Menu.selectMenuItems()
