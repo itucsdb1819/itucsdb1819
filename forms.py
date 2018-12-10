@@ -216,7 +216,8 @@ class RolePermission:
         cursor = conn.cursor()
         queryString = """
             SELECT 
-                RolePermission.RoleID, 
+                RolePermission.RoleID,
+                Permission.PermissionName,
                 Permission.PermissionID, 
                 (Permission.PermissionID IS NULL) AS Selected 
             FROM RolePermission

@@ -113,7 +113,6 @@ INIT_STATEMENTS = [
 )""",
 """CREATE TABLE IF NOT EXISTS Permission(
 	PermissionID integer PRIMARY KEY,
-	PermissionCode varchar(50) NOT NULL,
 	PermissionName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Role(
@@ -238,7 +237,36 @@ ROLE_INSERT_STATEMENTS = [
 """,
 ]
 
-PERMISSION_INSERT_STATEMENTS = []
+PERMISSION_INSERT_STATEMENTS = [
+	"""
+		INSERT INTO Permisssion (PermissionID, PermissionName)
+		VALUES (1, 'HomePage.Access')
+	""",
+	"""
+		INSERT INTO Permisssion (PermissionID, PermissionName)
+		VALUES (2, 'EmployeePage.Access')
+	""",
+	"""
+		INSERT INTO Permisssion (PermissionID, PermissionName)
+		VALUES (3, 'RolesAndPermissionsPage.Access')
+	""",
+	"""
+		INSERT INTO Permisssion (PermissionID, PermissionName)
+		VALUES (4, 'ExpensePage.Access')
+	""",
+	"""
+		INSERT INTO Permisssion (PermissionID, PermissionName)
+		VALUES (5, 'ProductPage.Access')
+	""",
+	"""
+		INSERT INTO Permisssion (PermissionID, PermissionName)
+		VALUES (6, 'SalesPage.Access')
+	""",
+	"""
+		INSERT INTO Permisssion (PermissionID, PermissionName)
+		VALUES (7, 'SystemPage.Access')
+	"""
+]
 
 ROLE_PERMISSION_INSERT_STATEMENTS = []
 
@@ -251,7 +279,7 @@ EMPLOYEE_INSERT_STATEMENTS = [
 
 MENU_INSERT_STATEMENTS = [
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (1, NULL, NULL, 'Menu.Home', '/', 'fa fa-home', true, false)
+	VALUES (1, NULL, 1, 'Menu.Home', '/', 'fa fa-home', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (2, NULL, NULL, 'Menu.Administration', '#', 'fa fa-user-circle', true, true)
@@ -260,22 +288,22 @@ MENU_INSERT_STATEMENTS = [
 	VALUES (3, NULL, NULL, 'Menu.Accounting', '#', 'fa fa-calculator', true, true)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (4, NULL, NULL, 'Menu.SystemConfiguration', '/system', 'fa fa-cogs', true, false)
+	VALUES (4, NULL, 7, 'Menu.SystemConfiguration', '/system', 'fa fa-cogs', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (5, 2, NULL, 'Menu.Employee', '/employee', '', true, false)
+	VALUES (5, 2, 2, 'Menu.Employee', '/employee', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (6, 2, NULL, 'Menu.RoleAndPermissions', '/roles_and_permissions', '', true, false)
+	VALUES (6, 2, 3, 'Menu.RoleAndPermissions', '/roles_and_permissions', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (7, 3, NULL, 'Menu.Expense', '/expense', '', true, false)
+	VALUES (7, 3, 4, 'Menu.Expense', '/expense', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (8, 3, NULL, 'Menu.Product', '/product', '', true, false)
+	VALUES (8, 3, 5, 'Menu.Product', '/product', '', true, false)
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
-	VALUES (9, 3, NULL, 'Menu.SalesReport', '/sales', '', true, false)
+	VALUES (9, 3, 6, 'Menu.SalesReport', '/sales', '', true, false)
 """
 ]
 
