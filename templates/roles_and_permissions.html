@@ -5,15 +5,29 @@
 {% endblock %}
 
 {% block content %}
-    <form class="form-inline" method="POST">
-        <div class="form-group">
-            <div class="input-group">
-                <div class="dropdown">
-                    <select name="selectedRole" class="selectpicker form-control">
-                        {% for role in roles %}
-                            <option class="dropdown-item" value="{{ role[0] }}">{{ load_resource(role[1], 'PageText') }}</option>
+    <div class="container-fluid">
+            <form class="form-inline" method="POST">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="dropdown">
+                                <select name="selectedRole" class="selectpicker form-control">
+                                    {% for role in roles %}
+                                        <option class="dropdown-item" value="{{ role[0] }}">{{ load_resource(role[1], 'PageText') }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="panel-body">
+                        {{ selectedRole[1] }}
+                        {% for permission in rolesAndPermissions %}
+                            {{ permission[1] }} | {{ permission[2] }}
                         {% endfor %}
-                    </select>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">{{ load_resource('Button.Edit', 'Buttons') }}</button>
             </div>
