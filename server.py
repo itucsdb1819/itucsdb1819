@@ -61,12 +61,11 @@ def product_page():
 @app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
 def roles_and_permissions_page():
     roles = forms.Role.select()
-    selectedRole = 0
+    selectedRoleId = 0
     if request.method == 'POST':
-        selectedRole = request.form.get('selectedRole')
+        selectedRoleId = request.form.get('selectedRole')
     
-    print(selectedRole)
-
+    selectedRole = forms.Role.select(selectedRoleId)
     rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRole)
 
     return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, roles = roles)

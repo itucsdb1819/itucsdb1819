@@ -241,6 +241,18 @@ class Role:
         roles = cursor.fetchall()
         cursor.close()
         return roles
+    
+    def select(roleID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT RoleID, RoleName FROM Role WHERE RoleID = {}""".format(roleID)
+        cursor.execute(queryString)
+        if cursor.rowcount == 0:
+            return tuple()
+        role = cursor.fetchone()
+        cursor.close()
+        return role
 
 class Sale:
     def __init__(saleID, employeeID, registerID, paymentMethod, createdOn, modifiedOn, isDelivered, isCancelled):
