@@ -223,7 +223,9 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Admin', 'PageText', 'tr', 'Yönetici')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Accounting', 'PageText', 'tr', 'Muhasebe')"""
+		VALUES ('Accounting', 'PageText', 'tr', 'Muhasebe')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Button.Save', 'Buttons', 'tr', 'Kaydet')"""
 ]
 
 ROLE_INSERT_STATEMENTS = [

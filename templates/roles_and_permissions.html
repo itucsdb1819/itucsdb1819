@@ -22,10 +22,27 @@
 
     <div class="row">
         <div class="panel-body">
-            {{ selectedRole[1] }}
-            {% for permission in rolesAndPermissions %}
-                {{ permission[1] }} | {{ permission[2] }}
-            {% endfor %}
+            <form class="form-control" method="POST" action="{% url 'roles_and_permissions_update' %}">
+                <div class="form-group">
+                    {{ selectedRole[1] }}
+                    {% for permission in rolesAndPermissions %}
+                        {%if permission[2] %}
+                            <div class="row">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="" checked>{{ permission[1] }}</label>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="row">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="">{{ permission[1] }}</label>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary" action>{{ load_resource('Button.Save', 'Buttons') }}</button>
+                </div>    
+            </form>        
         </div>
     </div>
 {% endblock %}
