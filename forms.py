@@ -160,7 +160,7 @@ class Permission:
                 AND Permission.PermissionName = '{}'""".format(roleID, permissionName)
 
         cursor.execute(queryString)
-        count = fetchall()        
+        count = cursor.fetchone()        
         cursor.close()
 
         if count == 0:
