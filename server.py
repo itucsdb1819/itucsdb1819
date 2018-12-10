@@ -5,7 +5,7 @@ import forms
 
 app = Flask(__name__)
 
-app.secret_key = 'secretkeyissecret'
+app.secret_key = b'secretkeyissecret'
 
 initialize(os.getenv("DATABASE_URL"))
 
@@ -18,19 +18,10 @@ def load_resource(resourceId, resourceSet):
     resourceValue = forms.Localization.selectLocalizationItem(resourceId, resourceSet, localeId[0])
     return resourceValue[0]
 
-def isLoggedIn():
-    if 'userId' in session:
-        userId = session['userId']
-        print('Logged in as ' + userId + '<br>' + \
-        "<b><a href = '/logout'>click here to log out</a></b>")
-        return redirect(url_for('home'))
-    if forms.userId == None:
-        return False
-
 @app.route("/")
 @app.route("/home", endpoint = "home")
 def home_page():
-    if isLoggedIn():
+    if 'userId' in session:
         return render_template('home.html', menuItems = menuItems)
     return redirect(url_for('login'))
 
@@ -39,11 +30,17 @@ def login_page():
     error = None
     if request.method == 'POST':
         if forms.Employee.login(request.form['username'], request.form['password']) == True:
-            session['username'] = request.form['username']
+            session['userId'] = request.form['username']
             return redirect(url_for('home'))
         else:
             error = 'Invalid Credentials. Please try again.'
     return render_template('login.html', error = error, load_resource = load_resource)
+
+@app.route('/logout')
+def logout():
+    session.pop('userId', None)
+    return redirect(url_for('home'))
+
 
 @app.route("/system")
 def system_page():
