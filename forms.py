@@ -39,6 +39,7 @@ class Employee:
             WHERE Username = '{}'
                 AND Password = '{}'
         """.format(username, password)
+        cursor.execute(queryString)
         employees = cursor.fetchone()
         cursor.close()
         return employees
