@@ -193,7 +193,7 @@ class Localization:
             AND LocaleID = '{}'""".format(resourceID, resourceSet, localeID)
         cursor.execute(queryString)
         if cursor.rowcount == 0:
-            return ''
+            return tuple()
         value = cursor.fetchone()
         return value
 
