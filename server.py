@@ -80,12 +80,12 @@ def roles_and_permissions_page():
         roles = forms.Role.select()
         selectedRoleId = 0
         if request.method == 'POST':
-            if request.form('submit_button') == 'insertPermissions':
+            if request.form['submit_button'] == 'insertPermissions':
                 permissions = request.form.getlist('permission')
                 for permission in permissions:
                     print(permission)
                 redirect(url_for('roles_and_permissions'))
-            elif request.form('submit_button') == 'selectRole':
+            elif request.form['submit_button'] == 'selectRole':
                 selectedRoleId = request.form.get('selectedRole')
         selectedRole = forms.Role.selectWithID(selectedRoleId)
         rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRoleId)
