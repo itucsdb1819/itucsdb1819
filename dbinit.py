@@ -220,7 +220,7 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('RolesAndPermissions', 'PageTitles', 'tr', 'Roller ve İzinler')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Button.Edit', 'Buttons', 'tr', 'Roller ve İzinler')""",
+		VALUES ('Button.Edit', 'Buttons', 'tr', 'Düzenle')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Admin', 'PageText', 'tr', 'Yönetici')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
