@@ -16,20 +16,10 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+                            <button type="submit" class="btn btn-primary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
                         </div>
                     </div>
-                </div>
-            
-                <div class="row">
-                    <div class="panel-body">
-                        {{ selectedRole[1] }}
-                        {% for permission in rolesAndPermissions %}
-                            {{ permission[1] }} | {{ permission[2] }}
-                        {% endfor %}
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+                </div>            
             </div>
         </div>
     </div>
