@@ -63,7 +63,7 @@ def roles_and_permissions_page():
     roles = forms.Role.select()
     selectedRole = 0
     if request.method == 'POST':
-        selectedRole = request.form['selectedRole']
+        selectedRole = request.form.get('selectedRole')
     
     print(selectedRole)
 
