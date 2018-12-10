@@ -3,7 +3,11 @@
     <title>{{ load_resource('Employee', 'PageTitles') }}</title>
 {% endblock %}
 {% block content %}
-    <div class="container">
-        <a href="/employee_create" class="btn btn-dark" role="button">{{ load_resource('Employee.Create', 'PageText') }}</a>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <a href="/employee_create" class="btn btn-dark" role="button">{{ load_resource('Employee.Create', 'PageText') }}</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

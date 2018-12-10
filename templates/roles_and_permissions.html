@@ -24,31 +24,33 @@
                     </div>
                 </div>
             </div>
-        
-            <div class="row">
-                <div class="panel-body">
-                    <form class="form-control" method="POST">
-                        <div class="form-group">
-                            {{ selectedRole[1] }}
-                            <input type="hidden" name="selectedRoleID" value="{{ selectedRole[0] }}">
-                            {% for permission in rolesAndPermissions %}
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="panel-body">
+                        <form class="form-control" method="POST">
+                            <div class="form-group">
+                                {{ selectedRole[1] }}
+                                <input type="hidden" name="selectedRoleID" value="{{ selectedRole[0] }}">
+                                {% for permission in rolesAndPermissions %}
                                 {%if permission[2] %}
-                                    <div class="row">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" name="permission" value="{{ permission[0] }}" checked>{{ permission[1] }}</label>
-                                        </div>
+                                <div class="row">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="permission" value="{{ permission[0] }}" checked>{{ permission[1] }}</label>
                                     </div>
+                                </div>
                                 {% else %}
-                                    <div class="row">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" name="permission" value="{{ permission[0] }}">{{ permission[1] }}</label>
-                                        </div>
+                                <div class="row">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="permission" value="{{ permission[0] }}">{{ permission[1] }}</label>
                                     </div>
+                                </div>
                                 {% endif %}
-                            {% endfor %}
-                            <button type="submit" class="btn btn-primary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
-                        </div>    
-                    </form>        
+                                {% endfor %}
+                                <button type="submit" class="btn btn-primary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
     </div>  
