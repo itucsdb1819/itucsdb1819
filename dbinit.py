@@ -385,6 +385,9 @@ def initialize(url):
         for statement in EMPLOYEE_INSERT_STATEMENTS:
             cursor.execute(statement)
 
+        for statement in PERMISSION_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
         connection.commit()
         cursor.close()
 

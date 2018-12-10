@@ -221,7 +221,7 @@ class RolePermission:
                 Permission.PermissionID, 
                 (Permission.PermissionID IS NULL) AS Selected 
             FROM RolePermission
-            RIGHT JOIN Permission ON RolePermission.PermissionID = Permission.PermissionID
+            LEFT JOIN Permission ON Permission.PermissionID = RolePermission.PermissionID
             WHERE RoleID = {}""".format(roleID)
         cursor.execute(queryString)
         rolePermissions = cursor.fetchall()
