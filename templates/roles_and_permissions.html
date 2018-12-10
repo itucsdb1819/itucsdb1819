@@ -24,7 +24,7 @@
         <div class="panel-body">
             {{ selectedRole[1] }}
             {% for permission in rolesAndPermissions %}
-                <input type="checkbox" class="form-check-input">{{ permission[1] }} | {{ permission[4] }}
+                {{ permission[1] }} | {{ permission[2] }}
             {% endfor %}
         </div>
     </div>
