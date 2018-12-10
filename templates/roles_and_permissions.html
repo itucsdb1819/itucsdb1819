@@ -34,13 +34,13 @@
                         {%if permission[2] %}
                             <div class="row">
                                 <div class="checkbox">
-                                    <label><input type="checkbox" value="" checked>{{ permission[1] }}</label>
+                                    <label><input type="checkbox" name="permission" value="" checked>{{ permission[1] }}</label>
                                 </div>
                             </div>
                         {% else %}
                             <div class="row">
                                 <div class="checkbox">
-                                    <label><input type="checkbox" value="">{{ permission[1] }}</label>
+                                    <label><input type="checkbox" name="permission" value="">{{ permission[1] }}</label>
                                 </div>
                             </div>
                         {% endif %}
