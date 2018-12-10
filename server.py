@@ -91,7 +91,8 @@ def roles_and_permissions_page():
 def roles_and_permissions_insert():
     if 'userId' in session:
         permissions = request.form.getlist('permission')
-        
+        for permission in permissions:
+            print(permission)
         redirect(url_for('roles_and_permissions'))
     return redirect(url_for('login'))
 
