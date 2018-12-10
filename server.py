@@ -65,7 +65,7 @@ def roles_and_permissions_page():
     if request.method == 'POST':
         selectedRoleId = request.form.get('selectedRole')
     
-    selectedRole = forms.Role.select(selectedRoleId)
+    selectedRole = forms.Role.selectWithID(selectedRoleId)
     rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRole)
 
     return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, roles = roles)

@@ -242,7 +242,7 @@ class Role:
         cursor.close()
         return roles
     
-    def select(roleID):
+    def selectWithID(roleID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
