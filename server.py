@@ -215,7 +215,9 @@ def sales_create():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(str(error), 'sales_create', 'Fatal', traceback.format_exc())
+        stackTrace = traceback.format_exc()
+        print(stackTrace)
+        forms.System.insertLog(str(error), 'sales_create', 'Fatal', stackTrace)
         return redirect(url_for('error', errorMessage = error))
 
 if __name__ == "__main__":
