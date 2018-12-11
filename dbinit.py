@@ -383,10 +383,7 @@ def initialize(url):
             cursor.execute(statement)
 
         for statement in SYSTEM_INSERT_STATEMENTS:
-            cursor.execute(statement)	
-
-        for statement in TITLE_INSERT_STATEMENTS:
-            cursor.execute(statement)        
+            cursor.execute(statement)	       
         
         for statement in LOCALIZATION_INSERT_STATEMENTS:
             cursor.execute(statement)
