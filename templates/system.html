@@ -14,14 +14,14 @@
                 </tr>
             </thead>
             <tbody>
+                {% for configValue in configValues %}
                 <tr>
-                    {% for configValue in configValues %}
                     <th scope="row">{{ configValue[0] }}</th>
                     <td>{{ configValue[1] }}</td>
                     <td>{{ configValue[2] }}</td>
-                    <td>{{ configValue[3] }}</td>
-                    {% endfor %}                    
+                    <td>{{ configValue[3] }}</td>             
                 </tr>
+                {% endfor %} 
             </tbody>
         </table>
         <table class="table">
@@ -36,16 +36,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
                 {% for log in logs %}
-                <th scope="row">{{ log[0] }}</th>
-                <td><p>{{ log[1] }}</p></td>
-                <td><p>{{ log[2] }}</p></td>
-                <td><p>{{ log[3] }}</p></td>
-                <td><p>{{ log[4] }}</p></td>
-                <td><p>{{ log[5] }}</p></td>
-                {% endfor %}
+                <tr>
+                    <th scope="row">{{ log[0] }}</th>
+                    <td><p>{{ log[1] }}</p></td>
+                    <td><p>{{ log[2] }}</p></td>
+                    <td><p>{{ log[3] }}</p></td>
+                    <td><p>{{ log[4] }}</p></td>
+                    <td><p>{{ log[5] }}</p></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
 </div>
