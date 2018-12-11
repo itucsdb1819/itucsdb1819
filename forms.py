@@ -225,14 +225,27 @@ class RolePermission:
         cursor.close()
         return rolePermissions
     
-    def insertPermissions(roleID, permissionList):
+    def insertPermissions(roleID, roleName, permissionList):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """DELETE FROM RolePermission WHERE RoleID = {}""".format(roleID)
-        cursor.execute(queryString)
-        for permission in permissionList:
-            queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
+        if roleID != 0:
+            queryString = """DELETE FROM RolePermission WHERE RoleID = {}""".format(roleID)
             cursor.execute(queryString)
+            queryString = """UPDATE Role
+                             SET RoleName = %s
+                             WHERE RoleID = %d"""
+            cursor.execute(queryString, (roleName, roleID))
+            for permission in permissionList:
+                queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
+                cursor.execute(queryString)
+        else:
+            queryString = """INSERT INTO Role (RoleName, CreatedOn) VALUES (%s, NOW());
+                             SELECT currval(pg_get_serial_sequence('Role','RoleID'));"""
+            cursor.execute(queryString, (roleName))
+            roleID = cursor.fetchone()
+            for permission in permissionList:
+                queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
+                cursor.execute(queryString)
         conn.commit()
         cursor.close()
 
