@@ -42,7 +42,7 @@ def error_page():
 def unauthorized_page():
     try:
         user = 'userId' in session
-        forms.System.insertLog('Unauthorized access was made by user: {}'.format(user) , 'unauthorized', 'Access Violation', traceback.format_exc())
+        forms.System.insertLog('Unauthorized access was made by user: {}'.format(user) , 'unauthorized', 'Warning', traceback.format_exc())
         return render_template('unauthorized.html', load_resource = load_resource, menuItems = menuItems)
     except Exception as error:
         forms.System.insertLog(error, 'unauthorized', 'Fatal', traceback.format_exc())
@@ -55,11 +55,12 @@ def login_page():
         if request.method == 'POST':
             if forms.Employee.login(request.form['username'], request.form['password']) == True:
                 employee = forms.Employee.selectEmployee(request.form['username'], request.form['password'])
-                forms.System.insertLog('User {} logged in.'.format(employee[1]), 'login', 'Info', '')
+                forms.System.insertLog('User {} logged in.'.format(request.form['username']), 'login', 'Info', '')
                 session['userId'] = employee[0]
                 session['roleId'] = employee[3]
                 return redirect(url_for('home'))
             else:
+                forms.System.insertLog('User {} attempted unsuccessful login.'.format(request.form['username']), 'login', 'Warning', '')
                 error = load_resource('Error.InvalidCredentials', 'PageText')
         return render_template('login.html', error = error, load_resource = load_resource)
     except Exception as error:
@@ -83,7 +84,8 @@ def system_page():
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'SystemPage.Access'):
                 configValues = forms.System.select()
-                return render_template('system.html', menuItems = menuItems, load_resource = load_resource)
+                logs = forms.System.getSystemLogs()
+                return render_template('system.html', menuItems = menuItems, load_resource = load_resource, configValues = configValues, logs = logs)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
