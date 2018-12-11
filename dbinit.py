@@ -227,13 +227,19 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Button.Save', 'Buttons', 'tr', 'Kaydet')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('HomePage.Return', 'Buttons', 'tr', 'Kaydet')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.UnauthorizedAccess', 'PageTitles', 'tr', 'İzinsiz erişim!')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.UnauthorizedAccess', 'PageText', 'tr', 'İzinsiz erişim sağladınız.')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Error.InvalidCredentials', 'PageText', 'tr', 'Kullanıcı adı veya şifre hatalı.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.InternalServerError', 'PageTitles', 'tr', 'Sunucu hatası!')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Error.InternalServerError', 'PageText', 'tr', 'Sunucu hatası meydana geldi.')"""
+		VALUES ('Error.InternalServerError', 'PageText', 'tr', 'Sunucu hatası meydana geldi.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Error.SessionExpired', 'PageText', 'tr', 'Giriş yapmanız gerekmektedir.')"""
 ]
 
 ROLE_INSERT_STATEMENTS = [

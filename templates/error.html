@@ -9,6 +9,10 @@
     <div class="row justify-content-md-center">
         <div class="col-md-auto">
             {{ load_resource('Error.InternalServerError', 'PageText') }}
+            <p style="color: white">                
+                {{ errorMessage }}
+            </p>
+            <a href="/home" class="btn btn-dark" role="button">{{ load_resource('HomePage.Return', 'Buttons') }}</a>
         </div>
     </div>
 </div>

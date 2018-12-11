@@ -27,27 +27,28 @@ def home_page():
                 return render_template('home.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/error", endpoint = "error")
 def error_page():
-    return render_template('error.html', menuItems = menuItems, load_resource = load_resource)
+    errorMessage = request.args.get('errorMessage')
+    return render_template('error.html', load_resource = load_resource, errorMessage = errorMessage, menuItems = None)
 
 @app.route("/unauthorized", endpoint = "unauthorized")
 def unauthorized_page():
     try:
-        return render_template('unauthorized.html', menuItems = menuItems, load_resource = load_resource)
+        return render_template('unauthorized.html', load_resource = load_resource, menuItems = None)
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/login", methods=['GET', 'POST'], endpoint = "login")
 def login_page():
     try:
-        error = None
+        error = request.args.get('error')
         if request.method == 'POST':
             if forms.Employee.login(request.form['username'], request.form['password']) == True:
                 employee = forms.Employee.selectEmployee(request.form['username'], request.form['password'])
@@ -55,11 +56,11 @@ def login_page():
                 session['roleId'] = employee[3]
                 return redirect(url_for('home'))
             else:
-                error = 'Invalid Credentials. Please try again.'
+                error = load_resource('Error.InvalidCredentials', 'PageText')
         return render_template('login.html', error = error, load_resource = load_resource)
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route('/logout')
 def logout():
@@ -68,7 +69,7 @@ def logout():
         return redirect(url_for('login'))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/system")
 def system_page():
@@ -79,10 +80,10 @@ def system_page():
                 return render_template('system.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/employee")
 def employee_page():
@@ -92,10 +93,10 @@ def employee_page():
                 return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/employee_create")
 def employee_create_page():
@@ -105,10 +106,10 @@ def employee_create_page():
                 return render_template('employee_create.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/expense")
 def expense_page():
@@ -118,10 +119,10 @@ def expense_page():
                 return render_template('expense.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/product")
 def product_page():
@@ -132,10 +133,10 @@ def product_page():
                 return render_template('product.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
 def roles_and_permissions_page():
@@ -158,10 +159,10 @@ def roles_and_permissions_page():
             else:
                 return redirect(url_for('unauthorized'))
         else:
-            return redirect(url_for('login'))
+            return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 
 @app.route("/sales")
@@ -172,10 +173,10 @@ def sales_report_page():
                 return render_template('sales_report.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 @app.route("/sales_create")
 def sales_create():
@@ -185,10 +186,10 @@ def sales_create():
                 return render_template('sales_create.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
-        return redirect(url_for('login'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
-        return redirect(url_for('error'))
+        return redirect(url_for('error', errorMessage = error))
 
 if __name__ == "__main__":
     app.run()
