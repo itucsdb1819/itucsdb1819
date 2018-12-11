@@ -27,6 +27,7 @@ class Employee:
         cursor = conn.cursor()
         queryString = """SELECT EmployeeID, RoleID, Name, Surname, 
         CreatedOn, ModifiedOn, IsActive, TitleID, Username FROM Employee """
+        cursor.execute(queryString)
         employees = cursor.fetchall()
         cursor.close()
         return employees
