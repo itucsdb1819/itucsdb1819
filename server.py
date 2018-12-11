@@ -98,7 +98,8 @@ def employee_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
-                return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
+                employees = forms.Employee.select()
+                return render_template('employee.html', menuItems = menuItems, load_resource = load_resource, employees = employees)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))

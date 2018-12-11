@@ -13,11 +13,6 @@ INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Product CASCADE",
 	"DROP TABLE IF EXISTS ProductMenu CASCADE",
 	"DROP TABLE IF EXISTS ProductIngredient CASCADE",
-	"DROP TABLE IF EXISTS Title CASCADE",
-	"DROP TABLE IF EXISTS Permission CASCADE",
-	"DROP TABLE IF EXISTS Role CASCADE",
-	"DROP TABLE IF EXISTS RolePermission CASCADE",
-	"DROP TABLE IF EXISTS Employee CASCADE",
 	"DROP TABLE IF EXISTS System CASCADE",
 	"DROP TABLE IF EXISTS Expense CASCADE",
 	"DROP TABLE IF EXISTS CustomerSurvey CASCADE",
@@ -190,12 +185,6 @@ INIT_STATEMENTS = [
 )"""
 ]
 
-TITLE_INSERT_STATEMENTS = [
-	"""INSERT INTO Title (TitleName, MonthlyPay)
-	VALUES ('Cashier', 1457)"""
-]
-
-
 LOCALIZATION_INSERT_STATEMENTS = [
 	"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Menu.Home', 'Menu', 'tr', 'Anasayfa')""",
@@ -275,17 +264,6 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		VALUES ('Sales.Create', 'PageTitles', 'tr', 'Satış Girişi')""",
 ]
 
-ROLE_INSERT_STATEMENTS = [
-"""
-	INSERT INTO Role(RoleName, CreatedOn)
-	VALUES ('Admin', NOW())
-""",
-"""
-	INSERT INTO Role(RoleName, CreatedOn)
-	VALUES ('Accounting', NOW())
-""",
-]
-
 PERMISSION_INSERT_STATEMENTS = [
 	"""
 		INSERT INTO Permission (PermissionID, PermissionName)
@@ -315,44 +293,6 @@ PERMISSION_INSERT_STATEMENTS = [
 		INSERT INTO Permission (PermissionID, PermissionName)
 		VALUES (7, 'SystemPage.Access')
 	"""
-]
-
-ROLE_PERMISSION_INSERT_STATEMENTS = [
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 1)
-	""",
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 2)
-	""",
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 3)
-	""",
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 4)
-	""",
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 5)
-	""",
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 6)
-	""",
-	"""
-		INSERT INTO RolePermission(RoleID, PermissionID)
-		VALUES (1, 7)
-	"""
-]
-
-EMPLOYEE_INSERT_STATEMENTS = [
-"""
-	INSERT INTO Employee (RoleID, Name, Surname, CreatedOn, IsActive, TitleID, Username, Password)
-	VALUES (1, 'Merve', 'Donmez', NOW(), true, 1, 'mgdonmez', 'superpass')
-"""
 ]
 
 MENU_INSERT_STATEMENTS = [
@@ -455,21 +395,6 @@ def initialize(url):
             cursor.execute(statement)
 
         for statement in PRODUCT_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in ROLE_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in TITLE_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in EMPLOYEE_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in PERMISSION_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in ROLE_PERMISSION_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         connection.commit()
