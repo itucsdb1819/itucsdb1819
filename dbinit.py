@@ -227,7 +227,7 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Button.Save', 'Buttons', 'tr', 'Kaydet')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('HomePage.Return', 'Buttons', 'tr', 'Kaydet')""",
+		VALUES ('HomePage.Return', 'Buttons', 'tr', 'Anasayfa')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.UnauthorizedAccess', 'PageTitles', 'tr', 'İzinsiz erişim!')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)

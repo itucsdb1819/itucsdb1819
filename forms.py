@@ -228,12 +228,12 @@ class RolePermission:
     def insertPermissions(roleID, roleName, permissionList):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        if roleID != 0:
+        if roleID != None:
             queryString = """DELETE FROM RolePermission WHERE RoleID = {}""".format(roleID)
             cursor.execute(queryString)
             queryString = """UPDATE Role
                              SET RoleName = %s
-                             WHERE RoleID = %d"""
+                             WHERE RoleID = %s"""
             cursor.execute(queryString, (roleName, roleID))
             for permission in permissionList:
                 queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
