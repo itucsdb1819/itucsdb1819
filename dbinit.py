@@ -229,7 +229,11 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.UnauthorizedAccess', 'PageTitles', 'tr', 'İzinsiz erişim!')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Error.UnauthorizedAccess', 'PageText', 'tr', 'İzinsiz erişim sağladınız.')"""
+		VALUES ('Error.UnauthorizedAccess', 'PageText', 'tr', 'İzinsiz erişim sağladınız.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Error.InternalServerError', 'PageText', 'tr', 'Sunucu hatası!')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Error.InternalServerError', 'PageText', 'tr', 'Sunucu hatası meydana geldi.')"""
 ]
 
 ROLE_INSERT_STATEMENTS = [
@@ -419,7 +423,7 @@ def initialize(url):
         for statement in PERMISSION_INSERT_STATEMENTS:
             cursor.execute(statement)
 
-        for statement in PERMISSION_INSERT_STATEMENTS:
+        for statement in ROLE_PERMISSION_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         connection.commit()

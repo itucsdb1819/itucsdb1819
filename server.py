@@ -21,12 +21,19 @@ def load_resource(resourceId, resourceSet):
 @app.route("/")
 @app.route("/home", endpoint = "home")
 def home_page():
-    if ('userId' in session):
+    try:
+        if ('userId' in session):
         if forms.Permission.hasPermission(session['roleId'], 'HomePage.Access'):
             return render_template('home.html', menuItems = menuItems)
         else:
             return redirect(url_for('unauthorized'))
-    return redirect(url_for('login'))
+        return redirect(url_for('login'))
+    except:
+        return redirect(url_for('error'))
+
+@app.route("/error", endpoint = "error")
+def error_page():
+    return render_template('error.html', menuItems = menuItems)
 
 @app.route("/unauthorized", endpoint = "unauthorized")
 def unauthorized_page():
@@ -48,8 +55,7 @@ def login_page():
 @app.route('/logout')
 def logout():
     session.pop('userId', None)
-    return redirect(url_for('home'))
-
+    return redirect(url_for('login'))
 
 @app.route("/system")
 def system_page():
