@@ -243,8 +243,8 @@ class RolePermission:
             cursor.execute(queryString, (roleName,))
             roleID = cursor.fetchone()
             for permission in permissionList:
-                queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
-                cursor.execute(queryString)
+                queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES(%s, {}})""".fomat(permission)
+                cursor.execute(queryString, (roleID,))
         conn.commit()
         cursor.close()
 
