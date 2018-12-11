@@ -228,6 +228,7 @@ class RolePermission:
     def insertPermissions(roleID, roleName, permissionList):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
+        print(roleID)
         if roleID != None:
             queryString = """DELETE FROM RolePermission WHERE RoleID = {}""".format(roleID)
             cursor.execute(queryString)
