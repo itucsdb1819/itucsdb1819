@@ -182,6 +182,14 @@ INIT_STATEMENTS = [
 	ProductID integer NOT NULL REFERENCES Product,
 	SaleID integer NOT NULL REFERENCES Sale,
 	Note text NULL 
+)""",
+"""CREATE TABLE IF NOT EXISTS Logs(
+	LogID serial PRIMARY KEY,
+	Message text NOT NULL,
+	Page text NOT NULL
+	Type text NOT NULL
+	Traceback text NOT NULL,
+	CreatedOn timestamp NOT NULL
 )"""
 ]
 

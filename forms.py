@@ -103,6 +103,30 @@ class System:
                     ModifiedBy = '{}'
                 WHERE ConfigID = '{}' AND IsEditable = true
         """.format(configValue, employeeId, configId)
+        cursor.execute(queryString)
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def getSystemLogs():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT LogID, Message, Page, Type, Traceback, CreatedOn FROM Logs ORDER BY CreatedOn desc
+        """
+        cursor.execute(queryString)
+        logs = cursor.fetchall()
+        cursor.close()
+        conn.close()
+
+    def insertLog(message, page, logType, traceback):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            INSERT INTO Logs (Message, Page, Type, Traceback, CreatedOn)
+            VALUES ('{}', '{}', '{}', '{}', NOW())
+        """.format(message, page, logType, traceback)
+        cursor.execute(queryString)
         conn.commit()
         cursor.close()
         conn.close()
@@ -180,7 +204,7 @@ class Product:
         self.glucose = glucose
         self.isVegetarian = isVegetarian
 
-    def select(clause):
+    def select():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT ProductID, ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian 
