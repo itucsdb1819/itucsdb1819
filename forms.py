@@ -57,9 +57,9 @@ class Employee:
         cursor = conn.cursor()
         queryString = """
             SELECT EmployeeID, Username, Password FROM Employee
-            WHERE Username = '{}'
-                AND Password = '{}'
-        """.format(username, password)
+            WHERE Username = {}
+                AND Password = {}
+        """.format((username,), (password,)
         cursor.execute(queryString)
         user = cursor.fetchone()
         cursor.close()
