@@ -41,6 +41,8 @@ def error_page():
 @app.route("/unauthorized", endpoint = "unauthorized")
 def unauthorized_page():
     try:
+        user = 'userId' in session
+        forms.System.insertLog('Unauthorized access was made by user: {}'.format(user) , 'unauthorized', 'Access Violation', traceback.format_exc())
         return render_template('unauthorized.html', load_resource = load_resource, menuItems = menuItems)
     except Exception as error:
         forms.System.insertLog(error, 'unauthorized', 'Fatal', traceback.format_exc())
