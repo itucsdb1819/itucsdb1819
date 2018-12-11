@@ -12,7 +12,7 @@
                                 <div class="dropdown">
                                     <select name="Employee" class="selectpicker form-control">
                                         {% for employee in employees %}
-                                        <option class="dropdown-item" value="{{ employee[0] }}">{{ employee[1] }}</option>
+                                        <option class="dropdown-item" value="{{ employee[0] }}">{{ employee[2] }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -20,7 +20,7 @@
                                 <div class="dropdown">
                                     <select name="Register" class="selectpicker form-control">
                                         {% for register in registers %}
-                                        <option class="dropdown-item" value="{{ register[0] }}">{{ register[1] }}</option>
+                                        <option class="dropdown-item" value="{{ register[0] }}">{{ register[0] }} | {{ register[1] }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
