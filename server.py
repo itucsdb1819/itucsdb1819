@@ -78,7 +78,7 @@ def system_page():
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'SystemPage.Access'):
                 configValues = forms.System.select()
-                return render_template('system.html', menuItems = menuItems)
+                return render_template('system.html', menuItems = menuItems, load_resource = load_resource)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
@@ -104,7 +104,7 @@ def employee_create_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
-                return render_template('employee_create.html', menuItems = menuItems)
+                return render_template('employee_create.html', menuItems = menuItems, load_resource = load_resource)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
@@ -117,7 +117,7 @@ def expense_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'ExpensePage.Access'):
-                return render_template('expense.html', menuItems = menuItems)
+                return render_template('expense.html', menuItems = menuItems, load_resource = load_resource)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
