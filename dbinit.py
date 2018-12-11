@@ -435,7 +435,7 @@ REGISTER_TYPE_INSERT_STATEMENTS = [
 	""",
 	"""
 		INSERT INTO RegisterType (RegisterTypeID, RegisterTypeName)
-					VALUES (1, 'Online')
+					VALUES (2, 'Online')
 	"""
 ]
 
