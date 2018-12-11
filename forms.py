@@ -22,11 +22,11 @@ class Employee:
         cursor.close()
         conn.close()
 
-    def select(clause):
+    def select():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """SELECT EmployeeID, RoleID, Name, Surname, 
-        CreatedOn, ModifiedOn, IsActive, TitleID, Username FROM Employee """ + clause
+        CreatedOn, ModifiedOn, IsActive, TitleID, Username FROM Employee """
         employees = cursor.fetchall()
         cursor.close()
         return employees
