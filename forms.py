@@ -352,7 +352,7 @@ class Sale:
                     IsCancelled = {}
                 WHERE SaleID = {}
         """.format(isDelivered, isCancelled, saleID)
-        
+
     def getReport(registerID, employeeID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
@@ -375,6 +375,10 @@ class Sale:
             INNER JOIN Register R ON R.RegisterID = S.RegisterID
             """
             cursor.execute(queryString)
+
+        if cursor.rowcount == 0:
+            cursor.close()
+            return tuple('', '', '', '', '', '', '', '')
 
         report = cursor.fetchall()
         cursor.close()
