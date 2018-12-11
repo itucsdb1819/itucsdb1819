@@ -112,7 +112,7 @@ class System:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            SELECT LogID, Message, Page, Type, Traceback, CreatedOn FROM Logs ORDER BY CreatedOn desc
+            SELECT LogID, Message, Page, LogType, Traceback, CreatedOn FROM Logs ORDER BY CreatedOn desc
         """
         cursor.execute(queryString)
         logs = cursor.fetchall()
@@ -123,7 +123,7 @@ class System:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            INSERT INTO Logs (Message, Page, Type, Traceback, CreatedOn)
+            INSERT INTO Logs (Message, Page, LogType, Traceback, CreatedOn)
             VALUES ('{}', '{}', '{}', '{}', NOW())
         """.format(message, page, logType, traceback)
         cursor.execute(queryString)

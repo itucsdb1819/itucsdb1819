@@ -187,7 +187,7 @@ INIT_STATEMENTS = [
 	LogID serial PRIMARY KEY,
 	Message text NOT NULL,
 	Page text NOT NULL
-	Type text NOT NULL
+	LogType text NOT NULL
 	Traceback text NOT NULL,
 	CreatedOn timestamp NOT NULL
 )"""
