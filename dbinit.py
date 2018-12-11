@@ -242,6 +242,20 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		VALUES ('Error.SessionExpired', 'PageText', 'tr', 'Giriş yapmanız gerekmektedir.')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Expense', 'PageTitles', 'tr', 'Masraflar')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('HomePage.Access', 'PageText', 'tr', 'Anasayfa Erişim İzni.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('EmployeePage.Access', 'PageText', 'tr', 'Çalışanlar Sayfası Erişim İzni.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('ExpensePage.Access', 'PageText', 'tr', 'Masraflar Sayfası Erişim İzni.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('RolesAndPermissionsPage.Access', 'PageText', 'tr', 'Roller ve İzinler Sayfası Erişim İzni.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('ProductPage.Access', 'PageText', 'tr', 'Ürünler Sayfası Erişim İzni.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('SalesPage.Access', 'PageText', 'tr', 'Satışlar Sayfası Erişim İzni.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('SystemPage.Access', 'PageText', 'tr', 'Sistem Ayarları Sayfası Erişim İzni.')""",
 ]
 
 ROLE_INSERT_STATEMENTS = [

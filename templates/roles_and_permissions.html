@@ -35,14 +35,14 @@
                                 {% for permission in rolesAndPermissions %}
                                 {%if permission[2] %}
                                 <div class="row">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" name="permission" value="{{ permission[0] }}" checked>{{ permission[1] }}</label>
+                                    <div class="form-check">
+                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" checked>{{ load_resource(permission[1], 'PageText') }}</label>
                                     </div>
                                 </div>
                                 {% else %}
                                 <div class="row">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="permission" value="{{ permission[0] }}">{{ permission[1] }}</label>
+                                        <label><input type="checkbox" name="permission" value="{{ permission[0] }}">{{ load_resource(permission[1], 'PageText') }}</label>
                                     </div>
                                 </div>
                                 {% endif %}
