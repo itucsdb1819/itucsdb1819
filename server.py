@@ -30,7 +30,7 @@ def home_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'home', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'home', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/error", endpoint = "error")
@@ -45,7 +45,7 @@ def unauthorized_page():
         forms.System.insertLog('Unauthorized access was made by user: {}'.format(user) , 'unauthorized', 'Warning', '')
         return render_template('unauthorized.html', load_resource = load_resource, menuItems = menuItems)
     except Exception as error:
-        forms.System.insertLog(error, 'unauthorized', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'unauthorized', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/login", methods=['GET', 'POST'], endpoint = "login")
@@ -64,7 +64,7 @@ def login_page():
                 error = load_resource('Error.InvalidCredentials', 'PageText')
         return render_template('login.html', error = error, load_resource = load_resource)
     except Exception as error:
-        forms.System.insertLog(error, 'login', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'login', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route('/logout')
@@ -75,7 +75,7 @@ def logout():
         forms.System.insertLog('User {} logged in.'.format(oldUser), 'login', 'Info', '')
         return redirect(url_for('login'))
     except Exception as error:
-        forms.System.insertLog(error, 'logout', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'logout', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/system")
@@ -90,7 +90,7 @@ def system_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'system', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'system', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/employee")
@@ -103,7 +103,7 @@ def employee_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'employee', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'employee', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/employee_create")
@@ -116,7 +116,7 @@ def employee_create_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'employee_create', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'employee_create', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/expense")
@@ -129,7 +129,7 @@ def expense_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'expense', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'expense', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/product")
@@ -143,7 +143,7 @@ def product_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'product', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'product', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
@@ -170,7 +170,7 @@ def roles_and_permissions_page():
         else:
             return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'roles_and_permissions', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'roles_and_permissions', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 
@@ -192,7 +192,7 @@ def sales_report_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'sales', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'sales', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/sales_create")
@@ -205,7 +205,7 @@ def sales_create():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(error, 'sales_create', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'sales_create', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 if __name__ == "__main__":
