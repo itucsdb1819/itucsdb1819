@@ -2,6 +2,7 @@ import os
 from flask import Flask,render_template,redirect,url_for, request, session, escape
 from dbinit import initialize
 import forms
+import traceback
 
 app = Flask(__name__)
 
@@ -163,6 +164,7 @@ def roles_and_permissions_page():
             return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
         print(error)
+        print(traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 

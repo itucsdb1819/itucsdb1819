@@ -228,7 +228,6 @@ class RolePermission:
     def insertPermissions(roleID, roleName, permissionList):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        print(roleID)
         if roleID != '':
             queryString = """DELETE FROM RolePermission WHERE RoleID = {}""".format(roleID)
             cursor.execute(queryString)
@@ -240,6 +239,7 @@ class RolePermission:
                 queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
                 cursor.execute(queryString)
         else:
+            print("Inserting new role to Role")
             queryString = """INSERT INTO Role (RoleName, CreatedOn) VALUES (%s, NOW());
                              SELECT currval(pg_get_serial_sequence('Role','RoleID'));"""
             cursor.execute(queryString, (roleName))
