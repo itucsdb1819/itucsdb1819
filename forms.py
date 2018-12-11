@@ -389,7 +389,7 @@ class Sale:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            SELECT E.Name + ' ' + E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
+            SELECT E.Name || E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
             S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
             FROM Sale S
             INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
