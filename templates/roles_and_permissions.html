@@ -17,40 +17,38 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+                        <button type="submit" class="btn btn-light" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="container-fluid">
-                <div class="row justify-content-md-center">
-                            <div class="panel-body">
-                                <form class="form-control" method="POST">
-                                    <div class="form-group">
-                                        {{ selectedRole[1] }}
-                                        <input type="hidden" name="selectedRoleID" value="{{ selectedRole[0] }}">
-                                        <input type="text" name="selectedRoleName" value="{{ selectedRole[1] }}" placeholder="Yeni Rol">
-                                        {% for permission in rolesAndPermissions %}
-                                        {%if permission[2] %}
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" checked>{{ load_resource(permission[1], 'PageText') }}</label>
-                                            </div>
-                                        </div>
-                                        {% else %}
-                                        <div class="row">
-                                                <div class="form-check">
-                                                    <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}">{{ load_resource(permission[1], 'PageText') }}</label>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                        {% endfor %}
-                                        <button type="submit" class="btn btn-primary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
+            <div class="row justify-content-md-center">
+                <div class="panel-body">
+                    <form class="form-control" method="POST">
+                        <div class="form-group">
+                            {{ selectedRole[1] }}
+                                <input type="hidden" name="selectedRoleID" value="{{ selectedRole[0] }}">
+                                <input type="text" name="selectedRoleName" value="{{ selectedRole[1] }}" placeholder="Yeni Rol">
+                            {% for permission in rolesAndPermissions %}
+                            {%if permission[2] %}
+                                <div class="row">
+                                    <div class="form-check">
+                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" checked>{{ load_resource(permission[1], 'PageText') }}</label>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="form-check">
+                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}">{{ load_resource(permission[1], 'PageText') }}</label>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% endfor %}
+                                <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
                         </div>
-                    </div>
+                    </form>
+                </div>
             </div> 
     </div> 
 {% endblock %}
