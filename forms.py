@@ -58,8 +58,9 @@ class Employee:
         queryString = """
             SELECT EmployeeID, Username, Password FROM Employee
             WHERE Username = %s
-                AND Password = %s;"""
-        cursor.execute(queryString, (username,), (password,))
+                AND Password = %s
+        """
+        cursor.execute(queryString, (username, password))
         user = cursor.fetchone()
         cursor.close()
         if user != None:
