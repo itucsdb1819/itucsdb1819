@@ -337,7 +337,7 @@ class Sale:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            INSERT INTO Sale (EmployeeID, RegisterID, PaymentMethod, CreatedOn, ModifiedOn, IsDelivered. IsCancelled)
+            INSERT INTO Sale (EmployeeID, RegisterID, PaymentMethod, CreatedOn, ModifiedOn, IsDelivered, IsCancelled)
             VALUES (%s, %s, %s, NOW(), NULL, %s, %s)
         """
         cursor.execute(queryString, (employeeID, registerID, paymentMethod, isDelivered, isCancelled))
