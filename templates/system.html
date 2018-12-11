@@ -4,46 +4,49 @@
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-4">
-            <div class="panel-body">
-                {% for configValue in configValues %}
-                    <p>{{ configValue[0] }} | {{ configValue[1] }} | {{ configValue[2] }} | {{ configValue[3] }}</p>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-8">
-            <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">configValue[0]</th>
+                    <th scope="col">configValue[1]</th>
+                    <th scope="col">configValue[2]</th>
+                    <th scope="col">configValue[3]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for configValue in configValues %}
+                    <th scope="row">{{ configValue[0] }}</th>
+                    <td>{{ configValue[1] }}</td>
+                    <td>{{ configValue[2] }}</td>
+                    <td>{{ configValue[3] }}</td>
+                    {% endfor %}                    
+                </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">log[0]</th>
+                    <th scope="col">log[1]</th>
+                    <th scope="col">log[2]</th>
+                    <th scope="col">log[3]</th>
+                    <th scope="col">log[4]</th>
+                    <th scope="col">log[5]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
                 {% for log in logs %}
-                    <p>{{ log[0] }} | {{ log[1] }} | {{ log[2] }} | {{ log[3] }} | {{ log[4] }} | {{ log[5] }}</p>
+                <th scope="row">{{ log[0] }}</th>
+                <td><p>{{ log[1] }}</p></td>
+                <td><p>{{ log[2] }}</p></td>
+                <td><p>{{ log[3] }}</p></td>
+                <td><p>{{ log[4] }}</p></td>
+                <td><p>{{ log[5] }}</p></td>
                 {% endfor %}
-            </div>
-        </div>
-    </div>
+                </tr>
+            </tbody>
+        </table>
 </div>
-<table class="table">
-        <thead>
-          <tr>
-            {% for configValue in configValues %}
-            <th scope="col">#</th>
-            <th scope="col">{{ configValue[0] }}</th>
-            <th scope="col">{{ configValue[1] }}</th>
-            <th scope="col">{{ configValue[2] }}</th>
-            <th scope="col">{{ configValue[3] }}</th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {% for log in logs %}
-                <p>{{ log[0] }} | {{ log[1] }} | {{ log[2] }} | {{ log[3] }} | {{ log[4] }} | {{ log[5] }}</p>
-            {% endfor %}
-            <th scope="row">{{ log[0] }}</th>
-            <td><p>{{ log[1] }}</p></td>
-            <td><p>{{ log[2] }}</p></td>
-            <td><p>{{ log[3] }}</p></td>
-            <td><p>{{ log[4] }}</p></td>
-          </tr>
-        </tbody>
-      </table>
 {% endblock %}
