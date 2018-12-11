@@ -13,8 +13,6 @@ INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Product CASCADE",
 	"DROP TABLE IF EXISTS ProductMenu CASCADE",
 	"DROP TABLE IF EXISTS ProductIngredient CASCADE",
-	"DROP TABLE IF EXISTS RegisterType CASCADE",
-	"DROP TABLE IF EXISTS Register CASCADE",
 	"DROP TABLE IF EXISTS Title CASCADE",
 	"DROP TABLE IF EXISTS Permission CASCADE",
 	"DROP TABLE IF EXISTS Role CASCADE",
@@ -22,7 +20,6 @@ INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Employee CASCADE",
 	"DROP TABLE IF EXISTS System CASCADE",
 	"DROP TABLE IF EXISTS Expense CASCADE",
-	"DROP TABLE IF EXISTS Sale CASCADE",
 	"DROP TABLE IF EXISTS CustomerSurvey CASCADE",
 	"DROP TABLE IF EXISTS ProductSale CASCADE",
 
@@ -436,29 +433,6 @@ PRODUCT_INSERT_STATEMENTS = [
 	"""
 ]
 
-REGISTER_TYPE_INSERT_STATEMENTS = [
-	"""
-		INSERT INTO RegisterType (RegisterTypeID, RegisterTypeName)
-					VALUES (1, 'House')
-	""",
-	"""
-		INSERT INTO RegisterType (RegisterTypeID, RegisterTypeName)
-					VALUES (2, 'Online')
-	"""
-]
-
-
-REGISTER_INSERT_STATEMENTS = [
-	"""
-		INSERT INTO Register (RegisterID, RegisterTypeID, IsActive)
-					VALUES (1, 1, true)
-	""",
-	"""
-		INSERT INTO Register (RegisterID, RegisterTypeID, IsActive)
-					VALUES (2, 2, true)
-	"""
-]
-
 def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
@@ -496,12 +470,6 @@ def initialize(url):
             cursor.execute(statement)
 
         for statement in ROLE_PERMISSION_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in REGISTER_TYPE_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in REGISTER_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         connection.commit()
