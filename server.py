@@ -23,10 +23,10 @@ def load_resource(resourceId, resourceSet):
 def home_page():
     try:
         if ('userId' in session):
-        if forms.Permission.hasPermission(session['roleId'], 'HomePage.Access'):
-            return render_template('home.html', menuItems = menuItems)
-        else:
-            return redirect(url_for('unauthorized'))
+            if forms.Permission.hasPermission(session['roleId'], 'HomePage.Access'):
+                return render_template('home.html', menuItems = menuItems)
+            else:
+                return redirect(url_for('unauthorized'))
         return redirect(url_for('login'))
     except:
         return redirect(url_for('error'))
