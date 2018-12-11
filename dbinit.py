@@ -100,8 +100,8 @@ INIT_STATEMENTS = [
 	RegisterTypeName varchar(50) NOT NULL
 )""",
 """CREATE TABLE IF NOT EXISTS Register(
-	RegisterID integer REFERENCES RegisterType,
-	RegisterTypeID integer NOT NULL,
+	RegisterID integer ,
+	RegisterTypeID integer NOT NULL REFERENCES RegisterType,
 	IsActive bool NOT NULL,
 	PRIMARY KEY (RegisterID)
 )""",
@@ -219,6 +219,8 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Menu.SalesReport', 'Menu', 'tr', 'Satış Raporu')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Menu.SalesCreate', 'Menu', 'tr', 'Satış Girişi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Employee.Create', 'PageText', 'tr', 'Çalışan Ekle')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Login.Login', 'PageText', 'tr', 'Giriş Yap')""",
@@ -251,6 +253,10 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Expense', 'PageTitles', 'tr', 'Masraflar')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('System', 'PageTitles', 'tr', 'Sistem Ayarları')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('SalesReport', 'PageTitles', 'tr', 'Satış Raporu')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('HomePage.Access', 'PageText', 'tr', 'Anasayfa Erişim İzni.')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('EmployeePage.Access', 'PageText', 'tr', 'Çalışanlar Sayfası Erişim İzni.')""",
@@ -264,6 +270,8 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		VALUES ('SalesPage.Access', 'PageText', 'tr', 'Satışlar Sayfası Erişim İzni.')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('SystemPage.Access', 'PageText', 'tr', 'Sistem Ayarları Sayfası Erişim İzni.')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES (''Sales.Create', 'PageText', 'tr', 'Satış Girişi.')""",
 ]
 
 ROLE_INSERT_STATEMENTS = [
@@ -369,6 +377,9 @@ MENU_INSERT_STATEMENTS = [
 """,
 """INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
 	VALUES (9, 3, 6, 'Menu.SalesReport', '/sales', '', true, false)
+""",
+"""INSERT INTO Menu (MenuItemID, MasterMenuItemID, PermissionID, MenuItemName, MenuItemPath, IconPath, IsActive, HasChildren)
+	VALUES (10, 3, 6, 'Menu.SalesCreate', '/sales_create', '', true, false)
 """
 ]
 
@@ -417,6 +428,29 @@ PRODUCT_INSERT_STATEMENTS = [
 	"""
 ]
 
+REGISTER_TYPE_INSERT_STATEMENTS = [
+	"""
+		INSERT INTO RegisterType (RegisterTypeID, RegisterTypeName)
+					VALUES (1, 'House')
+	""",
+	"""
+		INSERT INTO RegisterType (RegisterTypeID, RegisterTypeName)
+					VALUES (1, 'Online')
+	"""
+]
+
+
+REGISTER_INSERT_STATEMENTS = [
+	"""
+		INSERT INTO Register (RegisterID, RegisterTypeID, IsActive)
+					VALUES (1, 1, true)
+	""",
+	"""
+		INSERT INTO Register (RegisterID, RegisterTypeID, IsActive)
+					VALUES (2, 2, true)
+	"""
+]
+
 def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
@@ -454,6 +488,12 @@ def initialize(url):
             cursor.execute(statement)
 
         for statement in ROLE_PERMISSION_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in REGISTER_TYPE_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in REGISTER_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         connection.commit()

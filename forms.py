@@ -400,3 +400,25 @@ class Sale:
         report = cursor.fetchall()
         cursor.close()
         return report
+
+class Register:
+    def __init__(registerID, registerTypeID, isActive):
+        self.registerID = registerID
+        self.registerTypeID = registerTypeID
+        self.isActive = isActive
+
+    def select():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT
+            Register.RegisterID,
+            RegisterType.RegisterTypeName
+            FROM Register
+            INNER JOIN RegisterType ON RegisterType.RegisterTypeID = Register.RegisterTypeID
+            WHERE Register.IsActive = true
+        """
+        cursor.execute(queryString)
+        registers = cursor.fetchall()
+        cursor.close()
+        return registers

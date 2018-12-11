@@ -1,1 +1,43 @@
 {% extends "layout.html" %}
+{% block title %}
+    <title>{{ load_resource('SalesReport', 'PageTitles') }}</title>
+{% endblock %}
+{% block content %}
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <form class="form-inline" method="POST">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="dropdown">
+                        <select name="selectedEmployee" class="selectpicker form-control">
+                            {% for employee in employees %}
+                            <option class="dropdown-item" value="{{ employee[0] }}">{{ employee[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="dropdown">
+                            <select name="selectedRegister" class="selectpicker form-control">
+                                {% for register in registers %}
+                                <option class="dropdown-item" value="{{ register[0] }}">{{ register[1] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="selectFilter">{{ load_resource('Button.View', 'Buttons') }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="panel-body">
+            {% for item in report %}
+                <p>{{ item[0] }} | {{ item[1] }} | {{ item[2] }} | {{ item[3] }} | {{ item[4] }} | {{ item[5] }} | {{ item[6] }} | {{ item[7] }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <a href="/sales_create" class="btn btn-dark" role="button">{{ load_resource('Sales.Create', 'PageText') }}</a>
+        </div>
+    </div>
+{% endblock %}

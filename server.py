@@ -42,7 +42,7 @@ def error_page():
 def unauthorized_page():
     try:
         user = 'userId' in session
-        forms.System.insertLog('Unauthorized access was made by user: {}'.format(user) , 'unauthorized', 'Warning', traceback.format_exc())
+        forms.System.insertLog('Unauthorized access was made by user: {}'.format(user) , 'unauthorized', 'Warning', '')
         return render_template('unauthorized.html', load_resource = load_resource, menuItems = menuItems)
     except Exception as error:
         forms.System.insertLog(error, 'unauthorized', 'Fatal', traceback.format_exc())
@@ -174,12 +174,20 @@ def roles_and_permissions_page():
         return redirect(url_for('error', errorMessage = error))
 
 
-@app.route("/sales")
+@app.route("/sales", methods=['GET', 'POST'])
 def sales_report_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'SalesPage.Access'):
-                return render_template('sales_report.html', menuItems = menuItems)
+                selectedEmployee = 0
+                selectedRegister = 0
+                if request.method == 'POST':
+                    selectedEmployee = request.form.get('selectedEmployee')
+                    selectedRegister = request.form.get('selectedRegister')
+                report = forms.Sale.getReport(selectedRegister, selectedEmployee)
+                employees = forms.Employee.select()
+                registers = forms.Registers.select()
+                return render_template('sales_report.html', report = report, menuItems = menuItems, load_resource = load_resource, employees = employees, registers = registers)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
