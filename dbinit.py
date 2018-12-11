@@ -186,8 +186,8 @@ INIT_STATEMENTS = [
 """CREATE TABLE IF NOT EXISTS Logs(
 	LogID serial PRIMARY KEY,
 	Message text NOT NULL,
-	Page text NOT NULL
-	LogType text NOT NULL
+	Page text NOT NULL,
+	LogType text NOT NULL,
 	Traceback text NOT NULL,
 	CreatedOn timestamp NOT NULL
 )"""
