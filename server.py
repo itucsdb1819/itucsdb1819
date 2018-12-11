@@ -174,7 +174,7 @@ def sales_report_page():
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login'))
     except Exception as error:
-        print(error):
+        print(error)
         return redirect(url_for('error'))
 
 @app.route("/sales_create")
