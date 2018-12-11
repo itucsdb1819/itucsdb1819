@@ -341,7 +341,7 @@ class Sale:
             VALUES (%s, %s, %s, NOW(), NULL, %s, %s)
         """
         cursor.execute(queryString, (employeeID, registerID, paymentMethod, isDelivered, isCancelled))
-        connection.commit()
+        conn.commit()
         cursor.close()
 
     def updateSale(saleID, isDelivered, isCancelled):
