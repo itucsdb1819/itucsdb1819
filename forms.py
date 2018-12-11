@@ -118,15 +118,16 @@ class System:
         logs = cursor.fetchall()
         cursor.close()
         conn.close()
+        return logs
 
     def insertLog(message, page, logType, traceback):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
             INSERT INTO Logs (Message, Page, LogType, Traceback, CreatedOn)
-            VALUES ('{}', '{}', '{}', '{}', NOW())
-        """.format(message, page, logType, traceback)
-        cursor.execute(queryString)
+            VALUES (%s, %s, %s, %s, NOW())
+        """
+        cursor.execute(queryString, (message, page, logType, traceback)))
         conn.commit()
         cursor.close()
         conn.close()
