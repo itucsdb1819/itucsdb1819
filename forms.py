@@ -243,7 +243,9 @@ class RolePermission:
             queryString = """INSERT INTO Role (RoleName, CreatedOn) VALUES (%s, NOW());
                              SELECT currval(pg_get_serial_sequence('Role','RoleID'));"""
             cursor.execute(queryString, (roleName))
+            print("Inserted new role to Role")
             roleID = cursor.fetchone()
+            print("Inserting new permissions to RolePermission")
             for permission in permissionList:
                 queryString = """INSERT INTO RolePermission (RoleID, PermissionID) VALUES({}, {})""".format(roleID, permission)
                 cursor.execute(queryString)
