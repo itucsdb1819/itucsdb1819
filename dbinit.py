@@ -340,6 +340,10 @@ ROLE_PERMISSION_INSERT_STATEMENTS = [
 	"""
 		INSERT INTO RolePermission(RoleID, PermissionID)
 		VALUES (1, 6)
+	""",
+	"""
+		INSERT INTO RolePermission(RoleID, PermissionID)
+		VALUES (1, 7)
 	"""
 ]
 
