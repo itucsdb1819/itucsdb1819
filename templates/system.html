@@ -30,29 +30,29 @@
             <tbody>
                 {% for log in logs %}
                 {% if (log[3] == "Fatal") %}
-                <tr class="bg-danger">
+                <tr>
                     <th scope="row">{{ log[0] }}</th>
                     <td>{{ log[1] }}</td>
                     <td>{{ log[2] }}</td>
-                    <td>{{ log[3] }}</td>
+                    <td class="bg-danger">{{ log[3] }}</td>
                     <td>{{ log[4] }}</td>
                     <td>{{ log[5] }}</td>
                 </tr>
                 {% elif (log[3] == "Warning") %}
-                <tr class="bg-warning">
+                <tr>
                     <th scope="row">{{ log[0] }}</th>
                     <td>{{ log[1] }}</td>
                     <td>{{ log[2] }}</td>
-                    <td>{{ log[3] }}</td>
+                    <td class="bg-warning">{{ log[3] }}</td>
                     <td>{{ log[4] }}</td>
                     <td>{{ log[5] }}</td>
                 </tr>
                 {% elif (log[3] == "Info") %}
-                <tr class="bg-info">
+                <tr>
                     <th scope="row">{{ log[0] }}</th>
                     <td>{{ log[1] }}</td>
                     <td>{{ log[2] }}</td>
-                    <td>{{ log[3] }}</td>
+                    <td class="bg-info">{{ log[3] }}</td>
                     <td>{{ log[4] }}</td>
                     <td>{{ log[5] }}</td>
                 </tr>
