@@ -352,39 +352,7 @@ class Sale:
                     IsCancelled = {}
                 WHERE SaleID = {}
         """.format(isDelivered, isCancelled, saleID)
-
-    def getReportOnRegister(registerID):
-        conn = dbapi.connect(url)
-        cursor = conn.cursor()
-        queryString = """
-            SELECT E.Name + ' ' + E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
-            S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
-            FROM Sale S
-            INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
-            INNER JOIN Register R ON R.RegisterID = S.RegisterID
-            WHERE R.RegisterID = {}
-        """.format(registerID)
-        cursor.execute(queryString)
-        report = cursor.fetchall()
-        cursor.close()
-        return report
-
-    def getReportOnEmployee(employeeID):
-        conn = dbapi.connect(url)
-        cursor = conn.cursor()
-        queryString = """
-            SELECT E.Name + ' ' + E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
-            S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
-            FROM Sale S
-            INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
-            INNER JOIN Register R ON R.RegisterID = S.RegisterID
-            WHERE E.EmployeeID = {}
-        """.format(employeeID)
-        cursor.execute(queryString)
-        report = cursor.fetchall()
-        cursor.close()
-        return report
-
+        
     def getReport(registerID, employeeID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
@@ -397,6 +365,17 @@ class Sale:
             WHERE E.EmployeeID = {} AND R.RegisterID = {}
         """.format(employeeID, registerID)
         cursor.execute(queryString)
+
+        if cursor.rowcount == 0:
+            queryString = """
+            SELECT E.Name || E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
+            S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
+            FROM Sale S
+            INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
+            INNER JOIN Register R ON R.RegisterID = S.RegisterID
+            """
+            cursor.execute(queryString)
+
         report = cursor.fetchall()
         cursor.close()
         return report
