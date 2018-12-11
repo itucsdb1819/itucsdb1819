@@ -35,12 +35,12 @@ def home_page():
 @app.route("/error", endpoint = "error")
 def error_page():
     errorMessage = request.args.get('errorMessage')
-    return render_template('error.html', load_resource = load_resource, errorMessage = errorMessage, menuItems = None)
+    return render_template('error.html', load_resource = load_resource, errorMessage = errorMessage, menuItems = menuItems)
 
 @app.route("/unauthorized", endpoint = "unauthorized")
 def unauthorized_page():
     try:
-        return render_template('unauthorized.html', load_resource = load_resource, menuItems = None)
+        return render_template('unauthorized.html', load_resource = load_resource, menuItems = menuItems)
     except Exception as error:
         print(error)
         return redirect(url_for('error', errorMessage = error))

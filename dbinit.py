@@ -240,6 +240,8 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		VALUES ('Error.InternalServerError', 'PageText', 'tr', 'Sunucu hatası meydana geldi.')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.SessionExpired', 'PageText', 'tr', 'Giriş yapmanız gerekmektedir.')"""
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Expense', 'PageTitles', 'tr', 'Masraflar')""",
 ]
 
 ROLE_INSERT_STATEMENTS = [
