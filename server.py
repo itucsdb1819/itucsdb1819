@@ -208,7 +208,9 @@ def sales_create():
                     isCancelled = request.form.get('IsCancelled')
                     forms.Sale.insert(selectedEmployee, selectedRegister, paymentMethod, isDelivered, isCancelled)
                     return redirect(url_for('sales'))
-                return render_template('sales_create.html', menuItems = menuItems)
+                employees = forms.Employee.select()
+                registers = forms.Register.select()
+                return render_template('sales_create.html', menuItems = menuItems, load_resource = load_resource, employees = employees, registers = registers)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
