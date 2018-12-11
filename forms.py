@@ -127,7 +127,7 @@ class System:
             INSERT INTO Logs (Message, Page, LogType, Traceback, CreatedOn)
             VALUES (%s, %s, %s, %s, NOW())
         """
-        cursor.execute(queryString, (message, page, logType, traceback)))
+        cursor.execute(queryString, (message, page, logType, traceback))
         conn.commit()
         cursor.close()
         conn.close()
