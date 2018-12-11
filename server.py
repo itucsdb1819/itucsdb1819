@@ -186,7 +186,7 @@ def sales_report_page():
                     selectedRegister = request.form.get('selectedRegister')
                 report = forms.Sale.getReport(selectedRegister, selectedEmployee)
                 employees = forms.Employee.select()
-                registers = forms.Registers.select()
+                registers = forms.Register.select()
                 return render_template('sales_report.html', report = report, menuItems = menuItems, load_resource = load_resource, employees = employees, registers = registers)
             else:
                 return redirect(url_for('unauthorized'))
