@@ -231,7 +231,7 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.UnauthorizedAccess', 'PageText', 'tr', 'İzinsiz erişim sağladınız.')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Error.InternalServerError', 'PageText', 'tr', 'Sunucu hatası!')""",
+		VALUES ('Error.InternalServerError', 'PageTitles', 'tr', 'Sunucu hatası!')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Error.InternalServerError', 'PageText', 'tr', 'Sunucu hatası meydana geldi.')"""
 ]
