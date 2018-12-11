@@ -229,7 +229,7 @@ class RolePermission:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         print(roleID)
-        if roleID != None:
+        if roleID != '':
             queryString = """DELETE FROM RolePermission WHERE RoleID = {}""".format(roleID)
             cursor.execute(queryString)
             queryString = """UPDATE Role
