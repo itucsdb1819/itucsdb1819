@@ -23,8 +23,8 @@
             </form>
         </div>
             
-        <div class="container-fluid" style="text-decoration-color: white">
-            <div class="row justify-content-md-center">
+        <div class="container-fluid">
+            <div class="row">
                 <div class="panel-body">
                     <form class="form-control" method="POST">
                         <div class="form-group">
@@ -35,13 +35,13 @@
                             {%if permission[2] %}
                                 <div class="row">
                                     <div class="form-check">
-                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" checked>{{ load_resource(permission[1], 'PageText') }}</label>
+                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" checked style="color:beige">{{ load_resource(permission[1], 'PageText') }}</label>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
                                     <div class="form-check">
-                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}">{{ load_resource(permission[1], 'PageText') }}</label>
+                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" style="color:beige">{{ load_resource(permission[1], 'PageText') }}</label>
                                     </div>
                                 </div>
                             {% endif %}
