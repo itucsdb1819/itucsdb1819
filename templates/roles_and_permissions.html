@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="container">
+        
             <form class="form-inline" method="POST">
                 <div class="form-group">
                     <div class="input-group">
@@ -17,11 +17,11 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-light" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+                        <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
                     </div>
                 </div>
             </form>
-        </div>
+        
         <div class="container-fluid">
             <div class="row justify-content-md-center">
                 <div class="panel-body">
