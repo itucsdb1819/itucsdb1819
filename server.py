@@ -21,9 +21,16 @@ def load_resource(resourceId, resourceSet):
 @app.route("/")
 @app.route("/home", endpoint = "home")
 def home_page():
-    if ('userId' in session) and forms.Permission.hasPermission(session['roleId'], 'HomePage.Access'):
-        return render_template('home.html', menuItems = menuItems)
+    if ('userId' in session):
+        if forms.Permission.hasPermission(session['roleId'], 'HomePage.Access'):
+            return render_template('home.html', menuItems = menuItems)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
+
+@app.route("/unauthorized", endpoint = "unauthorized")
+def unauthorized_page():
+    return render_template('unauthorized.html', menuItems = menuItems)
 
 @app.route("/login", methods=['GET', 'POST'], endpoint = "login")
 def login_page():
@@ -46,52 +53,70 @@ def logout():
 
 @app.route("/system")
 def system_page():
-    if 'userId' in session and forms.Permission.hasPermission(session['roleId'], 'SystemPage.Access'):
-        configValues = forms.System.select()
-        return render_template('system.html', menuItems = menuItems)
+    if 'userId' in session:
+        if forms.Permission.hasPermission(session['roleId'], 'SystemPage.Access'):
+            configValues = forms.System.select()
+            return render_template('system.html', menuItems = menuItems)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
 
 @app.route("/employee")
 def employee_page():
     if 'userId' in session:
-        return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
+        if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
+            return render_template('employee.html', menuItems = menuItems, load_resource = load_resource)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
 
 @app.route("/employee_create")
 def employee_create_page():
     if 'userId' in session:
-        return render_template('employee_create.html', menuItems = menuItems)
+        if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
+            return render_template('employee_create.html', menuItems = menuItems)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
 
 @app.route("/expense")
 def expense_page():
     if 'userId' in session:
-        return render_template('expense.html', menuItems = menuItems)
+        if forms.Permission.hasPermission(session['roleId'], 'ExpensePage.Access'):
+            return render_template('expense.html', menuItems = menuItems)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
 
 @app.route("/product")
 def product_page():
     if 'userId' in session:
-        products = forms.Product.select("")
-        return render_template('product.html', menuItems = menuItems)
+        if forms.Permission.hasPermission(session['roleId'], 'ProductPage.Access'):
+            products = forms.Product.select("")
+            return render_template('product.html', menuItems = menuItems)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
 
 @app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
 def roles_and_permissions_page():
     if 'userId' in session:
-        roles = forms.Role.select()
-        selectedRoleId = 0
-        if request.method == 'POST':
-            if request.form['submit_button'] == 'insertPermission':
-                permissions = request.form.getlist('permission')
-                role = request.form.get('selectedRoleID')
-                forms.RolePermission.insertPermissions(role, permissions)                
-                return redirect(url_for('roles_and_permissions'))
-            elif request.form['submit_button'] == 'selectRole':
-                selectedRoleId = request.form.get('selectedRole')
-        selectedRole = forms.Role.selectWithID(selectedRoleId)
-        rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRoleId)
-        return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, rolesAndPermissions = rolesAndPermissions, roles = roles)
+        if forms.Permission.hasPermission(session['roleId'], 'RolesAndPermissionsPage.Access'):
+            roles = forms.Role.select()
+            selectedRoleId = 0
+            if request.method == 'POST':
+                if request.form['submit_button'] == 'insertPermission':
+                    permissions = request.form.getlist('permission')
+                    role = request.form.get('selectedRoleID')
+                    forms.RolePermission.insertPermissions(role, permissions)                
+                    return redirect(url_for('roles_and_permissions'))
+                elif request.form['submit_button'] == 'selectRole':
+                    selectedRoleId = request.form.get('selectedRole')
+            selectedRole = forms.Role.selectWithID(selectedRoleId)
+            rolesAndPermissions = forms.RolePermission.selectRolePermissions(selectedRoleId)
+            return render_template('roles_and_permissions.html', menuItems = menuItems, load_resource = load_resource, selectedRole = selectedRole, rolesAndPermissions = rolesAndPermissions, roles = roles)
+        else:
+            return redirect(url_for('unauthorized'))
     else:
         return redirect(url_for('login'))
 
@@ -99,13 +124,19 @@ def roles_and_permissions_page():
 @app.route("/sales")
 def sales_report_page():
     if 'userId' in session:
-        return render_template('sales_report.html', menuItems = menuItems)
+        if forms.Permission.hasPermission(session['roleId'], 'SalesPage.Access'):
+            return render_template('sales_report.html', menuItems = menuItems)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
 
 @app.route("/sales_create")
 def sales_create():
     if 'userId' in session:
-        return render_template('sales_create.html', menuItems = menuItems)
+        if forms.Permission.hasPermission(session['roleId'], 'SalesPage.Access'):
+            return render_template('sales_create.html', menuItems = menuItems)
+        else:
+            return redirect(url_for('unauthorized'))
     return redirect(url_for('login'))
 
 if __name__ == "__main__":

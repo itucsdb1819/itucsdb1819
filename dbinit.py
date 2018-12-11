@@ -225,7 +225,11 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Accounting', 'PageText', 'tr', 'Muhasebe')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Button.Save', 'Buttons', 'tr', 'Kaydet')"""
+		VALUES ('Button.Save', 'Buttons', 'tr', 'Kaydet')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Error.UnauthorizedAccess', 'PageTitles', 'tr', 'İzinsiz erişim!')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Error.UnauthorizedAccess', 'PageText', 'tr', 'İzinsiz erişim sağladınız.')"""
 ]
 
 ROLE_INSERT_STATEMENTS = [
@@ -410,6 +414,9 @@ def initialize(url):
             cursor.execute(statement)
 
         for statement in EMPLOYEE_INSERT_STATEMENTS:
+            cursor.execute(statement)
+
+        for statement in PERMISSION_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         for statement in PERMISSION_INSERT_STATEMENTS:
