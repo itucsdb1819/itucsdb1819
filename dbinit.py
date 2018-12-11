@@ -271,7 +271,7 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('SystemPage.Access', 'PageText', 'tr', 'Sistem Ayarları Sayfası Erişim İzni.')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Sales.Create', 'PageText', 'tr', 'Satış Girişi.')""",
+		VALUES ('Sales.Create', 'PageText', 'tr', 'Satış Girişi')""",
 ]
 
 ROLE_INSERT_STATEMENTS = [

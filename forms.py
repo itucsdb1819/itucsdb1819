@@ -332,14 +332,14 @@ class Sale:
         self.isDelivered = isDelivered
         self.isCancelled = isCancelled
 
-    def insert(employeeID, registerID, paymentMethod):
+    def insert(employeeID, registerID, paymentMethod, isDelivered, isCancelled):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
             INSERT INTO Sale (EmployeeID, RegisterID, PaymentMethod, CreatedOn, ModifiedOn, IsDelivered. IsCancelled)
-            VALUES ({}, {}, {}, NOW(), NULL, false, false)
-        """.format(employeeID, registerID, paymentMethod)
-        cursor.execute(queryString)
+            VALUES (%s, %s, %s, NOW(), NULL, %s, %s)
+        """
+        cursor.execute(queryString, (employeeID, registerID, paymentMethod, isDelivered, isCancelled))
         connection.commit()
         cursor.close()
 
@@ -365,13 +365,6 @@ class Sale:
             WHERE E.EmployeeID = {} AND R.RegisterID = {}
         """.format(employeeID, registerID)
         cursor.execute(queryString)
-
-        if cursor.rowcount == 0:
-            queryString = """
-            SELECT '' as FullName, '', '',
-            '', '', '', '', ''
-            """
-            cursor.execute(queryString)
 
         report = cursor.fetchall()
         cursor.close()

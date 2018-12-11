@@ -174,7 +174,7 @@ def roles_and_permissions_page():
         return redirect(url_for('error', errorMessage = error))
 
 
-@app.route("/sales", methods=['GET', 'POST'])
+@app.route("/sales", methods=['GET', 'POST'], endpoint="sales")
 def sales_report_page():
     try:
         if 'userId' in session:
@@ -195,11 +195,19 @@ def sales_report_page():
         forms.System.insertLog(str(error), 'sales', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
-@app.route("/sales_create")
+@app.route("/sales_create", methods=['GET', 'POST'])
 def sales_create():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'SalesPage.Access'):
+                if request.method == 'POST':
+                    selectedEmployee = request.form.get('Employee')
+                    selectedRegister = request.form.get('Register')
+                    paymentMethod = request.form.get('PaymentMethod')
+                    isDelivered = request.form.get('IsDelivered')
+                    isCancelled = request.form.get('IsCancelled')
+                    forms.Sale.insert(selectedEmployee, selectedRegister, paymentMethod, isDelivered, isCancelled)
+                    return redirect(url_for('sales'))
                 return render_template('sales_create.html', menuItems = menuItems)
             else:
                 return redirect(url_for('unauthorized'))
