@@ -368,17 +368,10 @@ class Sale:
 
         if cursor.rowcount == 0:
             queryString = """
-            SELECT E.Name || E.Surname as FullName, R.RegisterID, R.RegisterTypeID,
-            S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled
-            FROM Sale S
-            INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
-            INNER JOIN Register R ON R.RegisterID = S.RegisterID
+            SELECT '' as FullName, '', '',
+            '', '', '', '', ''
             """
             cursor.execute(queryString)
-
-        if cursor.rowcount == 0:
-            cursor.close()
-            return tuple('', '', '', '', '', '', '', '')
 
         report = cursor.fetchall()
         cursor.close()
