@@ -98,11 +98,11 @@ def employee_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
-                
+                employeeID = request.form.get('employeeID')
+                print(employeeID)
+
                 if request.method == 'POST':
                     print("post")
-                    employeeID = request.form.get('employeeID')
-                    print(employeeID)
                     return redirect(url_for('employee_create', employeeID = employeeID))
 
                 employees = forms.Employee.select()
