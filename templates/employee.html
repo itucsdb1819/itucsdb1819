@@ -3,20 +3,33 @@
     <title>{{ load_resource('Employee', 'PageTitles') }}</title>
 {% endblock %}
 {% block content %}
-    <div class="container-fluid">
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-                <a href="/employee_create" class="btn btn-dark" role="button">{{ load_resource('Employee.Create', 'PageText') }}</a>
-            </div>
+<div class="container-fluid">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <a href="/employee_create" class="btn btn-dark" role="button">{{ load_resource('Employee.Create', 'PageText') }}</a>
         </div>
     </div>
-
-    <div class="row">
-        <div class="panel-body">
+    
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col-center">Employee Table</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for employee in employees %}
-                <p>{{ employee[0] }} | {{ employee[1] }} | {{ employee[2] }} | {{ employee[3] }} | {{ employee[4] }} | {{ employee[5] }} | {{ employee[6] }} | {{ employee[7] }}</p>
+            <tr>
+                <th scope="row-4">{{ employee[0] }}</th>
+                <td>{{ employee[1] }}</td>
+                <td>{{ employee[2] }}</td>
+                <td>{{ employee[3] }}</td>
+                <td>{{ employee[4] }}</td>
+                <td>{{ employee[5] }}</td>
+                <td>{{ employee[6] }}</td>
+                <td>{{ employee[7] }}</td>
+            </tr>
             {% endfor %}
-        </div>
-    </div>
-
+        </tbody>
+    </table>
+</div>
 {% endblock %}

@@ -3,6 +3,7 @@
     <title>{{ load_resource('SalesReport', 'PageTitles') }}</title>
 {% endblock %}
 {% block content %}
+<div class="container-fluid">
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         <form class="form-inline" method="POST">
             <div class="form-group">
@@ -20,24 +21,39 @@
                                 <option class="dropdown-item" value="{{ register[0] }}">{{ register[0] }} {{ register[1] }}</option>
                                 {% endfor %}
                             </select>
-                        </div>
+                    </div>
                     <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="selectFilter">{{ load_resource('Button.View', 'Buttons') }}</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <div class="row">
-        <div class="panel-body">
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col-center">Configuration Table</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for item in report %}
-                <p>{{ item[0] }} | {{ item[1] }} | {{ item[2] }} | {{ item[3] }} | {{ item[4] }} | {{ item[5] }} | {{ item[6] }} | {{ item[7] }}</p>
-            {% endfor %}
-        </div>
-    </div>
-
+            <tr>
+                <th scope="row">{{ item[0] }}</th>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td> 
+                <td>{{ item[4] }}</td>
+                <td>{{ item[5] }}</td>
+                <td>{{ item[6] }}</td>
+                <td>{{ item[7] }}</td>            
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+    
     <div class="row justify-content-md-center">
         <div class="col-md-auto">
             <a href="/sales_create" class="btn btn-dark" role="button">{{ load_resource('Sales.Create', 'PageText') }}</a>
         </div>
     </div>
+</div>
 {% endblock %}
