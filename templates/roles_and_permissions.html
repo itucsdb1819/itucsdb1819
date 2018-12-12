@@ -6,6 +6,7 @@
 
 {% block content %}
     <div class="container-fluid">
+        <div class="row justify-content-md-center">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <form class="form-inline" method="POST">
                 <div class="form-group">
@@ -23,7 +24,7 @@
             </form>
         </div>
             
-        <div class="container-fluid">
+        <table class="table table-hover table-dark">
             <div class="row">
                 <div class="panel-body">
                     <form class="form-control" method="POST">
@@ -51,6 +52,7 @@
                     </form>
                 </div>
             </div> 
-        </div>
+        </table>
+    </div>
     </div> 
 {% endblock %}
