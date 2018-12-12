@@ -93,11 +93,15 @@ def system_page():
         forms.System.insertLog(str(error), 'system', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
-@app.route("/employee")
+@app.route("/employee", methods = ['GET', 'POST'], endpoint = "employee")
 def employee_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
+                if request.method == 'POST':
+                    if request.form['edit']:
+                        employeeID = request.form.get('employeeID')
+                        return redirect(url_for('employee_create', id = employeeID))
                 employees = forms.Employee.select()
                 return render_template('employee.html', menuItems = menuItems, load_resource = load_resource, employees = employees)
             else:
@@ -107,21 +111,38 @@ def employee_page():
         forms.System.insertLog(str(error), 'employee', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
-@app.route("/employee_create", methods = ['GET', 'POST'])
+@app.route("/employee_create", methods = ['GET', 'POST'], endpoint = "employee_create")
 def employee_create_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
+                employeeID = request.args.get('id')
+                print(employeeID)
+
+                if employeeID != None or employeeID != 0:
+                    employee = forms.Employee.selectEmployeeByID(employeeID)
+                    name = employee[2]
+                    surname = employee[3]
+                    username = employee[8]
+                    roleID = employee[1]
+                    titleID = employee[7]
+                
                 if request.method == 'POST':
+                    employeeID = request.form.get('EmployeeID')
                     role = request.form.get('Role')
                     title = request.form.get('Title')
                     name = request.form.get('Name')
                     surname = request.form.get('Surname')
                     username = request.form.get('Username')
-                    forms.Employee.saveEmployee(role, title, name, surname, username)
+                    if employeeID != None or employeeID != 0:
+                        forms.Employee.updateEmployee(employeeID, role, title, name, surname, username)
+                    else:
+                        forms.Employee.saveEmployee(role, title, name, surname, username)
+                    return redirect(url_for("employee"))
+                
                 roles = forms.Role.select()
                 titles = forms.Title.select()
-                return render_template('employee_create.html', menuItems = menuItems, load_resource = load_resource, roles = roles, titles = titles)
+                return render_template('employee_create.html', employeeID = employeeID, menuItems = menuItems, load_resource = load_resource, roles = roles, titles = titles, roleID = roleID, titleID = titleID)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))

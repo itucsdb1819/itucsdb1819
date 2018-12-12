@@ -31,7 +31,12 @@
                 <td>{{ employee[4] }}</td>
                 <td>{{ employee[5] }}</td>
                 <td>{{ employee[6] }}</td>
-                <td><a href="#" class="btn btn-dark" role="button">Edit</a></td>
+                <td>
+                    <form class="form-inline">
+                        <input type="hidden" name="employeeID" value="{{ employee[0] }}">
+                        <a href="/employee_create" class="btn btn-dark" name="edit" role="button">Edit</a>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

@@ -27,6 +27,20 @@ class Employee:
         cursor.close()
         conn.close()
 
+    def selectEmployeeByID(employeeID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT Employee.EmployeeID, Role.RoleID, Employee.Name, Employee.Surname, 
+        Employee.CreatedOn, Employee.ModifiedOn, Employee.IsActive, Title.TitleID, Employee.Username FROM Employee
+        INNER JOIN Role ON Role.RoleID = Employee.RoleID
+        INNER JOIN Title ON Title.TitleID = Employee.TitleID
+        WHERE Employee.EmployeeID = %s
+        """
+        cursor.execute(queryString, (employeeID, ))
+        employee = cursor.fetchone()
+        cursor.close()
+        return employee
+
     def select():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
@@ -57,6 +71,23 @@ class Employee:
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         cursor.execute('UPDATE Employee SET IsActive = false WHERE EmployeeID = ' + employeeId)
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def updateEmployee(employeeId, roleId, titleId, name, surname, username):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            UPDATE Employee
+                SET RoleID = %s
+                SET TitleID = %s
+                SET Name = %s
+                SET Surname = %s
+                SET Username = %s
+            WHERE EmployeeID = %s
+        """
+        cursor.execute(queryString, (roleId, titleId, name, surname, username, employeeId))
         conn.commit()
         cursor.close()
         conn.close()
