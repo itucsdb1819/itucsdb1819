@@ -13,7 +13,15 @@
     <table class="table table-hover table-dark">
         <thead>
             <tr>
-                <th scope="col-center">Employee Table</th>
+                <th scope="col">#</th>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">?</th>
+                <th scope="col">Bool</th>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +35,7 @@
                 <td>{{ employee[5] }}</td>
                 <td>{{ employee[6] }}</td>
                 <td>{{ employee[7] }}</td>
+                <td><a href="/employee_create" class="btn btn-dark" role="button">{{ load_resource('Employee.', 'PageText') }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
