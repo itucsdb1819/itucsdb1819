@@ -6,8 +6,8 @@
 
 {% block content %}
     <div class="container">
-        <div class="row justify-content-md-center">
-            
+        <div class="row">
+            <form class="form-inline" method="POST"></form>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="dropdown">
@@ -20,13 +20,13 @@
                         <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
                     </div>
                 </div>
-            
+            </form>
         </div>
             
         <table class="table table-hover table-dark">
             <div class="row">
                 <div class="panel-body">
-                    <form class="form-control" method="POST">
+                    
                         <div class="form-group">
                             {{ selectedRole[1] }}
                                 <input type="hidden" name="selectedRoleID" value="{{ selectedRole[0] }}">
@@ -48,7 +48,7 @@
                             {% endfor %}
                                 <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
                         </div>
-                    </form>
+                    
                 </div>
             </div> 
         </table>
