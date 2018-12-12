@@ -39,42 +39,38 @@
             {% if (log[3] == "Fatal") %}
             <tr>
                 <th scope="row">{{ log[0] }}</th>
-                <div class="w-100"></div>
-                    <td>{{ log[1] }}</td>
-                    <td>{{ log[2] }}</td>
-                    <td class="bg-danger">{{ log[3] }}</td>
-                    <td>{{ log[5] }}</td>
-                </tr>
-                {% elif (log[3] == "Warning") %}
-                <tr>
-                    <th scope="row">{{ log[0] }}</th>
-                    <div class="w-100"></div>
-                    <td>{{ log[1] }}</td>
-                    <td>{{ log[2] }}</td>
-                    <td class="bg-warning">{{ log[3] }}</td>
-                    <td>{{ log[5] }}</td>
-                </tr>
-                {% elif (log[3] == "Info") %}
-                <tr>
-                    <th scope="row">{{ log[0] }}</th>
-                    <div class="w-100"></div>
-                    <td>{{ log[1] }}</td>
-                    <td>{{ log[2] }}</td>
-                    <td class="bg-info">{{ log[3] }}</td>
-                    <td>{{ log[5] }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <th scope="row">{{ log[0] }}</th>
-                    <div class="w-100"></div>
-                    <td>{{ log[1] }}</td>                    
-                    <td>{{ log[2] }}</td>
-                    <td>{{ log[3] }}</td>
-                    <td>{{ log[5] }}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+                <td class="w-100">{{ log[1] }}</td>
+                <td>{{ log[2] }}</td>
+                <td class="bg-danger">{{ log[3] }}</td>
+                <td>{{ log[5] }}</td>
+            </tr>
+            {% elif (log[3] == "Warning") %}
+            <tr>
+                <th scope="row">{{ log[0] }}</th>
+                <td class="w-100">{{ log[1] }}</td>
+                <td>{{ log[2] }}</td>
+                <td class="bg-warning">{{ log[3] }}</td>
+                <td>{{ log[5] }}</td>
+            </tr>
+            {% elif (log[3] == "Info") %}
+            <tr>
+                <th scope="row">{{ log[0] }}</th>
+                <td class="w-100">{{ log[1] }}</td>
+                <td>{{ log[2] }}</td>
+                <td class="bg-info">{{ log[3] }}</td>
+                <td>{{ log[5] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <th scope="row">{{ log[0] }}</th>
+                <td class="w-100">{{ log[1] }}</td>                    
+                <td>{{ log[2] }}</td>
+                <td>{{ log[3] }}</td>
+                <td>{{ log[5] }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
