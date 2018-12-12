@@ -126,7 +126,7 @@ def employee_create_page():
                     titleID = employee[7]
                 
                 if request.method == 'POST':
-                    employeeID = request.form.get('EmployeeID')
+                    employeeID = request.form.get('employeeID')
                     print(employeeID)
                     role = request.form.get('Role')
                     title = request.form.get('Title')
