@@ -134,11 +134,9 @@ def employee_create_page():
                 if employeeID != None:
                     employee = forms.Employee.selectEmployeeByID(employeeID)
                     name = employee[2]
-                    print(name)
                     surname = employee[3]
                     username = employee[8]
                     roleID = employee[1]
-                    print(roleID)
                     titleID = employee[7]
 
                 roles = forms.Role.select()

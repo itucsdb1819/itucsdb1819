@@ -81,10 +81,10 @@ class Employee:
         queryString = """
             UPDATE Employee
                 SET RoleID = %s,
-                SET TitleID = %s,
-                SET Name = %s,
-                SET Surname = %s,
-                SET Username = %s
+                    TitleID = %s,
+                    Name = %s,
+                    Surname = %s,
+                    Username = %s
             WHERE EmployeeID = %s
         """
         cursor.execute(queryString, (roleId, titleId, name, surname, username, employeeId))
