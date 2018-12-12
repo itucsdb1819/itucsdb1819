@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <form class="form-inline" method="POST">
+        <form class="form-group" method="POST">
             <div class="form-group">
                 <div class="input-group">
                     <div class="dropdown">
@@ -31,7 +31,7 @@
     <table class="table table-hover table-dark">
         <thead>
             <tr>
-                <th scope="col-center">Configuration Table</th>
+                <th scope="col-center">{{ load_resource('Sales.Report', 'PageText') }}</th>
             </tr>
         </thead>
         <tbody>

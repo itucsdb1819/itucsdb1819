@@ -13,28 +13,24 @@
     <table class="table table-hover table-dark">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Date</th>
-                <th scope="col">?</th>
-                <th scope="col">Bool</th>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
+                <th scope="col">{{ load_resource('Employee.Role', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Employee.FullName', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Employee.CreatedOn', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Employee.ModifiedOn', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Employee.IsActive', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Employee.Title', 'PageText') }}</th>
                 <th scope="col">Edit</th>
             </tr>
         </thead>
         <tbody>
             {% for employee in employees %}
             <tr>
-                <th scope="row-4">{{ employee[0] }}</th>
                 <td>{{ employee[1] }}</td>
                 <td>{{ employee[2] }}</td>
                 <td>{{ employee[3] }}</td>
                 <td>{{ employee[4] }}</td>
                 <td>{{ employee[5] }}</td>
                 <td>{{ employee[6] }}</td>
-                <td>{{ employee[7] }}</td>
                 <td><a href="#" class="btn btn-dark" role="button">Edit</a></td>
             </tr>
             {% endfor %}

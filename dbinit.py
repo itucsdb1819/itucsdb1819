@@ -262,6 +262,20 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		VALUES ('Sales.Create', 'PageText', 'tr', 'Satış Girişi')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Sales.Create', 'PageTitles', 'tr', 'Satış Girişi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Employee.Role', 'PageText', 'tr', 'Rol')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Employee.FullName', 'PageText', 'tr', 'Adı Soyadı')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Employee.CreatedOn', 'PageText', 'tr', 'Eklenme Tarihi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Employee.ModifiedOn', 'PageText', 'tr', 'Düzenlenme Tarihi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Employee.IsActive', 'PageText', 'tr', 'Çalışıyor Mu?')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Employee.Title', 'PageText', 'tr', 'Ünvan')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.Report', 'PageText', 'tr', 'Satış Raporu')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [
