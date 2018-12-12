@@ -14,10 +14,15 @@ class Employee:
         self.roleId = roleId
         self.titleId = titleId    
 
-    def saveEmployee(employee):
+    def saveEmployee(roleId, titleId, name, surname, username):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO Employee (RoleID, Name, Surname, CreatedOn, ModifiedOn, IsActive, TitleID) VALUES (%d, %s, %s, %s, %s, %s, %s)' % (employee.roleId, employee.name, employee.surname, employee.createdOn, None, True, datetime.now))
+        queryString = """
+            INSERT INTO Employee (RoleID, TitleID, Name, Surname, CreatedOn, ModifiedOn, IsActive, Username, Password)
+            VALUES (%s, %s, %s, %s, NOW(), NULL, true, %s, %s)
+        """
+        password = name[1] + surname[1] + "_super_" + username
+        cursor.execute(queryString, (roleId, titleId, name, surname, username, password))
         conn.commit()
         cursor.close()
         conn.close()
@@ -395,3 +400,25 @@ class Register:
         registers = cursor.fetchall()
         cursor.close()
         return registers
+
+class Title:
+    def __init__(titleID, titleName, monthlyPay, modifiedOn):
+        self.titleID = titleID
+        self.titleName = titleName
+        self.monthlyPay = monthlyPay
+        self.modifiedOn = modifiedOn
+    
+    def select():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            SELECT
+            TitleID,
+            TitleName,
+            MonthlyPay
+            FROM Title
+        """
+        cursor.execute(queryString)
+        titles = cursor.fetchall()
+        cursor.close()
+        return titles

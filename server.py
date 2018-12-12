@@ -107,12 +107,21 @@ def employee_page():
         forms.System.insertLog(str(error), 'employee', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
-@app.route("/employee_create")
+@app.route("/employee_create", methods = ['GET', 'POST'])
 def employee_create_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'EmployeePage.Access'):
-                return render_template('employee_create.html', menuItems = menuItems, load_resource = load_resource)
+                if request.method == 'POST':
+                    role = request.form.get('Role')
+                    title = request.form.get('Title')
+                    name = request.form.get('Name')
+                    surname = request.form.get('Surname')
+                    username = request.form.get('Username')
+                    forms.Employee.saveEmployee(role, title, name, surname, username)
+                roles = forms.Role.select()
+                titles = forms.Title.select()
+                return render_template('employee_create.html', menuItems = menuItems, load_resource = load_resource, roles, titles)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
