@@ -130,7 +130,10 @@ def employee_create_page():
                 employeeID = request.args.get('id')
                 roleID = 0
                 titleID = 0
-
+                name = ""
+                surname = ""
+                username = ""
+                
                 if employeeID != None:
                     employee = forms.Employee.selectEmployeeByID(employeeID)
                     name = employee[2]
