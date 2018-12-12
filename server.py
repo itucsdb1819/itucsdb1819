@@ -127,6 +127,7 @@ def employee_create_page():
                 
                 if request.method == 'POST':
                     employeeID = request.form.get('EmployeeID')
+                    print(employeeID)
                     role = request.form.get('Role')
                     title = request.form.get('Title')
                     name = request.form.get('Name')
@@ -140,7 +141,7 @@ def employee_create_page():
                 
                 roles = forms.Role.select()
                 titles = forms.Title.select()
-                return render_template('employee_create.html', employeeID = employeeID, menuItems = menuItems, load_resource = load_resource, roles = roles, titles = titles, roleID = roleID, titleID = titleID)
+                return render_template('employee_create.html', employeeID = employeeID, menuItems = menuItems, load_resource = load_resource, roles = roles, titles = titles, roleID = roleID, titleID = titleID, name = name, surname = surname, username = username)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
