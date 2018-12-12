@@ -25,8 +25,8 @@ class Employee:
     def select():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """SELECT EmployeeID, Role.RoleName, Name || Surname as FullName, 
-        CreatedOn, ModifiedOn, IsActive, Title.TitleName, Username FROM Employee
+        queryString = """SELECT Employee.EmployeeID, Role.RoleName, Employee.Name || Employee.Surname as FullName, 
+        Employee.CreatedOn, Employee.ModifiedOn, Employee.IsActive, Title.TitleName, Employee.Username FROM Employee
         INNER JOIN Role ON Role.RoleID = Employee.RoleID
         INNER JOIN Title ON Title.TitleID = Employee.TitleID
         """
