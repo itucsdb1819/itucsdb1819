@@ -84,7 +84,8 @@ class Employee:
                     TitleID = %s,
                     Name = %s,
                     Surname = %s,
-                    Username = %s
+                    Username = %s,
+                    ModifiedOn = NOW()
             WHERE EmployeeID = %s
         """
         cursor.execute(queryString, (roleId, titleId, name, surname, username, employeeId))
