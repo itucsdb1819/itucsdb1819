@@ -80,10 +80,10 @@ class Employee:
         cursor = conn.cursor()
         queryString = """
             UPDATE Employee
-                SET RoleID = %s
-                SET TitleID = %s
-                SET Name = %s
-                SET Surname = %s
+                SET RoleID = %s,
+                SET TitleID = %s,
+                SET Name = %s,
+                SET Surname = %s,
                 SET Username = %s
             WHERE EmployeeID = %s
         """
