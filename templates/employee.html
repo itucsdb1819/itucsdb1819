@@ -33,8 +33,7 @@
                 <td>{{ employee[6] }}</td>
                 <td>
                     <form class="form-inline">
-                        <input type="hidden" name="employeeID" value="{{ employee[0] }}">
-                        <button type="submit" class="btn btn-dark" name="edit" value="">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+                        <a href="/employee_create?id={{ employee[0] }}" class="btn btn-dark" name="edit" role="button">Edit {{ employee[0] }}</a>
                     </form>
                 </td>
             </tr>
