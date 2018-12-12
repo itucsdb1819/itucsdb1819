@@ -121,7 +121,7 @@ def employee_create_page():
                     forms.Employee.saveEmployee(role, title, name, surname, username)
                 roles = forms.Role.select()
                 titles = forms.Title.select()
-                return render_template('employee_create.html', menuItems = menuItems, load_resource = load_resource, roles, titles)
+                return render_template('employee_create.html', menuItems = menuItems, load_resource = load_resource, roles = roles, titles = titles)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
