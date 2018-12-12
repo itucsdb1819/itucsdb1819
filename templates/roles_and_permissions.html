@@ -5,53 +5,53 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <form class="form-inline" method="POST"></form>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="dropdown">
-                            <select name="selectedRole" class="selectpicker form-control">
-                                {% for role in roles %}
-                                <option class="dropdown-item" value="{{ role[0] }}">{{ role[1] }}</option>
-                                {% endfor %}
-                            </select>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th>
+                <form class="form-inline" method="POST"></form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="dropdown">
+                                <select name="selectedRole" class="selectpicker form-control">
+                                    {% for role in roles %}
+                                    <option class="dropdown-item" value="{{ role[0] }}">{{ role[1] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </th>
+            <th>
+                <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="selectRole">{{ load_resource('Button.Edit', 'Buttons') }}</button>
+            </th>
+        </tr>
+    </thead>
+</table>    
+<tbody>
+    <div class="form-group">
+        {{ selectedRole[1] }}
+        <input type="hidden" name="selectedRoleID" value="{{ selectedRole[0] }}">
+        <input type="text" name="selectedRoleName" value="{{ selectedRole[1] }}" placeholder="Yeni Rol">
+        {% for permission in rolesAndPermissions %}
+        {%if permission[2] %}
+        <div class="row">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" checked id="tableMaterialCheck2">
+                <label class="form-check-label" for="tableMaterialCheck2">{{ load_resource(permission[1], 'PageText') }}</label>
+            </div>
         </div>
-            
-        <table class="table table-hover table-dark">
-            <div class="row">
-                <div class="panel-body">
-                    
-                        <div class="form-group">
-                            {{ selectedRole[1] }}
-                                <input type="hidden" name="selectedRoleID" value="{{ selectedRole[0] }}">
-                                <input type="text" name="selectedRoleName" value="{{ selectedRole[1] }}" placeholder="Yeni Rol">
-                            {% for permission in rolesAndPermissions %}
-                            {%if permission[2] %}
-                                <div class="row">
-                                    <div class="form-check">
-                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" checked style="color:beige">{{ load_resource(permission[1], 'PageText') }}</label>
-                                    </div>
-                                </div>
-                            {% else %}
-                                <div class="row">
-                                    <div class="form-check">
-                                        <label><input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" style="color:beige">{{ load_resource(permission[1], 'PageText') }}</label>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            {% endfor %}
-                                <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
-                        </div>
-                    
-                </div>
-            </div> 
-        </table>
+        {% else %}
+        <div class="row">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="permission" value="{{ permission[0] }}" id="tableMaterialCheck2">
+                <label class="form-check-label" for="tableMaterialCheck2">{{ load_resource(permission[1], 'PageText') }}</label>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="insertPermission">{{ load_resource('Button.Save', 'Buttons') }}</button>
     </div>
-    
+</tbody>
 {% endblock %}
