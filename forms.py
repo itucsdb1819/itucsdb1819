@@ -455,6 +455,19 @@ class Sale:
         """.format(employeeID, registerID)
         cursor.execute(queryString)
 
+        if cursor.rowcount == 0:
+            queryString = """
+                SELECT E.Name || E.Surname as FullName, R.RegisterID, RT.RegisterTypeName,
+                S.PaymentMethod, S.CreatedOn, S.ModifiedOn, S.IsDelivered, S.IsCancelled, P.ProductName
+                FROM Sale S
+                INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
+                INNER JOIN Register R ON R.RegisterID = S.RegisterID
+                INNER JOIN RegisterType RT ON RT.RegisterTypeID = R.RegisterTypeID
+                LEFT JOIN ProductSale PS ON PS.SaleID = S.SaleID
+                LEFT JOIN Product P ON P.ProductID = PS.ProductID
+            """
+            cursor.execute(queryString)
+
         report = cursor.fetchall()
         cursor.close()
         return report
