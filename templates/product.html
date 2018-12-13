@@ -17,6 +17,7 @@
             <th scope="col">{{ load_resource('Products.IsVegetarian', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Discount', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.IsChildrenOnly', 'PageText') }}</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +33,9 @@
             <td>{{ product[8] }}</td>
             <td>{{ product[9] }}</td>
             <td>{{ product[10] }}</td>
+            <td>
+                <a href="/product_delete?id={{ product[0] }}" class="btn btn-dark" name="edit" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Delete', 'Buttons') }}</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

@@ -246,6 +246,19 @@ class Product:
         self.glucose = glucose
         self.isVegetarian = isVegetarian
 
+    def deleteProduct(productID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = "UPDATE Product SET IsActive = false WHERE ProductID = %s"
+        cursor.execute(queryString, (productID, ))
+        if cursor.rowcount == 0:
+            cursor.close()
+            return tuple()
+
+        toys = cursor.fetchall()
+        cursor.close()
+        return toys
+
     def selectToys():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
@@ -283,6 +296,7 @@ class Product:
         INNER JOIN ProductType ON ProductType.ProductTypeID = Product.ProductTypeID
         LEFT JOIN ProductMenu ON ProductMenu.ProductID = Product.ProductID
         LEFT JOIN FoodMenu ON FoodMenu.FoodMenuID = ProductMenu.FoodMenuID
+        WHERE Product.IsActive = true
         """
         cursor.execute(queryString)
         if cursor.rowcount == 0:

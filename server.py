@@ -114,7 +114,7 @@ def employee_delete():
         forms.Employee.deleteEmployee(employeeID)
         return redirect(url_for("employee"))
     except Exception as error:
-        forms.System.insertLog(str(error), 'employee_create', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'employee_delete', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/employee_create", methods = ['GET', 'POST'], endpoint = "employee_create")
@@ -175,7 +175,17 @@ def expense_page():
         forms.System.insertLog(str(error), 'expense', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
-@app.route("/product")
+@app.route("/product_delete", methods=['GET', 'POST'])
+def product_delete():
+    try:
+        productID = request.args.get('id')
+        forms.Product.deleteProduct(productID)
+        return redirect(url_for("product"))
+    except Exception as error:
+        forms.System.insertLog(str(error), 'product_delete', 'Fatal', traceback.format_exc())
+        return redirect(url_for('error', errorMessage = error))
+
+@app.route("/product", endpoint = "product")
 def product_page():
     try:
         if 'userId' in session:

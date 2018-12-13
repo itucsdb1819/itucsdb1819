@@ -7,6 +7,7 @@ INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Menu",
 	"DROP TABLE IF EXISTS System CASCADE",
 	"DELETE FROM Logs",
+	"UPDATE Product SET IsActive = true",
 
 """CREATE TABLE IF NOT EXISTS Localization(
 	PK serial PRIMARY KEY,
@@ -54,7 +55,8 @@ INIT_STATEMENTS = [
 	Carbonhydrate decimal NOT NULL, 
 	Fat decimal NOT NULL, 
 	Glucose decimal NOT NULL, 
-	IsVegetarian bool NOT NULL
+	IsVegetarian bool NOT NULL,
+	IsActive bool NULL
 )""",
 """CREATE TABLE IF NOT EXISTS ProductMenu(
 	ProductMenuID serial REFERENCES FoodMenu,
@@ -303,6 +305,8 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		VALUES ('Sales.IsCancelled', 'PageText', 'tr', 'İptal Edildi Mi?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('', 'PageText', 'tr', 'Yok')"""
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Button.Delete', 'Buttons', 'tr', 'Sil')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [
