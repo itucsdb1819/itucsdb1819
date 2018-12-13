@@ -5,15 +5,7 @@ import psycopg2 as dbapi2
 INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Localization",
 	"DROP TABLE IF EXISTS Menu",
-	"DROP TABLE IF EXISTS Toy CASCADE",
-	"DROP TABLE IF EXISTS FoodMenu CASCADE",
-	"DROP TABLE IF EXISTS ProductType CASCADE",
-	"DROP TABLE IF EXISTS Product CASCADE",
-	"DROP TABLE IF EXISTS ProductMenu CASCADE",
 	"DROP TABLE IF EXISTS System CASCADE",
-	"DROP TABLE IF EXISTS Expense CASCADE",
-	"DROP TABLE IF EXISTS CustomerSurvey CASCADE",
-	"DROP TABLE IF EXISTS ProductSale CASCADE",
 	"DELETE FROM Logs",
 
 """CREATE TABLE IF NOT EXISTS Localization(
@@ -384,44 +376,6 @@ SYSTEM_INSERT_STATEMENTS = [
 	VALUES ('Currency', 'TL', 'string', true, NOW(), NULL, NULL)""",
 ]
 
-PRODUCT_TYPE_INSERT_STATEMENTS = [
-	"""
-		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
-						 VALUES (1, 'ProductType.Single')
-	""",
-	"""
-		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
-						 VALUES (2, 'ProductType.Drink')
-	""",
-	"""
-		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
-						 VALUES (3, 'ProductType.Dessert')
-	""",
-	"""
-		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
-						 VALUES (4, 'ProductType.LightAndActive')
-	""",
-	"""
-		INSERT INTO ProductType (ProductTypeID, ProductTypeName)
-						 VALUES (5, 'ProductType.Breakfast')
-	"""
-]
-
-PRODUCT_INSERT_STATEMENTS = [
-	"""
-		INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Protein, Carbonhydrate, Fat, Glucose, IsVegetarian)
-					 VALUES (1, 'Product.Hamburger', 0, 250, 14, 31, 8, 6, false)
-	""",
-	"""
-		INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Protein, Carbonhydrate, Fat, Glucose, IsVegetarian)
-					 VALUES (1, 'Product.FrenchFriesMedium', 0, 280, 4, 37, 13, 0, false)
-	""",
-	"""
-		INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Protein, Carbonhydrate, Fat, Glucose, IsVegetarian)
-					 VALUES (2, 'Product.CocaCola250', 0, 113, 0, 28, 0, 28, false)
-	"""
-]
-
 def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
@@ -435,12 +389,6 @@ def initialize(url):
             cursor.execute(statement)	       
         
         for statement in LOCALIZATION_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in PRODUCT_TYPE_INSERT_STATEMENTS:
-            cursor.execute(statement)
-
-        for statement in PRODUCT_INSERT_STATEMENTS:
             cursor.execute(statement)
 
         connection.commit()

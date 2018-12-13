@@ -225,10 +225,11 @@ def sales_report_page():
             if forms.Permission.hasPermission(session['roleId'], 'SalesPage.Access'):
                 selectedEmployee = 0
                 selectedRegister = 0
+                report = forms.Sale.getWholeReport()
                 if request.method == 'POST':
                     selectedEmployee = request.form.get('selectedEmployee')
                     selectedRegister = request.form.get('selectedRegister')
-                report = forms.Sale.getReport(selectedRegister, selectedEmployee)
+                    report = forms.Sale.getReport(selectedRegister, selectedEmployee)
                 employees = forms.Employee.select()
                 registers = forms.Register.select()
                 return render_template('sales_report.html', report = report, menuItems = menuItems, load_resource = load_resource, employees = employees, registers = registers)
