@@ -447,6 +447,8 @@ class Sale:
             FROM Sale S
             INNER JOIN Employee E ON E.EmployeeID = S.EmployeeID
             INNER JOIN Register R ON R.RegisterID = S.RegisterID
+            LEFT JOIN ProductSale PS ON PS.SaleID = S.SaleID
+            LEFT JOIN Product P ON P.ProductID = PS.ProductID
             WHERE E.EmployeeID = {} AND R.RegisterID = {}
         """.format(employeeID, registerID)
         cursor.execute(queryString)
