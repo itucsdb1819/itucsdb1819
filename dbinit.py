@@ -159,7 +159,7 @@ INIT_STATEMENTS = [
 	Traceback text NOT NULL,
 	CreatedOn timestamp NOT NULL
 )""",
-	"ALTER TABLE Product ADD IsActive bool NULL"
+	"ALTER TABLE Product ADD IsActive bool NULL",
 	"UPDATE Product SET IsActive = true"
 
 ]
