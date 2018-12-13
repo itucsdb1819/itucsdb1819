@@ -293,7 +293,21 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Product.Hamburger', 'PageText', 'tr', 'Hamburger')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Product.CocaCola250', 'PageText', 'tr', '250ml CocaCola')"""
+		VALUES ('Product.CocaCola250', 'PageText', 'tr', '250ml CocaCola')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.Personnel', 'PageText', 'tr', 'Satış Sorumlusu')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.RegisterTypeName', 'PageText', 'tr', 'Kasa Tipi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.PaymentMethod', 'PageText', 'tr', 'Ödeme Yöntemi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.CreatedOn', 'PageText', 'tr', 'Satış Tarihi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.ModifiedOn', 'PageText', 'tr', 'Düzenlenme Tarihi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.IsDelivered', 'PageText', 'tr', 'Teslim Edildi Mi?')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Sales.IsCancelled', 'PageText', 'tr', 'İptal Edildi Mi?')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [
