@@ -420,6 +420,7 @@ class Sale:
         """
         cursor.execute(queryString, (employeeID, registerID, paymentMethod, isDelivered, isCancelled))
         saleID = cursor.fetchone()
+        print(saleID)
         queryString = """
             INSERT INTO ProductSale (ProductID, SaleID)
             VALUES (%s, %s)

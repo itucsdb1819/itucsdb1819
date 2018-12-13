@@ -237,8 +237,9 @@ def sales_create():
                 if request.method == 'POST':
                     selectedEmployee = request.form.get('Employee')
                     selectedRegister = request.form.get('Register')
-                    paymentMethod = request.form.get('PaymentMethod')
                     product = request.form.get('Product')
+                    print(product)
+                    paymentMethod = request.form.get('PaymentMethod')
                     isDelivered = request.form.get('IsDelivered')
                     isCancelled = request.form.get('IsCancelled')
                     forms.Sale.insert(selectedEmployee, selectedRegister, paymentMethod, isDelivered, isCancelled, product)

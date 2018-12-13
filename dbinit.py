@@ -307,7 +307,9 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Sales.IsDelivered', 'PageText', 'tr', 'Teslim Edildi Mi?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Sales.IsCancelled', 'PageText', 'tr', 'İptal Edildi Mi?')"""
+		VALUES ('Sales.IsCancelled', 'PageText', 'tr', 'İptal Edildi Mi?')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('None', 'PageText', 'tr', 'Yok')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [
