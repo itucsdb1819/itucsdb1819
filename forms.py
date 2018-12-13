@@ -251,13 +251,8 @@ class Product:
         cursor = conn.cursor()
         queryString = "UPDATE Product SET IsActive = false WHERE ProductID = %s"
         cursor.execute(queryString, (productID, ))
-        if cursor.rowcount == 0:
-            cursor.close()
-            return tuple()
-
-        toys = cursor.fetchall()
+        conn.commit()
         cursor.close()
-        return toys
 
     def selectToys():
         conn = dbapi.connect(url)
