@@ -310,7 +310,7 @@ class Localization:
             AND LocaleID = '{}'""".format(resourceID, resourceSet, localeID)
         cursor.execute(queryString)
         if cursor.rowcount == 0:
-            print(resourceID)
+            System.insertLog(resourceID + " was not found", 'Localizaiton', 'Warning', None)
             cursor.close()
             return tuple()
 
