@@ -281,8 +281,8 @@ class Product:
             FoodMenu.IsChildrenOnly
         FROM Product
         INNER JOIN ProductType ON ProductType.ProductTypeID = Product.ProductTypeID
-        INNER JOIN ProductMenu ON ProductMenu.ProductID = Product.ProductID
-        INNER JOIN FoodMenu ON FoodMenu.FoodMenuID = ProductMenu.FoodMenuID
+        LEFT JOIN ProductMenu ON ProductMenu.ProductID = Product.ProductID
+        LEFT JOIN FoodMenu ON FoodMenu.FoodMenuID = ProductMenu.FoodMenuID
         """
         cursor.execute(queryString)
         if cursor.rowcount == 0:
