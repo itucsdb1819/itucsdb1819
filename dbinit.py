@@ -7,7 +7,6 @@ INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Menu",
 	"DROP TABLE IF EXISTS System CASCADE",
 	"DELETE FROM Logs",
-	"UPDATE Product SET IsActive = true",
 
 """CREATE TABLE IF NOT EXISTS Localization(
 	PK serial PRIMARY KEY,
@@ -159,7 +158,9 @@ INIT_STATEMENTS = [
 	LogType text NOT NULL,
 	Traceback text NOT NULL,
 	CreatedOn timestamp NOT NULL
-)"""
+)""",
+	"UPDATE Product SET IsActive = true"
+
 ]
 
 LOCALIZATION_INSERT_STATEMENTS = [
@@ -304,9 +305,11 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Sales.IsCancelled', 'PageText', 'tr', 'İptal Edildi Mi?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('', 'PageText', 'tr', 'Yok')"""
+		VALUES ('', 'PageText', 'tr', 'Yok')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Button.Delete', 'Buttons', 'tr', 'Sil')"""
+		VALUES ('Button.Delete', 'Buttons', 'tr', 'Sil')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Product.Create', 'PageText', 'tr', 'Yeni Ürün Ekle')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [

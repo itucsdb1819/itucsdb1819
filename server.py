@@ -200,6 +200,19 @@ def product_page():
         forms.System.insertLog(str(error), 'product', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
+@app.route("/product_create")
+def product_create_page():
+    try:
+        if 'userId' in session:
+            if forms.Permission.hasPermission(session['roleId'], 'ProductPage.Access'):
+                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource)
+            else:
+                return redirect(url_for('unauthorized'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
+    except Exception as error:
+        forms.System.insertLog(str(error), 'product', 'Fatal', traceback.format_exc())
+        return redirect(url_for('error', errorMessage = error))
+
 @app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
 def roles_and_permissions_page():
     try:
