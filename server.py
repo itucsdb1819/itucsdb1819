@@ -107,6 +107,16 @@ def employee_page():
         forms.System.insertLog(str(error), 'employee', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
+@app.route("/employee_delete", methods=['POST'])
+def employee_delete():
+    try:
+        employeeID = request.args.get('id')
+        print(employeeID)
+        return redirect(url_for("employee"))
+    except Exception as error:
+        forms.System.insertLog(str(error), 'employee_create', 'Fatal', traceback.format_exc())
+        return redirect(url_for('error', errorMessage = error))
+
 @app.route("/employee_create", methods = ['GET', 'POST'], endpoint = "employee_create")
 def employee_create_page():
     try:
@@ -243,7 +253,6 @@ def sales_create():
                     isDelivered = request.form.get('IsDelivered')
                     isCancelled = request.form.get('IsCancelled')
                     forms.Sale.insert(selectedEmployee, selectedRegister, paymentMethod, isDelivered, isCancelled, product)
-                    return redirect(url_for('sales'))
                 employees = forms.Employee.select()
                 registers = forms.Register.select()
                 products = forms.Product.select()
