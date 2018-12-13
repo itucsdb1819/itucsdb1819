@@ -111,7 +111,7 @@ def employee_page():
 def employee_delete():
     try:
         employeeID = request.args.get('id')
-        print(employeeID)
+        forms.Employee.deleteEmployee(employeeID)
         return redirect(url_for("employee"))
     except Exception as error:
         forms.System.insertLog(str(error), 'employee_create', 'Fatal', traceback.format_exc())
