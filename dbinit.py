@@ -5,14 +5,11 @@ import psycopg2 as dbapi2
 INIT_STATEMENTS = [
 	"DROP TABLE IF EXISTS Localization",
 	"DROP TABLE IF EXISTS Menu",
-	"DROP TABLE IF EXISTS IngredientType CASCADE",
-	"DROP TABLE IF EXISTS Ingredient CASCADE",
 	"DROP TABLE IF EXISTS Toy CASCADE",
 	"DROP TABLE IF EXISTS FoodMenu CASCADE",
 	"DROP TABLE IF EXISTS ProductType CASCADE",
 	"DROP TABLE IF EXISTS Product CASCADE",
 	"DROP TABLE IF EXISTS ProductMenu CASCADE",
-	"DROP TABLE IF EXISTS ProductIngredient CASCADE",
 	"DROP TABLE IF EXISTS System CASCADE",
 	"DROP TABLE IF EXISTS Expense CASCADE",
 	"DROP TABLE IF EXISTS CustomerSurvey CASCADE",
@@ -34,16 +31,6 @@ INIT_STATEMENTS = [
 	IconPath varchar(50) NOT NULL, 
 	IsActive bool NOT NULL,
 	HasChildren bool NOT NULL
-)""",
-"""CREATE TABLE IF NOT EXISTS IngredientType(
-	IngredienTypeID integer PRIMARY KEY,
-	IngredientTypeName varchar(50) NOT NULL
-)""",
-"""CREATE TABLE IF NOT EXISTS Ingredient(
-	IngredientID integer REFERENCES IngredientType,
-	IngredienTypeID integer NOT NULL,
-	IngredientName varchar(50) NOT NULL,
-	PRIMARY KEY (IngredientID)
 )""",
 """CREATE TABLE IF NOT EXISTS Toy(
 	ToyID serial PRIMARY KEY,
@@ -81,11 +68,6 @@ INIT_STATEMENTS = [
 	FoodMenuID integer NOT NULL,
 	ProductID integer NOT NULL REFERENCES Product,
 	PRIMARY KEY (ProductMenuID)
-)""",
-"""CREATE TABLE IF NOT EXISTS ProductIngredient(
-	ProductIngredientID serial PRIMARY KEY,
-	ProductID integer NOT NULL REFERENCES Product,
-	IngredientID integer NOT NULL REFERENCES Ingredient
 )""",
 """CREATE TABLE IF NOT EXISTS RegisterType(
 	RegisterTypeID integer PRIMARY KEY,
@@ -277,7 +259,29 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Employee.Title', 'PageText', 'tr', 'Ünvan')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Sales.Report', 'PageText', 'tr', 'Satış Raporu')"""
+		VALUES ('Sales.Report', 'PageText', 'tr', 'Satış Raporu')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products', 'PageTitles', 'tr', 'Ürünler')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.ProductTypeName', 'PageText', 'tr', 'Ürün Türü')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.ProductName', 'PageText', 'tr', 'Ürün Adı')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.Price', 'PageText', 'tr', 'Fiyatı')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.Calorie', 'PageText', 'tr', 'Kalori')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.Fat', 'PageText', 'tr', 'Yağ')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.Glucose', 'PageText', 'tr', 'Şeker')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.IsVegetarian', 'PageText', 'tr', 'Vejeteryan Mı?')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.Discount', 'PageText', 'tr', '% İndirim')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.IsChildrenOnly', 'PageText', 'tr', 'Çocuk Menüsü Mü?')""",		
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Toy.ToyName', 'PageText', 'tr', 'Oyuncak İsmi')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [

@@ -246,12 +246,49 @@ class Product:
         self.glucose = glucose
         self.isVegetarian = isVegetarian
 
+    def selectToys():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+        SELECT 
+            ToyID, ToyName
+        FROM Toy
+        """
+        cursor.execute(queryString)
+        if cursor.rowcount == 0:
+            cursor.close()
+            return tuple()
+
+        toys = cursor.fetchall()
+        cursor.close()
+        return toys
+
     def select():
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        queryString = """SELECT ProductID, ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian 
-        FROM Product"""
+        queryString = """
+        SELECT 
+            Product.ProductID, 
+            ProductType.ProductTypeName, 
+            Product.ProductName, 
+            Product.Price, 
+            Product.Calorie, 
+            Product.Carbonhydrate, 
+            Product.Fat,
+            Product.Glucose, 
+            Product.IsVegetarian,
+            FoodMenu.Discount,
+            FoodMenu.IsChildrenOnly
+        FROM Product
+        INNER JOIN ProductType ON ProductType.ProductTypeID = Product.ProductTypeID
+        INNER JOIN ProductMenu ON ProductMenu.ProductID = Product.ProductID
+        INNER JOIN FoodMenu ON FoodMenu.FoodMenuID = ProductMenu.FoodMenuID
+        """
         cursor.execute(queryString)
+        if cursor.rowcount == 0:
+            cursor.close()
+            return tuple()
+
         products = cursor.fetchall()
         cursor.close()
         return products
@@ -373,14 +410,21 @@ class Sale:
         self.isDelivered = isDelivered
         self.isCancelled = isCancelled
 
-    def insert(employeeID, registerID, paymentMethod, isDelivered, isCancelled):
+    def insert(employeeID, registerID, paymentMethod, isDelivered, isCancelled, productID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
             INSERT INTO Sale (EmployeeID, RegisterID, PaymentMethod, CreatedOn, ModifiedOn, IsDelivered, IsCancelled)
             VALUES (%s, %s, %s, NOW(), NULL, %s, %s)
+            RETURNING SaleID
         """
         cursor.execute(queryString, (employeeID, registerID, paymentMethod, isDelivered, isCancelled))
+        saleID = cursor.fetchone()
+        queryString = """
+            INSERT INTO ProductSale (ProductID, SaleID)
+            VALUES (%s, %s)
+        """
+        cursor.execute(queryString, (productID, saleID))
         conn.commit()
         cursor.close()
 
@@ -454,3 +498,4 @@ class Title:
         titles = cursor.fetchall()
         cursor.close()
         return titles
+

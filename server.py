@@ -170,8 +170,9 @@ def product_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'ProductPage.Access'):
-                products = forms.Product.select("")
-                return render_template('product.html', menuItems = menuItems)
+                products = forms.Product.select()
+                toys = forms.Product.selectToys()
+                return render_template('product.html', menuItems = menuItems, load_resource = load_resource, products = products)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
@@ -237,13 +238,15 @@ def sales_create():
                     selectedEmployee = request.form.get('Employee')
                     selectedRegister = request.form.get('Register')
                     paymentMethod = request.form.get('PaymentMethod')
+                    product = request.form.get('Product')
                     isDelivered = request.form.get('IsDelivered')
                     isCancelled = request.form.get('IsCancelled')
                     forms.Sale.insert(selectedEmployee, selectedRegister, paymentMethod, isDelivered, isCancelled)
                     return redirect(url_for('sales'))
                 employees = forms.Employee.select()
                 registers = forms.Register.select()
-                return render_template('sales_create.html', menuItems = menuItems, load_resource = load_resource, employees = employees, registers = registers)
+                products = forms.Product.select()
+                return render_template('sales_create.html', menuItems = menuItems, load_resource = load_resource, employees = employees, registers = registers, products = products)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))

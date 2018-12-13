@@ -29,6 +29,16 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <!-- Dropdown for Products -->
+                                    <div class="col">
+                                        <div class="dropdown">
+                                            <select name="Product" class="selectpicker form-control">
+                                                {% for product in products %}
+                                                <option class="dropdown-item" value="{{ product[0] }}">{{ product[2] }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                     <!-- Textarea for PaymentMethod -->
                                         <div class="row">
