@@ -11,6 +11,7 @@
                 <th scope="col">Config Value</th>
                 <th scope="col">Config Type</th>
                 <th scope="col">Is Editable?</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +20,13 @@
                 <th scope="row">{{ configValue[0] }}</th>
                 <td>{{ configValue[1] }}</td>
                 <td>{{ configValue[2] }}</td>
-                <td>{{ configValue[3] }}</td>             
+                <td>{{ configValue[3] }}</td>   
+                <td>
+                    {% if configValue[3] == true %}
+                    <a href="/system_edit?id={{ employee[0] }}" class="btn btn-dark" name="edit" role="button">{{ load_resource('Button.Edit', 'Buttons') }}</a>
+                    {% endif %}
+                </td>
+
             </tr>
             {% endfor %} 
         </tbody>
