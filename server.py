@@ -107,7 +107,7 @@ def employee_page():
         forms.System.insertLog(str(error), 'employee', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
-@app.route("/employee_delete", methods=['POST'])
+@app.route("/employee_delete", methods=['GET', 'POST'])
 def employee_delete():
     try:
         employeeID = request.args.get('id')

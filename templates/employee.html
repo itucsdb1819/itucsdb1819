@@ -33,9 +33,7 @@
                 <td>{{ employee[6] }}</td>
                 <td>
                     <a href="/employee_create?id={{ employee[0] }}" class="btn btn-dark" name="edit" role="button">{{ load_resource('Button.Edit', 'Buttons') }}</a>
-                    <form action="/employee_delete?id={{ employee[0] }}">
-                        <button type="submit" class="btn btn-dark" name="delete" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Edit', 'Buttons') }}</button>
-                    </form>
+                    <a href="/employee_delete?id={{ employee[0] }}" class="btn btn-dark" name="edit" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Edit', 'Buttons') }}</a>
                 </td>
             </tr>
             {% endfor %}
