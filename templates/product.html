@@ -11,6 +11,7 @@
             <th scope="col">{{ load_resource('Products.ProductName', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Price', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Calorie', 'PageText') }}</th>
+            <th scope="col">{{ load_resource('Products.Carbonhydrate', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Fat', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Glucose', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.IsVegetarian', 'PageText') }}</th>
@@ -21,8 +22,8 @@
     <tbody>
         {% for product in products %}
         <tr>
-            <td>{{ product[1] }}</td>
-            <td>{{ product[2] }}</td>
+            <td>{{ load_resource(product[1], 'PageText') }}</td>
+            <td>{{ load_resource(product[2], 'PageText') }}</td>
             <td>{{ product[3] }}</td>
             <td>{{ product[4] }}</td>
             <td>{{ product[5] }}</td>
@@ -30,6 +31,7 @@
             <td>{{ product[7] }}</td>
             <td>{{ product[8] }}</td>
             <td>{{ product[9] }}</td>
+            <td>{{ product[10] }}</td>
         </tr>
         {% endfor %}
     </tbody>

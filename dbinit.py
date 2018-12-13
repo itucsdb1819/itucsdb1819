@@ -277,11 +277,21 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Products.IsVegetarian', 'PageText', 'tr', 'Vejeteryan Mı?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Products.Discount', 'PageText', 'tr', '% İndirim')""",
+		VALUES ('Products.Discount', 'PageText', 'tr', 'İndirim?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Products.IsChildrenOnly', 'PageText', 'tr', 'Çocuk Menüsü Mü?')""",		
+		VALUES ('Products.IsChildrenOnly', 'PageText', 'tr', 'Çocuk Menüsü Mü?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Toy.ToyName', 'PageText', 'tr', 'Oyuncak İsmi')"""
+		VALUES ('ProductType.Single', 'PageText', 'tr', 'Tekli')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('ProductType.Drink', 'PageText', 'tr', 'İçecek')""",		
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Toy.ToyName', 'PageText', 'tr', 'Oyuncak İsmi')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Product.FrenchFriesMedium', 'PageText', 'tr', 'Orta Boy Patates Kızartması')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Product.Hamburger', 'PageText', 'tr', 'Hamburger')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Product.CocaCola250', 'PageText', 'tr', '250ml CocaCola')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [
