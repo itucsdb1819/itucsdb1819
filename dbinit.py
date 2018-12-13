@@ -277,7 +277,7 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Products.IsVegetarian', 'PageText', 'tr', 'Vejeteryan Mı?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('Products.Discount', 'PageText', 'tr', 'İndirim?')""",
+		VALUES ('Products.Discount', 'PageText', 'tr', '% İndirim')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Products.IsChildrenOnly', 'PageText', 'tr', 'Çocuk Menüsü Mü?')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)

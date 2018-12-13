@@ -241,7 +241,7 @@ def sales_create():
                     product = request.form.get('Product')
                     isDelivered = request.form.get('IsDelivered')
                     isCancelled = request.form.get('IsCancelled')
-                    forms.Sale.insert(selectedEmployee, selectedRegister, paymentMethod, isDelivered, isCancelled)
+                    forms.Sale.insert(selectedEmployee, selectedRegister, paymentMethod, isDelivered, isCancelled, product)
                     return redirect(url_for('sales'))
                 employees = forms.Employee.select()
                 registers = forms.Register.select()
