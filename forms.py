@@ -59,10 +59,10 @@ class Employee:
         cursor = conn.cursor()
         queryString = """
             SELECT EmployeeID, Username, Password, RoleID FROM Employee
-            WHERE Username = '{}'
-                AND Password = '{}'
-        """.format(username, password)
-        cursor.execute(queryString)
+            WHERE Username = %s
+                AND Password = %s
+        """
+        cursor.execute(queryString, (username, password))
         employees = cursor.fetchone()
         cursor.close()
         return employees
@@ -70,7 +70,7 @@ class Employee:
     def deleteEmployee(employeeId):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
-        cursor.execute('UPDATE Employee SET IsActive = false WHERE EmployeeID = ' + employeeId)
+        cursor.execute('UPDATE Employee SET IsActive = false WHERE EmployeeID = %s', (employeeId, ))
         conn.commit()
         cursor.close()
         conn.close()
