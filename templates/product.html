@@ -28,7 +28,7 @@
     <tbody>
         {% for product in products %}
         <tr>
-            <td>product[1]</td>
+            <td>{{ product[1] }}</td>
             <td>{{ load_resource(product[2], 'PageText') }}</td>
             <td>{{ product[3] }}</td>
             <td>{{ product[4] }}</td>

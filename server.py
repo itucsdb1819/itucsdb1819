@@ -207,6 +207,7 @@ def product_create_page():
             if forms.Permission.hasPermission(session['roleId'], 'ProductPage.Access'):
                 if request.method == 'POST':
                     productID = request.form.get('productID')
+                    print(productID)
                     productType = request.form.get('ProductType')
                     name = request.form.get('Name')
                     price = request.form.get('Price')

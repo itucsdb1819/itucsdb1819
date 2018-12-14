@@ -29,25 +29,31 @@
                         <div class="col">
                         <!-- Textareas -->
                             <div class="row">
+                                <label>Ürün Adı</label>
                                 <input type="text" name="Name" placeholder="Ürün adı" value="{{ name }}">
                             </div>
                             <div class="row">
+                                <label>Fiyat</label>
                                 <input type="text" name="Price" placeholder="Fiyat" value="{{ price }}">
                             </div>
                             <div class="row">
+                                <label>Kalori</label>
                                 <input type="text" name="Calorie" placeholder="Kalori" value="{{ calorie }}">
                             </div>   
                             <div class="row">
+                                <label>Karbonhidrat</label>
                                 <input type="text" name="Carbonhydrate" placeholder="Karbonhidrat" value="{{ carbonhydrate }}">
                             </div>
                             <div class="row">
+                                <label>Yağ</label>
                                 <input type="text" name="Fat" placeholder="Yağ" value="{{ fat }}">
                             </div>
                             <div class="row">
+                                <label>Glükoz</label>
                                 <input type="text" name="Glucose" placeholder="Glükoz" value="{{ glucose }}">
                             </div>
                             <div class="row">
-                                <label><input class="form-check-input" type="checkbox" name="IsVegetarian" value="{{ isVegetarian }}">Is Delivered</label>
+                                <label><input class="form-check-input" type="checkbox" name="IsVegetarian" value="{{ isVegetarian }}">Is Vegetarian</label>
                             </div>                      
                         </div>                                
                         <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="">{{ load_resource('Button.Save', 'Buttons') }}</button>
