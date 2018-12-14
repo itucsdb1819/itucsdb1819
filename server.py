@@ -217,8 +217,10 @@ def product_create_page():
                     glucose = request.form.get('Glucose')
                     isVegetarian = request.form.get('IsVegetarian')
                     if productID != None:
+                        print("Update")
                         forms.Product.updateProduct(productID, productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian)
                     else:
+                        print("Insert")
                         forms.Product.createProduct(productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian)                        
                     return redirect(url_for("product_create"))
 

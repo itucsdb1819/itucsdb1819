@@ -308,6 +308,7 @@ class Product:
                     IsVegetarian = %s
             WHERE ProductID = %s
         """
+        print(queryString)
         cursor.execute(queryString, (productType, name, price, calorie, carbonhydrate, fat, glucose, str(isVegetarian), productID))
         conn.commit()
         cursor.close()
@@ -320,6 +321,7 @@ class Product:
             INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian, IsActive)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, true)
         """
+        print(queryString)
         cursor.execute(queryString, (productType, name, price, calorie, carbonhydrate, fat, glucose, str(isVegetarian)))
         conn.commit()
         cursor.close()
