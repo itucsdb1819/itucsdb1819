@@ -271,6 +271,74 @@ class Product:
         cursor.close()
         return toys
 
+    def selectWithID(productID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+        SELECT 
+            Product.ProductID, 
+            Product.ProductTypeID, 
+            Product.ProductName, 
+            Product.Price, 
+            Product.Calorie, 
+            Product.Carbonhydrate, 
+            Product.Fat,
+            Product.Glucose, 
+            Product.IsVegetarian
+        FROM Product
+        WHERE Product.IsActive = true AND ProductID = %s
+        """
+        cursor.execute(queryString, (productID, ))
+        product = cursor.fetchone()
+        cursor.close()
+        return product
+        
+    def updateProduct(productID, productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            UPDATE Product
+                SET ProductTypeID = %s,
+                    ProductName = %s,
+                    Price = %s,
+                    Calorie = %s,
+                    Carbonhydrate = %s,
+                    Fat = %s,
+                    Glucose = %s,
+                    IsVegetarian = %s
+            WHERE ProductID = %s
+        """
+        cursor.execute(queryString, (productType, name, price, calorie, carbonhydrate, fat, glucose, str(isVegetarian), productID))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def createProduct(productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian, IsActive)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, true)
+        """
+        cursor.execute(queryString, (productType, name, price, calorie, carbonhydrate, fat, glucose, str(isVegetarian))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def selectProductTypes():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+        SELECT             
+            ProductTypeID,
+            ProductTypeName
+        FROM ProductType
+        """
+        cursor.execute(queryString)
+        productTypes = cursor.fetchone()
+        cursor.close()
+        return productTypes
+
     def select():
         conn = dbapi.connect(url)
         cursor = conn.cursor()

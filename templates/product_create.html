@@ -2,3 +2,59 @@
 {% block title %}
     <title>{{ load_resource('Product.Create', 'PageText') }}</title>
 {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <form class="form-inline" method="POST">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="container">
+                        <input type="hidden" name="productID" value="{{ productID }}">
+                        <!-- Dropdown for Product Type -->
+                        <div class="col">
+                            <div class="dropdown">
+                                <select name="ProductType" class="selectpicker form-control">
+                                    {% for productType in productTypes %}
+                                        {% if productType[0] == productType %}
+                                            <option class="dropdown-item" value="{{ productType[0] }}" selected>{{ productType[1] }}</option>
+                                        {% endif %}
+                                        {% if productType[0] != productType %}
+                                            <option class="dropdown-item" value="{{ productType[0] }}">{{ productType[1] }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>                        
+                        <div class="col">
+                        <!-- Textareas -->
+                            <div class="row">
+                                <input type="text" name="Name" placeholder="Ürün adı" value="{{ name }}">
+                            </div>
+                            <div class="row">
+                                <input type="text" name="Price" placeholder="Fiyat" value="{{ price }}">
+                            </div>
+                            <div class="row">
+                                <input type="text" name="Calorie" placeholder="Kalori" value="{{ calorie }}">
+                            </div>   
+                            <div class="row">
+                                <input type="text" name="Carbonhydrate" placeholder="Karbonhidrat" value="{{ carbonhydrate }}">
+                            </div>
+                            <div class="row">
+                                <input type="text" name="Fat" placeholder="Yağ" value="{{ fat }}">
+                            </div>
+                            <div class="row">
+                                <input type="text" name="Glucose" placeholder="Glükoz" value="{{ glucose }}">
+                            </div>
+                            <div class="row">
+                                <label><input class="form-check-input" type="checkbox" name="IsVegetarian" value="{{ isVegetarian }}">Is Delivered</label>
+                            </div>                      
+                        </div>                                
+                        <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="">{{ load_resource('Button.Save', 'Buttons') }}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

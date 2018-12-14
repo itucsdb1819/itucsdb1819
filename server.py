@@ -200,12 +200,51 @@ def product_page():
         forms.System.insertLog(str(error), 'product', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
-@app.route("/product_create")
+@app.route("/product_create", methods = ['GET', 'POST'], endpoint="product_create")
 def product_create_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'ProductPage.Access'):
-                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource)
+                if request.method == 'POST':
+                    productID = request.form.get('productID')
+                    productType = request.form.get('ProductType')
+                    name = request.form.get('Name')
+                    price = request.form.get('Price')
+                    calorie = request.form.get('Calorie')
+                    carbonhydrate = request.form.get('Carbonhydrate')
+                    fat = request.form.get('Fat')
+                    glucose = request.form.get('Glucose')
+                    isVegetarian = request.form.get('IsVegetarian')
+                    if productID != None:
+                        forms.Product.updateProduct(productID, productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian)
+                    else:
+                        forms.Product.createProduct(productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian)                        
+                    return redirect(url_for("product_create"))
+
+                productID = request.args.get('id')
+                price = 0
+                calorie = 0
+                carbonhydrate = 0
+                fat = 0
+                calorie = 0
+                glucose = 0
+                isVegetarian = False
+                name = ""
+                
+                if productID != None:
+                    product = forms.Product.selectWithID(productID)
+                    productTypeID = product[1]
+                    name = product[2]
+                    price = product[3]
+                    calorie = product[4]
+                    carbonhydrate = product[5]
+                    fat = product[6]
+                    calorie = product[7]
+                    glucose = product[8]
+                    isVegetarian = product[9]
+
+                productTypes = forms.Product.selectProductTypes()
+                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productType = productType productID = productID, name = name, price = price, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))

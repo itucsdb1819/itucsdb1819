@@ -28,7 +28,7 @@
     <tbody>
         {% for product in products %}
         <tr>
-            <td>{{ load_resource(product[1], 'PageText') }}</td>
+            <td>product[1]</td>
             <td>{{ load_resource(product[2], 'PageText') }}</td>
             <td>{{ product[3] }}</td>
             <td>{{ product[4] }}</td>
@@ -39,6 +39,7 @@
             <td>{{ product[9] }}</td>
             <td>{{ product[10] }}</td>
             <td>
+                <a href="/product_create?id={{ product[0] }}" class="btn btn-dark" name="edit" role="button">{{ load_resource('Button.Edit', 'Buttons') }}</a>
                 <a href="/product_delete?id={{ product[0] }}" class="btn btn-dark" name="edit" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Delete', 'Buttons') }}</a>
             </td>
         </tr>

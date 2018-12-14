@@ -33,7 +33,9 @@
                 <td>{{ employee[6] }}</td>
                 <td>
                     <a href="/employee_create?id={{ employee[0] }}" class="btn btn-dark" name="edit" role="button">{{ load_resource('Button.Edit', 'Buttons') }}</a>
-                    <a href="/employee_delete?id={{ employee[0] }}" class="btn btn-dark" name="edit" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Delete', 'Buttons') }}</a>
+                    {% if employee[5] == true %}
+                        <a href="/employee_delete?id={{ employee[0] }}" class="btn btn-dark" name="edit" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Delete', 'Buttons') }}</a>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}
