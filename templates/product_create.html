@@ -16,11 +16,11 @@
                             <div class="dropdown">
                                 <select name="ProductType" class="selectpicker form-control">
                                     {% for productType in productTypes %}
-                                        {% if productType[0] == productType %}
-                                            <option class="dropdown-item" value="{{ productType[0] }}" selected>{{ productType[1] }}</option>
+                                        {% if productType[0] == productTypeID %}
+                                            <option class="dropdown-item" value="{{ productType[0] }}" selected>{{ load_resource(productType[1], 'PageText') }}</option>
                                         {% endif %}
-                                        {% if productType[0] != productType %}
-                                            <option class="dropdown-item" value="{{ productType[0] }}">{{ productType[1] }}</option>
+                                        {% if productType[0] != productTypeID %}
+                                            <option class="dropdown-item" value="{{ productType[0] }}">{{ load_resource(productType[1], 'PageText') }}</option>
                                         {% endif %}
                                     {% endfor %}
                                 </select>
