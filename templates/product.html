@@ -16,6 +16,7 @@
             <th scope="col">{{ load_resource('Products.ProductName', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Price', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Calorie', 'PageText') }}</th>
+            <th scope="col">{{ load_resource('Products.Protein', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Carbonhydrate', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Fat', 'PageText') }}</th>
             <th scope="col">{{ load_resource('Products.Glucose', 'PageText') }}</th>
@@ -38,6 +39,7 @@
             <td>{{ product[8] }}</td>
             <td>{{ product[9] }}</td>
             <td>{{ product[10] }}</td>
+            <td>{{ product[11] }}</td>
             <td>
                 <a href="/product_create?id={{ product[0] }}" class="btn btn-dark" name="edit" role="button">{{ load_resource('Button.Edit', 'Buttons') }}</a>
                 <a href="/product_delete?id={{ product[0] }}" class="btn btn-dark" name="edit" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Delete', 'Buttons') }}</a>

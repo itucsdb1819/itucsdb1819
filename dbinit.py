@@ -310,7 +310,13 @@ LOCALIZATION_INSERT_STATEMENTS = [
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
 		VALUES ('Product.Create', 'PageText', 'tr', 'Yeni Ürün Ekle')""",
 		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
-		VALUES ('ProductType.Dessert', 'PageText', 'tr', 'Tatlı')"""
+		VALUES ('ProductType.Dessert', 'PageText', 'tr', 'Tatlı')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('ProductType.LightAndActive', 'PageText', 'tr', 'Hafifler')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('ProductType.Breakfast', 'PageText', 'tr', 'Kahvaltı')""",
+		"""INSERT INTO Localization (ResourceId, ResourceSet, LocaleId, Value)
+		VALUES ('Products.Protein', 'PageText', 'tr', 'Protein')"""
 ]
 
 PERMISSION_INSERT_STATEMENTS = [

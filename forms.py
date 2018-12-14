@@ -281,6 +281,7 @@ class Product:
             Product.ProductName, 
             Product.Price, 
             Product.Calorie, 
+            Product.Protein, 
             Product.Carbonhydrate, 
             Product.Fat,
             Product.Glucose, 
@@ -293,7 +294,7 @@ class Product:
         cursor.close()
         return product
         
-    def updateProduct(productID, productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian):
+    def updateProduct(productID, productType, name, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
@@ -303,27 +304,28 @@ class Product:
                     Price = %s,
                     Calorie = %s,
                     Carbonhydrate = %s,
+                    Protein = %s,
                     Fat = %s,
                     Glucose = %s,
                     IsVegetarian = %s
             WHERE ProductID = %s
         """
         print(queryString)
-        cursor.execute(queryString, (productType, name, price, calorie, carbonhydrate, fat, glucose, str(isVegetarian), productID))
+        cursor.execute(queryString, (productType, name, price, calorie, protein, carbonhydrate, fat, glucose, str(isVegetarian), productID))
         conn.commit()
         cursor.close()
         conn.close()
 
-    def createProduct(productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian):
+    def createProduct(productType, name, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
-            INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Carbonhydrate, Fat, Glucose, IsVegetarian, IsActive)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, true)
+            INSERT INTO Product (ProductTypeID, ProductName, Price, Calorie, Protein, Carbonhydrate, Fat, Glucose, IsVegetarian, IsActive)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, true)
         """
         if isVegetarian == None:
             isVegetarian = False
-        cursor.execute(queryString, (productType, name, price, calorie, carbonhydrate, fat, glucose, str(isVegetarian)))
+        cursor.execute(queryString, (productType, name, price, calorie, protein, carbonhydrate, fat, glucose, str(isVegetarian)))
         conn.commit()
         cursor.close()
         conn.close()

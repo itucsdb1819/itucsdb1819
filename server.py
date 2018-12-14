@@ -212,16 +212,17 @@ def product_create_page():
                     name = request.form.get('Name')
                     price = request.form.get('Price')
                     calorie = request.form.get('Calorie')
+                    protein = request.form.get('Protein')
                     carbonhydrate = request.form.get('Carbonhydrate')
                     fat = request.form.get('Fat')
                     glucose = request.form.get('Glucose')
                     isVegetarian = request.form.get('IsVegetarian')
                     if productID != 'None':
                         print("Update")
-                        forms.Product.updateProduct(productID, productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian)
+                        forms.Product.updateProduct(productID, productType, name, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian)
                     else:
                         print("Insert")
-                        forms.Product.createProduct(productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian)                        
+                        forms.Product.createProduct(productType, name, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian)                        
                     return redirect(url_for("product_create"))
 
                 productID = request.args.get('id')
@@ -232,6 +233,7 @@ def product_create_page():
                 fat = 0
                 calorie = 0
                 glucose = 0
+                protein = 0
                 isVegetarian = False
                 name = ""
                 
@@ -241,13 +243,14 @@ def product_create_page():
                     name = product[2]
                     price = product[3]
                     calorie = product[4]
-                    carbonhydrate = product[5]
-                    fat = product[6]
-                    glucose = product[7]
-                    isVegetarian = product[8]
+                    protein = product[5]
+                    carbonhydrate = product[6]
+                    fat = product[7]
+                    glucose = product[8]
+                    isVegetarian = product[9]
 
                 productTypes = forms.Product.selectProductTypes()
-                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productTypeID = productTypeID, productID = productID, name = name, price = price, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
+                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productTypeID = productTypeID, productID = productID, name = name, price = price, protein = protein, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
