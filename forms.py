@@ -335,7 +335,7 @@ class Product:
         FROM ProductType
         """
         cursor.execute(queryString)
-        productTypes = cursor.fetchone()
+        productTypes = cursor.fetchall()
         cursor.close()
         return productTypes
 
