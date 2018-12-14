@@ -14,7 +14,8 @@
                         <!-- Dropdown for Product Type -->
                         <div class="col-lg-12">
                             <div class="dropdown">
-                                <select name="ProductType" class="selectpicker form-control">
+                                <label class="col-lg-4">Ürün Türü</label>
+                                <select name="ProductType" class="selectpicker form-control col-lg-8">
                                     {% for productType in productTypes %}
                                         {% if productType[0] == productTypeID %}
                                             <option class="dropdown-item" value="{{ productType[0] }}" selected>{{ load_resource(productType[1], 'PageText') }}</option>
@@ -55,9 +56,8 @@
                                 <input type="text" name="Glucose" class="form-control col-lg-8" placeholder="Glükoz" value="{{ glucose }}">
                             </div>
                             <div class="row">
-                                <label class="col-lg-4">
-                                    <input class="form-control col-lg-8" type="checkbox" name="IsVegetarian" value="{{ isVegetarian }}">Is Vegetarian
-                                </label>
+                                <label class="col-lg-4">Is Vegetarian</label>
+                                <input class="form-control col-lg-8" type="checkbox" name="IsVegetarian" value="{{ isVegetarian }}">
                             </div>                      
                         </div>                                
                         <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="">{{ load_resource('Button.Save', 'Buttons') }}</button>
