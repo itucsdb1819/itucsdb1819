@@ -131,7 +131,7 @@ def employee_create_page():
                     name = request.form.get('Name')
                     surname = request.form.get('Surname')
                     username = request.form.get('Username')
-                    if employeeID != None:
+                    if employeeID != 'None':
                         forms.Employee.updateEmployee(employeeID, role, title, name, surname, username)
                     else:
                         forms.Employee.saveEmployee(role, title, name, surname, username)
@@ -216,7 +216,7 @@ def product_create_page():
                     fat = request.form.get('Fat')
                     glucose = request.form.get('Glucose')
                     isVegetarian = request.form.get('IsVegetarian')
-                    if productID != None:
+                    if productID != 'None':
                         print("Update")
                         forms.Product.updateProduct(productID, productType, name, price, calorie, carbonhydrate, fat, glucose, isVegetarian)
                     else:
