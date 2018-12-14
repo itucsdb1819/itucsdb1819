@@ -13,7 +13,7 @@
                         <input type="hidden" name="productID" value="{{ productID }}">
                         <!-- Dropdown for Product Type -->
                         <div class="col-lg-12">
-                            <div class="dropdown">
+                            <div class="row dropdown input-group-text">
                                 <label class="col-lg-4">Ürün Türü</label>
                                 <select name="ProductType" class="selectpicker form-control col-lg-8">
                                     {% for productType in productTypes %}
@@ -27,35 +27,35 @@
                                 </select>
                             </div>
                         <!-- Textareas -->
-                            <div class="row">
+                            <div class="row input-group-text">
                                 <label class="col-lg-4">Ürün Adı</label>
                                 <input type="text" name="Name" class="form-control col-lg-8" placeholder="Ürün adı" value="{{ name }}">
                             </div>
-                            <div class="row">
+                            <div class="row input-group-text">
                                 <label class="col-lg-4">Fiyat</label>
                                 <input type="text" name="Price" class="form-control col-lg-8" placeholder="Fiyat" value="{{ price }}">
                             </div>
-                            <div class="row">
+                            <div class="row input-group-text">
                                 <label class="col-lg-4">Kalori</label>
                                 <input type="text" name="Calorie" class="form-control col-lg-8" placeholder="Kalori" value="{{ calorie }}">
                             </div> 
-                            <div class="row">
+                            <div class="row input-group-text">
                                     <label class="col-lg-4">Protein</label>
                                     <input type="text" name="Protein" class="form-control col-lg-8" placeholder="Protein" value="{{ protein }}">
                                 </div>   
-                            <div class="row">
+                            <div class="row input-group-text">
                                 <label class="col-lg-4">Karbonhidrat</label>
                                 <input type="text" name="Carbonhydrate" class="form-control col-lg-8" placeholder="Karbonhidrat" value="{{ carbonhydrate }}">
                             </div>
-                            <div class="row">
+                            <div class="row input-group-text">
                                 <label class="col-lg-4">Yağ</label>
                                 <input type="text" name="Fat" class="form-control col-lg-8" placeholder="Yağ" value="{{ fat }}">
                             </div>
-                            <div class="row">
+                            <div class="row input-group-text">
                                 <label class="col-lg-4">Glükoz</label>
                                 <input type="text" name="Glucose" class="form-control col-lg-8" placeholder="Glükoz" value="{{ glucose }}">
                             </div>
-                            <div class="row">
+                            <div class="row input-group-text">
                                 <label class="col-lg-4">Is Vegetarian</label>
                                 <input class="form-control col-lg-8" type="checkbox" name="IsVegetarian" value="{{ isVegetarian }}">
                             </div>                      
