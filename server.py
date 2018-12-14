@@ -222,6 +222,7 @@ def product_create_page():
                     return redirect(url_for("product_create"))
 
                 productID = request.args.get('id')
+                productTypeID = 0
                 price = 0
                 calorie = 0
                 carbonhydrate = 0
@@ -244,12 +245,12 @@ def product_create_page():
                     isVegetarian = product[9]
 
                 productTypes = forms.Product.selectProductTypes()
-                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productType = productType, productID = productID, name = name, price = price, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
+                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productTypeID = productTypeID, productID = productID, name = name, price = price, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
     except Exception as error:
-        forms.System.insertLog(str(error), 'product', 'Fatal', traceback.format_exc())
+        forms.System.insertLog(str(error), 'product_create', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
 
 @app.route("/roles_and_permissions", methods=['GET', 'POST'], endpoint="roles_and_permissions")
