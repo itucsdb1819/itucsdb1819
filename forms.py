@@ -322,6 +322,8 @@ class Product:
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, true)
         """
         print(queryString)
+        if isVegetarian == 'None':
+            isVegetarian = False
         cursor.execute(queryString, (productType, name, price, calorie, carbonhydrate, fat, glucose, str(isVegetarian)))
         conn.commit()
         cursor.close()

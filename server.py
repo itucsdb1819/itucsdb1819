@@ -243,9 +243,8 @@ def product_create_page():
                     calorie = product[4]
                     carbonhydrate = product[5]
                     fat = product[6]
-                    calorie = product[7]
-                    glucose = product[8]
-                    isVegetarian = product[9]
+                    glucose = product[7]
+                    isVegetarian = product[8]
 
                 productTypes = forms.Product.selectProductTypes()
                 return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productTypeID = productTypeID, productID = productID, name = name, price = price, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
