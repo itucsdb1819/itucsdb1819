@@ -244,7 +244,7 @@ def product_create_page():
                     isVegetarian = product[9]
 
                 productTypes = forms.Product.selectProductTypes()
-                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productType = productType productID = productID, name = name, price = price, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
+                return render_template('product_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productType = productType, productID = productID, name = name, price = price, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
