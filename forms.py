@@ -310,7 +310,8 @@ class Product:
                     IsVegetarian = %s
             WHERE ProductID = %s
         """
-        print(queryString)
+        if isVegetarian == None:
+            isVegetarian = False
         cursor.execute(queryString, (productType, name, price, calorie, protein, carbonhydrate, fat, glucose, str(isVegetarian), productID))
         conn.commit()
         cursor.close()
@@ -354,6 +355,7 @@ class Product:
             Product.ProductName, 
             Product.Price, 
             Product.Calorie, 
+            Product.Protein, 
             Product.Carbonhydrate, 
             Product.Fat,
             Product.Glucose, 
