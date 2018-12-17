@@ -16,8 +16,6 @@
                 <th scope="col">{{ load_resource('Expenses.ExpenseID', 'PageText') }}</th>
                 <th scope="col">{{ load_resource('Expenses.Description', 'PageText') }}</th>
                 <th scope="col">{{ load_resource('Expenses.Amount', 'PageText') }}</th>
-                <th scope="col">{{ load_resource('Expenses.ModifiedOn', 'PageText') }}</th>
-                <th scope="col">{{ load_resource('Expenses.ModifiedBy', 'PageText') }}</th>
                 <th scope="col">{{ load_resource('Expenses.IsPremium', 'PageText') }}</th>
                 <th scope="col">Action</th>
             </tr>
@@ -28,8 +26,6 @@
                 <td>{{ load_resource(expense[1], 'PageText') }}</td>
                 <td>{{ expense[2] }}</td>
                 <td>{{ expense[3] }}</td>
-                <td>{{ expense[4] }}</td>
-                <td>{{ expense[5] }}</td>
                 <td>{{ expense[6] }}</td>
                 <td>
                     <a href="/expense_create?id={{ expense[0] }}" class="btn btn-dark" name="edit" role="button">{{ load_resource('Button.Edit', 'Buttons') }}</a>
