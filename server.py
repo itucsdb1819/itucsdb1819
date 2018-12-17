@@ -204,7 +204,7 @@ def expense_create_page():
                         forms.Expense.updateExpense(expenseId, amount, description, isPremium, modifiedBy)
                     else:
                         print("Insert")
-                        forms.Expense.createProduct(productType, name, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian)                        
+                        forms.Expense.createExpense(amount, description, isPremium, employeeId)                        
                     return redirect(url_for("product_create"))
 
                 expenseID = request.args.get('id')
