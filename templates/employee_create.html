@@ -5,59 +5,61 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <form class="form-inline" method="POST">
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="container">
-                        <input type="hidden" name="employeeID" value="{{ employeeID }}">
-                        <!-- Dropdown for Employee -->
-                        <div class="col">
-                            <div class="dropdown">
-                                <select name="Role" class="selectpicker form-control">
-                                    {% for role in roles %}
-                                        {% if role[0] == roleID %}
-                                            <option class="dropdown-item" value="{{ role[0] }}" selected>{{ role[1] }}</option>
-                                        {% endif %}
-                                        {% if role[0] != roleID %}
-                                            <option class="dropdown-item" value="{{ role[0] }}">{{ role[1] }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
+    <div class="container">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <form class="form-inline" method="POST">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="container">
+                            <input type="hidden" name="employeeID" value="{{ employeeID }}">
+                            <!-- Dropdown for Employee -->
+                            <div class="col">
+                                <div class="dropdown">
+                                    <select name="Role" class="selectpicker form-control">
+                                        {% for role in roles %}
+                                            {% if role[0] == roleID %}
+                                                <option class="dropdown-item" value="{{ role[0] }}" selected>{{ role[1] }}</option>
+                                            {% endif %}
+                                            {% if role[0] != roleID %}
+                                                <option class="dropdown-item" value="{{ role[0] }}">{{ role[1] }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
                             </div>
+                            <!-- Dropdown for Register -->
+                            <div class="col">
+                                <div class="dropdown">
+                                    <select name="Title" class="selectpicker form-control">
+                                        {% for title in titles %}
+                                            {% if title[0] == titleID %}
+                                                <option class="dropdown-item" value="{{ title[0] }}" selected>{{ title[1] }}</option>
+                                            {% endif %}
+                                            {% if title[0] != titleID %}
+                                                <option class="dropdown-item" value="{{ title[0] }}">{{ title[1] }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                            <!-- Textarea for Name -->
+                                <div class="row">
+                                    <input type="text" name="Name" placeholder="İsim" value="{{ name }}">
+                                </div>
+                                <div class="row">
+                                    <input type="text" name="Surname" placeholder="Soyad" value="{{ surname }}">
+                                </div>
+                                <div class="row">
+                                    <input type="text" name="Username" placeholder="Kullanıcı Adı" value="{{ username }}">
+                                </div>                       
+                            </div>                                
+                            <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="">{{ load_resource('Button.Save', 'Buttons') }}</button>
                         </div>
-                        <!-- Dropdown for Register -->
-                        <div class="col">
-                            <div class="dropdown">
-                                <select name="Title" class="selectpicker form-control">
-                                    {% for title in titles %}
-                                        {% if title[0] == titleID %}
-                                            <option class="dropdown-item" value="{{ title[0] }}" selected>{{ title[1] }}</option>
-                                        {% endif %}
-                                        {% if title[0] != titleID %}
-                                            <option class="dropdown-item" value="{{ title[0] }}">{{ title[1] }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                        <!-- Textarea for Name -->
-                            <div class="row">
-                                <input type="text" name="Name" placeholder="İsim" value="{{ name }}">
-                            </div>
-                            <div class="row">
-                                <input type="text" name="Surname" placeholder="Soyad" value="{{ surname }}">
-                            </div>
-                            <div class="row">
-                                <input type="text" name="Username" placeholder="Kullanıcı Adı" value="{{ username }}">
-                            </div>                       
-                        </div>                                
-                        <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="">{{ load_resource('Button.Save', 'Buttons') }}</button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
