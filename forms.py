@@ -623,3 +623,79 @@ class Title:
         cursor.close()
         return titles
 
+class Expense:
+    def __init__(id, amount, description, createdOn, modifiedOn, IsPremium, createdBy, modifiedBy):
+        self.expenseId = id
+        self.amount = amount
+        self.description = description
+        self.createdOn = createdOn
+        self.modifiedOn = modifiedOn  
+        self.IsPremium = IsPremium
+        self.createdBy = createdBy
+        self.modifiedBy = modifiedBy  
+
+    def selectExpenseByID(expenseID):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT Expense.ExpenseID, Expense.Amount, Expense.Description, Expense.CreatedOn, 
+        Expense.ModifiedOn, Expense.IsPremium, Employee.EmployeeID, Employee.EmployeeID FROM Expense
+        INNER JOIN Employee ON Employee.EmployeeID = Expense.CreatedBy
+        INNER JOIN Employee ON Employee.EmployeeID = Expense.ModifiedBy
+        WHERE Expense.ExpenseID = %s
+        """
+        cursor.execute(queryString, (expenseID, ))
+        employee = cursor.fetchone()
+        cursor.close()
+        return expense
+
+    def select():
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """SELECT Expense.ExpenseID, Expense.Amount, Expense.Description, Expense.CreatedOn, 
+        Expense.ModifiedOn, Expense.IsPremium, Employee.EmployeeID, Employee.EmployeeID FROM Expense
+        INNER JOIN Employee ON Employee.EmployeeID = Expense.CreatedBy
+        INNER JOIN Employee ON Employee.EmployeeID = Expense.ModifiedBy
+        """
+        cursor.execute(queryString)
+        expenses = cursor.fetchall()
+        cursor.close()
+        return expenses
+
+    def deleteExpense(expenseId):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        cursor.execute('UPDATE Expense SET IsActive = false WHERE ExpenseID = %s', (expenseId, ))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def createExpense(amount, description, isPremium, employeeId):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            INSERT INTO Expense (Amount, Description, CreatedOn, IsPremium, CreatedBy)
+            VALUES (%s, %s, NOW(), true, %s)
+        """
+        if IsPremium == None:
+            IsPremium = False
+        cursor.execute(queryString, (amount, description, str(isPremium), employeeId))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def updateExpense(expenseId, amount, description, isPremium, modifiedBy):
+        conn = dbapi.connect(url)
+        cursor = conn.cursor()
+        queryString = """
+            UPDATE Expense
+                SET Amount = %s,
+                    Description = %s,
+                    IsPremium = %s,
+                    ModifiedBy = %s,
+                    ModifiedOn = NOW()
+            WHERE ExpenseId = %s
+        """
+        cursor.execute(queryString, (amount, description, isPremium, modifiedBy, expenseId))
+        conn.commit()
+        cursor.close()
+        conn.close()

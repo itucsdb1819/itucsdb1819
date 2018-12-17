@@ -2,3 +2,41 @@
     {% block title %}
     <title>{{ load_resource('Expense', 'PageTitles') }}</title>
     {% endblock %}
+
+
+    {% block content%}
+    <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <a href="/expense_create" class="btn btn-dark" role="button">{{ load_resource('Product.Create', 'PageText') }}</a>
+            </div>
+        </div>
+        <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">{{ load_resource('Expenses.ExpenseID', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Expenses.Description', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Expenses.Amount', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Expenses.ModifiedOn', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Expenses.ModifiedBy', 'PageText') }}</th>
+                <th scope="col">{{ load_resource('Expenses.IsPremium', 'PageText') }}</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ load_resource(expense[1], 'PageText') }}</td>
+                <td>{{ expense[2] }}</td>
+                <td>{{ expense[3] }}</td>
+                <td>{{ expense[4] }}</td>
+                <td>{{ expense[5] }}</td>
+                <td>{{ expense[6] }}</td>
+                <td>
+                    <a href="/expense_create?id={{ expense[0] }}" class="btn btn-dark" name="edit" role="button">{{ load_resource('Button.Edit', 'Buttons') }}</a>
+                    <a href="/expense_delete?id={{ expense[0] }}" class="btn btn-dark" name="edit" role="button" onclick="alert('Are you sure?')">{{ load_resource('Button.Delete', 'Buttons') }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

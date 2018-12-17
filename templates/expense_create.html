@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}
+    <title>{{ load_resource('Expense.Create', 'PageTitles') }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <form class="form-group" method="POST">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="container">
+                        <input type="hidden" name="expenseID" value="{{ expenseID }}">
+                        <!-- Dropdown for Expense -->
+                        <div class="col-lg-12">
+                            <div class="row dropdown input-group-text">
+                                <label class="col-lg-4">Masraf</label>
+                                <select name="Expense" class="selectpicker form-control col-lg-8">
+                                    {% for expense in expenses %}
+                                        {% if expenseID[0] == expenseID %}
+                                            <option class="dropdown-item" value="{{ expense[0] }}" selected>{{ load_resource(expense[1], 'PageText') }}</option>
+                                        {% endif %}
+                                        {% if expenseID[0] != expenseID %}
+                                            <option class="dropdown-item" value="{{ expense[0] }}">{{ load_resource(expense[1], 'PageText') }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        <!-- Textareas -->
+                            <div class="row input-group-text">
+                                <label class="col-lg-4">Miktar</label>
+                                <input type="text" name="Amount" class="form-control col-lg-8" placeholder="Miktar" value="{{ amount }}">
+                            </div>
+                            <div class="row input-group-text">
+                                <label class="col-lg-4">Açıklama</label>
+                                <input type="text" name="Description" class="form-control col-lg-8" placeholder="Açıklama" value="{{ description }}">
+                            </div>
+                            <div class="row input-group-text">
+                                <label class="col-lg-4">Is Premium</label>
+                                <input class="form-control col-lg-8" type="checkbox" name="IsPremium" value="{{ isPremium }}">
+                            </div>                      
+                        </div>                                
+                        <button type="submit" class="btn btn-outline-secondary" name="submit_button" value="">{{ load_resource('Button.Save', 'Buttons') }}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

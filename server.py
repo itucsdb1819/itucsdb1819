@@ -167,6 +167,7 @@ def expense_page():
     try:
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'ExpensePage.Access'):
+                expenses = forms.Expense.select()
                 return render_template('expense.html', menuItems = menuItems, load_resource = load_resource)
             else:
                 return redirect(url_for('unauthorized'))
@@ -174,6 +175,62 @@ def expense_page():
     except Exception as error:
         forms.System.insertLog(str(error), 'expense', 'Fatal', traceback.format_exc())
         return redirect(url_for('error', errorMessage = error))
+
+@app.route("/expense_delete", methods=['GET', 'POST'])
+def expense_delete():
+    try:
+        expenseID = request.args.get('id')
+        forms.Expense.deleteExpense(expenseID)
+        return redirect(url_for("expense"))
+    except Exception as error:
+        forms.System.insertLog(str(error), 'expense_delete', 'Fatal', traceback.format_exc())
+        return redirect(url_for('error', errorMessage = error))
+
+@app.route("/expense_create", methods = ['GET', 'POST'], endpoint="expense_create")
+def expense_create_page():
+    try:
+        if 'userId' in session:
+            if forms.Permission.hasPermission(session['roleId'], 'ProductPage.Access'):
+                if request.method == 'POST':
+                    expenseID = request.form.get('expenseID')
+                    print(expenseID)
+                    amount = request.form.get('Amount')
+                    description = request.form.get('Description')
+                    createdOn = request.form.get('CreatedOn')
+                    createdBy = request.form.get('CreatedBy')
+                    isPremium = request.form.get('IsPremium')
+                    if productID != 'None':
+                        print("Update")
+                        forms.Expense.updateExpense(expenseId, amount, description, isPremium, modifiedBy)
+                    else:
+                        print("Insert")
+                        forms.Expense.createProduct(productType, name, price, calorie, protein, carbonhydrate, fat, glucose, isVegetarian)                        
+                    return redirect(url_for("product_create"))
+
+                expenseID = request.args.get('id')
+                createdOn = 0
+                createdBy = 0
+                isPremium = False
+                description = ""
+                
+                if expenseID != None:
+                    expense = forms.Expense.selectWithID(expenseID)
+                    amount = expense[1]
+                    description = expense[2]
+                    createdOn = expense[3]
+                    modifiedOn = expense[4]
+                    isPremium = expense[5]
+                    createdBy = expense[6]
+                    modifiedBy = expense[7]
+                
+                return render_template('expense_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productTypeID = productTypeID, productID = productID, name = name, price = price, protein = protein, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
+            else:
+                return redirect(url_for('unauthorized'))
+        return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
+    except Exception as error:
+        forms.System.insertLog(str(error), 'expense_create', 'Fatal', traceback.format_exc())
+        return redirect(url_for('error', errorMessage = error))
+
 
 @app.route("/product_delete", methods=['GET', 'POST'])
 def product_delete():
