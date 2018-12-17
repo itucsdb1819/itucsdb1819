@@ -199,12 +199,12 @@ def expense_create_page():
                     createdOn = request.form.get('CreatedOn')
                     createdBy = request.form.get('CreatedBy')
                     isPremium = request.form.get('IsPremium')
-                    if productID != 'None':
+                    if expenseID != 'None':
                         print("Update")
                         forms.Expense.updateExpense(expenseId, amount, description, isPremium, modifiedBy)
                     else:
                         print("Insert")
-                        forms.Expense.createExpense(amount, description, isPremium, employeeId)                        
+                        forms.Expense.createExpense(amount, description, isPremium, createdBy)                        
                     return redirect(url_for("product_create"))
 
                 expenseID = request.args.get('id')

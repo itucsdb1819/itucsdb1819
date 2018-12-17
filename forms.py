@@ -639,8 +639,7 @@ class Expense:
         cursor = conn.cursor()
         queryString = """SELECT Expense.ExpenseID, Expense.Amount, Expense.Description, Expense.CreatedOn, 
         Expense.ModifiedOn, Expense.IsPremium, Employee.EmployeeID, Employee.EmployeeID FROM Expense
-        INNER JOIN Employee ON Employee.EmployeeID = Expense.CreatedBy
-        INNER JOIN Employee ON Employee.EmployeeID = Expense.ModifiedBy
+        INNER JOIN Employee ON Employee.EmployeeID = Expense.CreatedBy, Expense.ModifiedBy
         WHERE Expense.ExpenseID = %s
         """
         cursor.execute(queryString, (expenseID, ))
