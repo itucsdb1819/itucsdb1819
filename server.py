@@ -168,7 +168,7 @@ def expense_page():
         if 'userId' in session:
             if forms.Permission.hasPermission(session['roleId'], 'ExpensePage.Access'):
                 expenses = forms.Expense.select()
-                return render_template('expense.html', menuItems = menuItems, load_resource = load_resource)
+                return render_template('expense.html', menuItems = menuItems, load_resource = load_resource, expenses = expenses)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))
@@ -201,7 +201,7 @@ def expense_create_page():
                     isPremium = request.form.get('IsPremium')
                     if expenseID != 'None':
                         print("Update")
-                        forms.Expense.updateExpense(expenseId, amount, description, isPremium, modifiedBy)
+                        forms.Expense.updateExpense(expenseID, amount, description, isPremium, modifiedBy)
                     else:
                         print("Insert")
                         forms.Expense.createExpense(amount, description, isPremium, createdBy)                        
@@ -214,7 +214,7 @@ def expense_create_page():
                 description = ""
                 
                 if expenseID != None:
-                    expense = forms.Expense.selectWithID(expenseID)
+                    expense = forms.Expense.selectExpenseByID(expenseID)
                     amount = expense[1]
                     description = expense[2]
                     createdOn = expense[3]
@@ -223,7 +223,7 @@ def expense_create_page():
                     createdBy = expense[6]
                     modifiedBy = expense[7]
                 
-                return render_template('expense_create.html', menuItems = menuItems, load_resource = load_resource, productTypes = productTypes, productTypeID = productTypeID, productID = productID, name = name, price = price, protein = protein, calorie = calorie, carbonhydrate = carbonhydrate, fat = fat, glucose = glucose, isVegetarian = isVegetarian)
+                return render_template('expense_create.html', menuItems = menuItems, load_resource = load_resource, expenseID = expenseID, amount = amount, description=description, isPremium = isPremium)
             else:
                 return redirect(url_for('unauthorized'))
         return redirect(url_for('login', error = load_resource('Error.SessionExpired', 'PageText')))

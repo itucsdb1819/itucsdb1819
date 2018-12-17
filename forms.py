@@ -667,7 +667,7 @@ class Expense:
         cursor.close()
         conn.close()
 
-    def createExpense(amount, description, isPremium, employeeId):
+    def createExpense(amount, description, isPremium, employeeID):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
@@ -676,12 +676,12 @@ class Expense:
         """
         if IsPremium == None:
             IsPremium = False
-        cursor.execute(queryString, (amount, description, str(isPremium), employeeId))
+        cursor.execute(queryString, (amount, description, str(isPremium), employeeID))
         conn.commit()
         cursor.close()
         conn.close()
 
-    def updateExpense(expenseId, amount, description, isPremium, modifiedBy):
+    def updateExpense(expenseID, amount, description, modifiedBy, isPremium):
         conn = dbapi.connect(url)
         cursor = conn.cursor()
         queryString = """
@@ -691,9 +691,9 @@ class Expense:
                     IsPremium = %s,
                     ModifiedBy = %s,
                     ModifiedOn = NOW()
-            WHERE ExpenseId = %s
+            WHERE ExpenseID = %s
         """
-        cursor.execute(queryString, (amount, description, isPremium, modifiedBy, expenseId))
+        cursor.execute(queryString, (amount, description, modifiedBy, isPremium, expenseID))
         conn.commit()
         cursor.close()
         conn.close()
